@@ -395,6 +395,74 @@ Still our main interesting is in how the two atoms mix inside the system, so we 
     \Delta U_{mix} = U - \frac{N_A Z}{2}E_{AA} - \frac{N_B Z}{2}E_{BB}.
 \end{equation}
 By using the definitions in \eqref{eq:NumberOfAtoms} and some algebra we can rewrite the mixing energy in a close form depending on the order parameters as
+\begin{align}
+    \label{eq:EnergyOfMixingBinary}
+    &\Delta U_{mix} = N\Omega\left( X_AX_B + \eta^2 \right), &\Omega = Z\left[ E_{AB} - \frac{1}{2}\left(E_{AA} + E_{BB}\right) \right],
+\end{align}
+where $\Omega$ is called \textbf{interaction parameter}. This result is already showing us some interesting properties of the mixing inside a binary system. In particular, we can understand that the sign of $\Omega$ determines whether the energy variation from the mixing is negative or positive, and so if the process is favorable or not. Basically, it's possible to say that if the bond between $A-B$ is stronger than the average of the $A-A$ and $B-B$, meaning the energy is lower, the interaction parameter becomes negative and a structure with more $A-B$ bonds should appear, therefore an ordered lattice is more favorable. In the other case, atoms of same type would prefer to stay with same type driving the system into a clustered lattice situation.
+
+Nevertheless, to describe better the thermodynamic of the system and the real form of the lattice at equilibrium, we shall work better with the Gibbs free energy of mixing
 \begin{equation}
-    \Delta U_{mix} = NZ\left( X_AX_B + \eta^2 \right)\left[ E_{AB} - \frac{1}{2}\left(E_{AA} + E_{BB}\right) \right].
+    \label{eq:defGmix}
+    \Delta G_{mix} = \Delta H_{mix} - T\Delta S_{mix}.
 \end{equation}
+To evaluate it we can first write down the form of the enthalpy of mixing which is easily obtained from \eqref{eq:EnergyOfMixingBinary} remembering that in solid state systems $\Delta V \approx 0$ so that
+\begin{equation}
+    \label{eq:EnthalpyBinarySist}
+    \Delta H_{mix} = \Delta U_{mix} + P\Delta V_{mix} \approx N\Omega\left( X_AX_B + \eta^2 \right).
+\end{equation}
+Then, for the entropy we can use classical thermodynamic and evaluate it using $\Delta S_{mix} = k_B\ln W$, where $W$ are the possible dispositions of atoms $A$ and $B$ in the various lattice positions. By using some combinatory calculus one can arrive to the \textbf{Bragg-Williams-Gorsky configurational entropy}
+\begin{equation}
+    \label{eq:EntropyBinarySist}
+    \Delta S_{mix} = k_B\ln\left[ \frac{(N/2)!}{N_A^\alpha !N_B^\alpha !}\frac{(N/2)!}{N_A^\beta !N_B^\beta !} \right] = -\frac{k_B N}{2}\sum_{i = A,B}\sum_{j=\alpha, \beta} X_i^j \ln X_i^j.
+\end{equation}
+A form that shall recall to ourselves the Shannon entropy for a generic system. Thus, by inserting \eqref{eq:EntropyBinarySist} and \eqref{eq:EnthalpyBinarySist} inside \eqref{eq:defGmix} we have the final form
+\begin{equation}
+    \label{eq:GibssMixingBinary}
+    \Delta G_{mix} = N\Omega\left( X_AX_B + \eta^2 \right) + \frac{k_BTN}{2}\sum_{i = A,B} \left[(X_i + \eta) \ln\left( X_i + \eta \right) + (X_i - \eta) \ln\left( X_i - \eta \right)\right].
+\end{equation}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/SimulazioniBinary.png}
+    \caption
+    {
+        Graphical visualization of the $\Delta G_{mix}$ inside a binary system for different values of interaction parameter and temperature. In the top row negative $\Omega$ are plotted, while positive ones are shown in the bottom row.
+    }
+    \label{fig:SimulazioniBinary}
+\end{figure}
+This form of the free energy describes the thermodynamic behavior of our system, and it's possible to see how the type of lattice that is going to appear is totally determined by the value of $\Omega$ and of the temperature. In particular, we can see how at low temperatures the leading term inside $\Delta G_{mix}$ is the first one, having a behavior analogous to the one that we hinted to describing the mixing energy. In fact, if $\Omega < 0$ the minimum of the free energy is obtained for $\eta$ maximum, as can be seen plotted in \figref{fig:SimulazioniBinary}, showing how the system is effectively driven to an ordered lattice. Instead, if $\Omega < 0$ the minima is present at $\eta = 0$ giving out a random distribution of atoms.
+
+Nevertheless, the result \eqref{eq:GibssMixingBinary} doesn't only show the simple behavior that we had already described previously since now temperature plays a role and if we go away from low temperatures other situations can appear. In fact, even if we have $\Omega < 0$ as we increase the temperature the minimum of the free energy moves from the maximum of $\eta$ reaching zero at high $T$, showing how \textbf{thermal energy is able to destroy the order inside a system}. Instead, in the case of $\Omega > 0$ it's possible to see how the minimum is always placed at $\eta = 0$ for every possible value of $T$. Nevertheless, the real interesting parameter to look at in this situation is $X_B$, $\Delta G_{mix}$ can possess more than one minimum respect $X_B$ at low temperature. This lead to an interesting situation where we can imagine having an isolated system with fixed $X_A$ and $X_B$ which due to temperature find itself in an unstable position with two possible minima at other molar fractions. The system would like to go into one of those minima, but it's not possible since the molar fractions are conserved becoming a \textbf{frustrated system}. In this situation the best way nature has to minimize the energy and solve the situation is to divide the system, having that different domains starts to appear inside the material that place themselves in either one of the two minima. Thus, the total number of atoms is conserved, but locally a minimum is obtained, creating also a heterogeneous system composed by zones more rich of $A$ atoms or $B$ atoms, a clustered lattice. The region of phase space that correspond to this two-phase situation takes the name of \textbf{miscibility gap} and is what gives the start to the study of heterogeneous systems. Still, also in this case temperature is able to destroy this phase since as $T$ increase $\Delta G_{mix}$ moves the two minima close together bringing the equilibrium to the random lattice once again.
+
+All of these considerations were based on simple numerical simulation to look at the form of $\Delta G_{mix}$, nevertheless also an analytical solution can be found out by using simple function studying technique and is reported in appendix (IF I WILL EVER WRITE THOSE). Still, we were able to describe all the thermodynamic behaviors of the system in question, looking at the different structures that appears at different temperatures, composition and interaction term. Thus, I have reported the main results about the phase space of the system inside \tabref{tab:phaseBinary}.
+
+\begin{table}[t]
+    \centering
+    \caption
+    {
+        Qualitatively phase space description of a binary system with the four main regions discussed from \eqref{eq:GibssMixingBinary} and their regimes.
+    }
+    \label{tab:phaseBinary}
+    \begin{tabular}{ccccc}
+        \toprule
+        \toprule
+        \textbf{Interaction par.} & \textbf{Temperature} & $\vb*{\eta}$ & $\vb*{X_B}$ & \textbf{Lattice}\\
+        \midrule
+        $\Omega < 0$ & Low & $\pm$ 0.5 & 0.5 & Ordered\\
+        $\Omega < 0$ & High & 0 & 0.5 & Random\\
+        $\Omega > 0$ & Low & 0 & Two sol. & Clustered\\
+        $\Omega > 0$ & High & 0 & 0.5 & Random\\
+        \bottomrule
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\nt
+{
+    The Gibbs free energy of mixing in \eqref{eq:GibssMixingBinary} is fairly general and interesting, for example we can see easily how in the case of a disordered system, $\eta = 0$, \eqref{eq:GibssMixingBinary} becomes the free energy of a regular solution
+    \begin{equation}
+        \Delta G_{mix} = N\Omega X_AX_B + RT\left( X_A \ln X_A + X_B\ln X_B \right) = \Delta H_{mix} - T\Delta S_{mix}^{id}.
+    \end{equation}
+    Showing that a random binary system is in fact a regular solution, with both $\Delta H_{mix}$ and $\Delta S_{mix}$ symmetric respect to $X_B$.
+}
