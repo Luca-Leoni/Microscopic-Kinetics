@@ -434,7 +434,7 @@ This form of the free energy describes the thermodynamic behavior of our system,
 
 Nevertheless, the result \eqref{eq:GibssMixingBinary} doesn't only show the simple behavior that we had already described previously since now temperature plays a role and if we go away from low temperatures other situations can appear. In fact, even if we have $\Omega < 0$ as we increase the temperature the minimum of the free energy moves from the maximum of $\eta$ reaching zero at high $T$, showing how \textbf{thermal energy is able to destroy the order inside a system}. Instead, in the case of $\Omega > 0$ it's possible to see how the minimum is always placed at $\eta = 0$ for every possible value of $T$. Nevertheless, the real interesting parameter to look at in this situation is $X_B$, $\Delta G_{mix}$ can possess more than one minimum respect $X_B$ at low temperature. This lead to an interesting situation where we can imagine having an isolated system with fixed $X_A$ and $X_B$ which due to temperature find itself in an unstable position with two possible minima at other molar fractions. The system would like to go into one of those minima, but it's not possible since the molar fractions are conserved becoming a \textbf{frustrated system}. In this situation the best way nature has to minimize the energy and solve the situation is to divide the system, having that different domains starts to appear inside the material that place themselves in either one of the two minima. Thus, the total number of atoms is conserved, but locally a minimum is obtained, creating also a heterogeneous system composed by zones more rich of $A$ atoms or $B$ atoms, a clustered lattice. The region of phase space that correspond to this two-phase situation takes the name of \textbf{miscibility gap} and is what gives the start to the study of heterogeneous systems. Still, also in this case temperature is able to destroy this phase since as $T$ increase $\Delta G_{mix}$ moves the two minima close together bringing the equilibrium to the random lattice once again.
 
-All of these considerations were based on simple numerical simulation to look at the form of $\Delta G_{mix}$, nevertheless also an analytical solution can be found out by using simple function studying technique and is reported in appendix (IF I WILL EVER WRITE THOSE). Still, we were able to describe all the thermodynamic behaviors of the system in question, looking at the different structures that appears at different temperatures, composition and interaction term. Thus, I have reported the main results about the phase space of the system inside \tabref{tab:phaseBinary}.
+All of these considerations were based on simple numerical simulation to look at the form of $\Delta G_{mix}$, nevertheless also an analytical solution can be found out by using simple function studying technique and is reported next. Still, we were able to describe all the thermodynamic behaviors of the system in question, looking at the different structures that appears at different temperatures, composition and interaction term. Thus, I have reported the main results about the phase space of the system inside \tabref{tab:phaseBinary}.
 
 \begin{table}[t]
     \centering
@@ -465,4 +465,35 @@ All of these considerations were based on simple numerical simulation to look at
         \Delta G_{mix} = N\Omega X_AX_B + RT\left( X_A \ln X_A + X_B\ln X_B \right) = \Delta H_{mix} - T\Delta S_{mix}^{id}.
     \end{equation}
     Showing that a random binary system is in fact a regular solution, with both $\Delta H_{mix}$ and $\Delta S_{mix}$ symmetric respect to $X_B$.
+}
+
+\sol{Analytic solution}
+{
+    To study analytically the function in \eqref{eq:GibssMixingBinary} we need to find out the minimum respect to $\eta$ by taking the derivative and setting it to zero, having as a final result
+    \begin{equation}
+        \label{eq:analyticSolutionBy}
+        4\Omega\eta = -k_BT\ln\frac{\left( X_B + \eta \right)\left( X_A + \eta \right)}{\left( X_B - \eta \right)\left( X_A - \eta \right)}.
+    \end{equation}
+    This condition for the minimum already shows how solutions with $\eta \neq 0$ are possible only for $\Omega < 0$, so ordered systems exist only for negative interaction parameter as according to \tabref{tab:phaseBinary}. Still, it's interesting to see how from this result we can expand near $\eta = 0$ to obtain the temperature were the transition from ordered to disordered appear in the case of $\Omega < 0$, given by
+    \begin{equation}
+        K_BT^C = -2\Omega X_AX_B, \hspace{2cm} T^C_{max} = -\frac{\Omega}{2k_B}, \hspace{2cm} \frac{T^C}{T^C_{max}}=4X_AX_B.
+    \end{equation}
+    Showing how the \textbf{critical temperature} can be found for every value of the system's composition but the one that maximize $T^C$ needing the most energy to destroy the order is the case where $X_A = X_B = 0.5$, describing the most stable point. It's also possible to see that setting $X_A = X_B$ \eqref{eq:analyticSolutionBy} transforms into
+    \begin{equation}
+        4\Omega\eta = -k_BT\ln\left( \frac{1+2\eta}{1-2\eta} \right)^2,
+    \end{equation}
+    that at low $T$ makes $\eta$ tend to the value of $\pm 0.5$, therefore maximum order as expected. One can also take teh second derivative of the free energy
+    \begin{equation}
+        \pdv[2]{\Delta G_{mix}}{X_B} = -2N\Omega +\frac{k_BTN}{2}\left( \frac{1}{X_B + \eta} + \frac{1}{X_B - \eta} + \frac{1}{X_A + \eta} + \frac{1}{X_A - \eta} \right),
+    \end{equation}
+    and see how it's always positive for $\Omega < 0$ at every temperature showing how only one minimum of $\Delta G_{mix}$ can exist in that case making the system stable in a homogeneous composition. Instead, in the case of $\Omega > 0$ we can look at the second derivative along the line $\eta = 0$ that describes the minimum in terms of order and find out
+    \begin{equation}
+        \label{eq:secondDer}
+        \eval{\pdv[2]{\Delta G_{mix}}{X_B}}_{\eta=0} = N\left[\frac{k_B T}{X_BX_A} - 2\Omega\right].
+    \end{equation}
+    This can change sign depending on $T$ and the points where this happens are called \textbf{spinodal points}, while the locus on $(X_B, T)$ space is called \textbf{spinodal line}, defined by setting \eqref{eq:secondDer} to zero. In this model the line will have the form of a parabola
+    \begin{align}
+        &k_BT^s = 2\Omega X_AX_B, &T^s_{max} = \frac{\Omega}{2k_B},
+    \end{align}
+    this shows how the presence of two minima is possible giving rise to the formation of a heterogeneous system with regions on the two minima. The region of phase space in which this is present is called miscibility gap, as was already sad, and the line $T^b(X_B)$ that describes the boundaries of that region is the \textbf{binodal line}. Therefore, for $\Omega > 0$ the equilibrium state below $T^b(X_B)$ is heterogeneous, while above homogeneous random as we had already seen.
 }

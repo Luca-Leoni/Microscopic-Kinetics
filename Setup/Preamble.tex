@@ -401,7 +401,7 @@
 %================================
 
 \makeatletter
-\newtcbtheorem{question}{Question}{enhanced,
+\newtcbtheorem{question}{}{enhanced,
 	breakable,
 	colback=white,
 	colframe=myb!80!black,
@@ -431,12 +431,12 @@
 %================================
 
 \makeatletter
-\newtcolorbox{solution}{enhanced,
+\newtcolorbox{solution}[1]{enhanced,
 	breakable,
 	colback=white,
 	colframe=myg!80!black,
 	attach boxed title to top left={yshift*=-\tcboxedtitleheight},
-	title=Solution,
+	title={#1},
 	boxed title size=title,
 	boxed title style={%
 			sharp corners,
@@ -564,6 +564,7 @@
 \newcommand{\qs}[2]{\begin{question}{#1}{}#2\end{question}}
 \newcommand{\pf}[2]{\begin{myproof}[#1]#2\end{myproof}}
 \newcommand{\nt}[1]{\begin{note}\itshape #1\end{note}}
+\newcommand{\sol}[2]{\begin{solution}{#1}#2\end{solution}}
 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
 		\node[shape=circle,draw,inner sep=1pt] (char) {#1};}}
