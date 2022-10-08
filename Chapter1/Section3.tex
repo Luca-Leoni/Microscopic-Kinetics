@@ -147,23 +147,23 @@ Thus, everything related to the Gibbs free energy will become a relation using t
 \ex{}
 {
     With these results we are able to already study some simple systems in an analytic form. For example, let's take a two component system and study the behavior of a molar function $f(X_1, X_2; T, P)$. Since we are using the molar version of $f'$ we can also rewrite it differential that becomes
-\begin{equation}
-    \dd f  = \overline{f}_1 \dd X_1 + \overline{f}_2 \dd X_2,
-\end{equation}
-but we also know that $X_1 + X_2 = 1$ leading to $\dd X_1 = -\dd X_2$. Thus, we can find out the derivative of $f$ as
-\begin{equation}
-    \dv{f}{X_2} = \overline{f}_2 - \overline{f}_1,
-\end{equation}
-we only need to write down the two quantities.  The idea is that we know from \eqref{eq:PMPproperty1} that $f = \overline{f}_1 X_1 + \overline{f}_2 X_2$, so by substituting $X_1 = 1 - X_2$ we have
-\begin{equation}
-    \overline{f}_1 = \frac{f - \overline{f}_2X_2}{1 - X_2}.
-\end{equation}
-Thus, by inserting it inside the derivative of $f$ found previously we obtain a general simple relation for the physical quantity
-\begin{equation}
-    \label{eq:BynaryPMP}
-    f = \overline{f}_1 + (X_2 - 1)\dv{f}{X_2},
-\end{equation}
-same computations can be done for $X_1$ leading to the same results but with inverted subscripts. Basically, using really simple considerations we were able to obtain a general result for $f$ that allow us to study the system simply, but most importantly gives us a geometric way of evaluating the PMPs. In fact the \eqref{eq:BynaryPMP} can be rewritten in terms of $\overline{f}_1$ and taken a fixed point $X_2^0$ one can see how it describes a line coming from the point to the intercept with the y-axis as is illustrated in \figref{fig:PMPs}.
+    \begin{equation}
+        \dd f  = \overline{f}_1 \dd X_1 + \overline{f}_2 \dd X_2,
+    \end{equation}
+    but we also know that $X_1 + X_2 = 1$ leading to $\dd X_1 = -\dd X_2$. Thus, we can find out the derivative of $f$ as
+    \begin{equation}
+        \dv{f}{X_2} = \overline{f}_2 - \overline{f}_1,
+    \end{equation}
+    we only need to write down the two quantities.  The idea is that we know from \eqref{eq:PMPproperty1} that $f = \overline{f}_1 X_1 + \overline{f}_2 X_2$, so by substituting $X_1 = 1 - X_2$ we have
+    \begin{equation}
+        \overline{f}_1 = \frac{f - \overline{f}_2X_2}{1 - X_2}.
+    \end{equation}
+    Thus, by inserting it inside the derivative of $f$ found previously we obtain a general simple relation for the physical quantity
+    \begin{equation}
+        \label{eq:BynaryPMP}
+        f = \overline{f}_1 + (X_2 - 1)\dv{f}{X_2},
+    \end{equation}
+    same computations can be done for $X_1$ leading to the same results but with inverted subscripts. Basically, using really simple considerations we were able to obtain a general result for $f$ that allow us to study the system simply, but most importantly gives us a geometric way of evaluating the PMPs. In fact the \eqref{eq:BynaryPMP} can be rewritten in terms of $\overline{f}_1$ and taken a fixed point $X_2^0$ one can see how it describes a line coming from the point to the intercept with the y-axis as is illustrated in \figref{fig:PMPs}.
 }
 
 \begin{figure}[t]
@@ -322,11 +322,79 @@ that can be really useful in some situations.
 
 \ex{}
 {
+    \label{ex:SimpleEnthalpy}
     To make an example of where the relation \eqref{eq:reactionCoeffRS} can be really useful. Basically the simplest model possible for a regular solution posses as excess enthalpy the quantity $H_{mix}^{xs} = aX_1X_2$, that we have already studied, and we know have $\Delta \overline{H}_i = aX_i^2$, so
     \begin{equation}
-        \gamma_i = \exp\left( \frac{\Delta aX_i^2}{RT} \right).
+        \gamma_i = \exp\left( \frac{ aX_i^2}{RT} \right).
     \end{equation}
-    This result also shows how $\lim_{X_i\to 1} \gamma_i$ does not depend on $X_i$ so that for the dilute solution the Henry's law holds.
+    This result also shows how $\lim_{X_i\to 1} \gamma_i$ does not depend on $X_i$ so that for the dilute solution the Henry's law holds. Using the form of $\gamma_i$ the values of $\Delta S_{mix}$ and $\Delta G_{mix}$ can be obtained as shown in \figref{fig:SimpleRegularSolution}.
 }
 
-% TODO: Devi decidere dove inserire il diagramma che si ottiene dal semplice modello di soluzione regolare, se inserirlo qua come completamento dell'esercizio o se spararci una manfrina sull'equilibrio per iniziare la parte dopo.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{Immagini/SimpleRegularSolution.png}
+    \caption{
+        Computed values of mixing properties for the simple system given by the mixing enthalpy $aX_1X_2$. It's possible to see how only the mixing free energy has a temperature dependence, and it's interesting that for some values of $T$ a curve with two global minima is obtained. 
+    }
+    \label{fig:SimpleRegularSolution}
+\end{figure}
+
+\nt
+{
+    It's interesting to see how also inside the simple system defined in the Ex. (\ref{ex:SimpleEnthalpy}) for certain values of $T$ the solution $\Delta G_{mix}$ posses two global minima. This means that the system doesn't know on which minima should go, basically becomes a frustrated system which minimize the energy not only going into one of the minima, but different parts of the system can go in different minima generating different phases. This is the way in which heterogeneous systems originates in nature. 
+}
+
+\subsection{Atomistic model for binary systems}
+
+So far we have focused mainly on the general description of thermodynamic properties inside a general system. Now the aim is to look deeper into a specific system trying to create a microscopic atomistic model that describes the behavior of binary systems. Basically we will imagine to work with a system composed of two types of elements $A$ and $B$ that can occupy two different lattice sites $\alpha$ and $\beta$ on the unit cell of the material. The goal is to describe how the atoms position themselves inside the lattice on average, and in general the possible scenarios are the three depicted inside \figref{fig:SistemiBiatomici}.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\linewidth]{Immagini/SistemiBiatomici.png}
+    \caption{
+        Illustration of the three possible type of distributions of the atoms inside a binary system, with the possibility of randomly placed atoms, ordered structure creating a known lattice and clustered systems.
+    }
+    \label{fig:SistemiBiatomici}
+\end{figure}
+
+To study which type of structure will be the one found out inside a material we will use a \textbf{quasi-chemical model}, meaning that we will focus on the bonds that can be generated between nearest neighbors atoms, whose number if given by the coordination one $Z$, and their strength. To do so we will need to consider three types of bonds and the energy gain that they bring to the system: $E_{AA}$ for $A-A$ bonds, $E_{BB}$ for $B-B$ bonds and $E_{AB}$ for $A-B$ bonds. Before entering the computations will be useful to define two \textbf{orders parameters} that will simply the treatment of the system
+\begin{align}
+    \label{eq:orderParameters}
+    &X_i = \frac{1}{2}\left( X_i^\alpha + X_i^\beta \right), &\eta = \frac{1}{2}\left( X_B^\alpha - X_B^\beta \right),
+\end{align}
+where $X_i^j$ describe the molar fraction of atoms $i$ inside the site $j$. It's important to notice that both the parameters are limited, in the sense that from the properties of molar fractions we can find out how
+\begin{align}
+    &0 \le X_i \le 1, &-\frac{1}{2} \le \eta \le \frac{1}{2}.
+\end{align}
+Also, using some further mathematical consideration one can find out how $\eta \le \min(X_B, X_A)$. In physical terms, one can understand how the two quantities are intrinsically different since inside a closed system the total number of atoms $N$ is conserved along with also the two numbers of $A$ and $B$ atoms. This means that the value of $X_A$ and $X_B$ are \textbf{conserved quantities} inside closed systems, while $\eta$ can still change being dependent also on the order with which the atoms position themselves inside the lattice. In particular, one can easily understand that if we call $P(B, \alpha)$ and $P(B, \beta)$ the probabilities of having a $B$ atom in site $\alpha$ or $\beta$, and we assume $N_{B}^i$ to be averages we can write $X_B^j = N_B^j/N = P(B, j)$ having
+\begin{equation}
+    \eta = \frac{1}{2}\left( X_B^\alpha - X_B^\beta \right) = \frac{1}{2}\left[ P(B, \alpha) - P(B. \beta) \right].
+\end{equation}
+Showing how $\eta$ is zero only if I have the same probability of having $B$ on one site or the other, therefore a \textbf{random lattice}, while will be maxed out if I'm sure that $B$ atoms are on a specific site generating the maximum order inside the system, \textbf{ordered lattice}.
+\nt
+{
+    It's interesting to point out that even if $\eta$ increasing means an increase in order that doesn't mean that there is also an increase in the symmetry. In fact, increasing order could mean also a decrease in the symmetry. For example in the case of a bcc binary system, if a random lattice is present on average I have same probability of having A or B atoms on the diagonal, creating the pattern $A/B-A/B-A/B-etc$. If, instead, Order comes into play I have a structure of the type $A-B-A-B-etc$ which has less symmetry.
+}
+
+Using these informations we can simply write down forms to describe the average number of different types of bonds present inside the material by using an equation of the type
+\begin{equation}
+    N_{ij} = \frac{\text{number of bonds present}}{2} \times P(i, \alpha) P(j, \beta),
+\end{equation}
+where the division by $2$ is due to the fact that we don't want to count the same bond twice. In this way we can directly write down general forms for the number of bonds in the following way
+\begin{align}
+    \label{eq:NumberOfAtoms}
+    &N_{AA} = \frac{NZ}{2}X_A^\alpha X_A^\beta = \frac{NZ}{2}\left[ (1 - X_B)^2 - \eta^2 \right],\\
+    &N_{BB} = \frac{NZ}{2}X_B^\alpha X_B^\beta = \frac{NZ}{2}\left[ X_B^2 - \eta^2 \right],\\
+    &N_{AB} = \frac{NZ}{2}\left( X_A^\alpha X_B^\beta + X_B^\alpha X_A^\beta\right) = \frac{NZ}{2}\left( X_AX_B + \eta^2 \right).
+\end{align}
+We can now set the number of atoms inside the system to the Avogadro number, to have all quantities referring to one mole, and then compute the energy of the system coming from the bonds
+\begin{equation}
+    U = N_{AA} E_{AA} + N_{BB} E_{BB} + N_{AB} E_{AB}.
+\end{equation}
+Still our main interesting is in how the two atoms mix inside the system, so we can write the mixing energy by using as a starting point the case where the two types of atom were separated in different systems having
+\begin{equation}
+    \Delta U_{mix} = U - \frac{N_A Z}{2}E_{AA} - \frac{N_B Z}{2}E_{BB}.
+\end{equation}
+By using the definitions in \eqref{eq:NumberOfAtoms} and some algebra we can rewrite the mixing energy in a close form depending on the order parameters as
+\begin{equation}
+    \Delta U_{mix} = NZ\left( X_AX_B + \eta^2 \right)\left[ E_{AB} - \frac{1}{2}\left(E_{AA} + E_{BB}\right) \right].
+\end{equation}
