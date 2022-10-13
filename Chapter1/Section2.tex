@@ -45,10 +45,10 @@ To draw a phase diagram of a system we need to predict the positions of the coex
     \end{equation} 
     Where $u$ is the energy density, $s$ the entropy per unit volume and $n$ the number of mole. With this equation we can rewrite it to obtain the differential of the entropy as
     \begin{equation}
-        \label{eq:entroDiff}
+        \label{eq:entroDiff1}
         \dd s = \frac{\dd u}{T} + \frac{P}{T}\dd V - \frac{\mu}{T} \dd n,
     \end{equation}
-    this is really useful since being at equilibrium is implicitly saying to us that the entropy should be at a maximum. In fact, from classical thermodynamics we know that system evolves towards maximum entropy, so that the differential of the total entropy of the system must be zero at its maximum $\dd s^\alpha + \dd s^\beta = 0$. If we now use \eqref{eq:entroDiff} and the relations \eqref{eq:closeCond} we can easily see that the following is true
+    this is really useful since being at equilibrium is implicitly saying to us that the entropy should be at a maximum. In fact, from classical thermodynamics we know that system evolves towards maximum entropy, so that the differential of the total entropy of the system must be zero at its maximum $\dd s^\alpha + \dd s^\beta = 0$. If we now use \eqref{eq:entroDiff1} and the relations \eqref{eq:closeCond} we can easily see that the following is true
     \begin{equation}
         \left( \frac{1}{T^\alpha} - \frac{1}{T^\beta} \right)\dd u^\alpha + \left( \frac{P^\alpha}{T^\alpha} - \frac{P^\beta}{T^\beta} \right) \dd V^\alpha - \left( \frac{\mu^\alpha}{T^\alpha} - \frac{\mu^\beta}{T^\beta} \right) \dd n^\alpha = 0,
     \end{equation}
@@ -189,5 +189,5 @@ This equation allow us to describe up to a good precision the wanted lines where
 
 \nt
 {
-    \figref{fig:CCexample} also tells us that the difficulty in having sublimation instead melting for a material is not in the different amount of heat that we need to give in the two processes, since the slopes changes really little, but only in the needs of a much higher temperature for the former process to even start.
+    \figref{fig:CCexample} also tells us that the difficulty in having sublimation instead of melting for a material is not in the different amount of heat that we need to give in the two processes, since the slopes changes really little, but only in the needs of a much higher temperature for the former process to even start.
 }

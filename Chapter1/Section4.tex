@@ -178,10 +178,9 @@ From this type of graph we can also take other types of information, for example
     }
     \label{fig:Cu-NiEvo}
 \end{figure}
-% TODO: descrivere semplicemente l'evoluzione in equilibrio e quella veloce che non riesce a raggiungere l'equilibrio. Poi passa al prossimo.
 In the slow case the system has time to reach equilibrium at every step, entering the most favorable phase for that position in the phase space. Meaning that, from a starting liquid solution grains of solid phase with varying dimensions will start to form, and as we go down the weight $a_\alpha$ of the solid phase will start to increase following the \textbf{lever rule} having at the end only solid phases. One can also notice, from the labels in \figref{fig:Cu-NiEvo}, that the percentage of \ce{Ni} in the grains changes, that is due to the fact that as we go down in temperature also the position of the phase $\alpha$ changes moving from a higher molar fraction of Nickel to a lower one that becomes equal to the one present in the total system. Instead, in the case where the evolution goes fast the system has no time to reach equilibrium at every point, leading to the system \textbf{not completely following the phase diagram}, since it being a result of equilibrium thermodynamic can be incorrect when the processes are irreversible. In fact, in this situation as we cool down the system grains starts to form, but they are not able to form fast enough so that some liquid can remain confined inside a grain itself having so a mixture of liquid and solid also at lower temperatures respect to the expected one. This interesting phenomenon is also called \textbf{over-cooling}, and we will understand it better further in the course when we will talk about irreversible thermodynamic.
 
-\paragraph{Eutectic Systems.} This type of system are characterized by the presence of a particular triple point inside the phase diagram called \textbf{Eutectic point} connecting a liquid phase to a mixture of two solid phases. We have seen two example of compounds with such phase diagrams \ce{Cu-Ag} and \ce{Pb-Sn}.
+\paragraph{Eutectic Systems.} This type of system are characterized by the presence of a particular triple point inside the phase diagram called \textbf{Eutectic point} connecting a liquid phase to a mixture of two solid phases. We have seen two example of compounds with such phase diagrams \ce{Cu-Ag} and \ce{Pb-Sn}, still we are going to focus on the latter and look at the evolution of the system during cooling as we have done for the isomorphous systems. In particular, the phase diagram we are interested in is shown in \figref{fig:Pb-SnEvo} where also varius type of systems evolution were shown. The most interesting is the one where the cooling pass through the eutectic point, top left figure, there the system goes from liquid to two solid phases in one go. Also, this process happens in a specific way, generating the two phases one next to each others in a stripe form, as depicted in figure, that is typical of the eutectic systems. We can also see how the evolution of the system away from the point is totally analogous to the one described previusly by the isomorphous case only that onther phase appears inside the solid one once it's formed. At last, it's possible to see how near the eutectic point the system undergoes a cooling that brings to results symilar to the one of the first case, but since it first need to create a solution with both liquid and solid grains of only one type of phase the final striped form will start to generate around the grains. Meaning that the final form will be composed by grains with both phases in it surrounded by the stripe compound typical of eutectic points.
 
 \begin{figure}[t]
     \centering
@@ -189,4 +188,39 @@ In the slow case the system has time to reach equilibrium at every step, enterin
     \includegraphics[width=0.45\textwidth]{Immagini/Pb-SnEvo2.png}
     \includegraphics[width=0.45\textwidth]{Immagini/Pb-SnEvo3.png}
     \includegraphics[width=0.45\textwidth]{Immagini/Pb-SnEvo4.png}
+    \caption
+    {
+        Illustration of the cooling of a Eutectic system in different points of the phase diagram, looking at positions near the eutectic point and away from it.
+    }
+    \label{fig:Pb-SnEvo}
 \end{figure}
+
+\paragraph{Eutectoid Systems.} This type of systems are characterized by the presence of a triple point similar to the one of the eutectic systems, but it collects now a homogeneous solid phase to a heterogeneous one. 
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=0.35\textwidth]{Immagini/Fe-C.png}
+    \includegraphics[width=0.4\textwidth]{Immagini/Fe-CEvo.png}
+    \caption
+    {
+        Phase diagram of Iron-Carbon system expressed in weight percentage of Carbon. On te left the phase diagram is shown along with the real equilibrium theoretical one in pink, the difference from equilibrium are present since the mixture is in reality a metastable state that take a long time to go into real equilibrium. On the right the cooling evolution near the eutectoid point is shown. 
+    }
+    \label{fig:Fe-C}
+\end{figure}
+This system is particular to begin with, from \figref{fig:Fe-C} we can see that it possess a phase called Cementite that exist only for a really narrow part of phase space. This type of phases are known in physics as \textbf{line phases} since in the phase diagrams are basically lines meaning that they can exist only at really specific composition of the systems. Basically if we see Cementite in our system we perfectly know the Carbon weight percentage in it, which can be an interesting thing to know.
+
+Instead, if we talk about the evolution of the system on cooling not much canges reaspect to the eurectic systems. In fact, as the system pass through the eutectoid point the evolution bring to the formation of stripes as in privious case, but now they have different sizes for \ce{Fe} and \ce{C} due to the different percentage of the element in the overall material. The only real interesting thing that we can see here is when the system passes near the critical point and the intermidiate solid phase, in this case $\gamma + \alpha$, needs to form in the system. That is interesting because we can see how the \textbf{new solid phase tend to form between the grain boundaries} of the $\gamma$ phase, a behavior that is common for nucleation as we will see while studing kinetics.
+
+\nt
+{
+    Another series of types of binary systems is present in nature, but they all differ mainly from the type of phases that the triple point inside the phase diagram connects and on the direction of the ramifications from the point. Therefore, very little changes respect to what was sad in the previous three cases. Still, I will report on \tabref{tab:TabSys} the varius possible type of systems with the different peculiar points on the phase diagrams for the ones that are more interested.
+}
+
+\begin{table}
+    \centering
+    \caption
+    {
+        Tables with all the possible type of binary systems known along with the peculiar points that characterize them inside the phase space. Also a series of examples are reported in order to allow the reader to search for the respective phase diagram online. Notice how the ones that ends in "tectic" has liquid phase involved, while the ones in "tectoid" only posses solid phases in the equations.
+    }
+    \label{tab:TabSys}
+    \includegraphics[width=0.6\textwidth]{Immagini/TabSyst.png}
+\end{table}
