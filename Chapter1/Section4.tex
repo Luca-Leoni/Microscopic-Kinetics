@@ -109,4 +109,74 @@ We know how the form of the free energy can be obtained from the mixing one by u
 \begin{equation}
     G = \Delta G + \sum_i \mu_i^0 X_i,
 \end{equation}
-with $\mu_i^0$ the chemical potential of the $i$-th component in its separated form. This makes so that the final form of the free energy is no more symmetric creating a variation of the chemical potentials respect to the one that we would expect from the \textbf{tangent construction} that we have discussed before. In fact, by taking the tangents in the two minima we would have that the chemical potentials obtained $\mu_i(X_2^\alpha)$ and $\mu_i(X_2^\beta)$ would be at different height and so have different values, while equilibrium conditions needed them to be equal. We can overcome this problem in a simple way, using the so-called \textbf{Double tangent construction}, where basically you construct a line connecting the two minima and the intercepts on the y-axis will give the $\mu_1$ on the left and $\mu_2$ on the right. Really simple and intuitive, even if we haven't demonstrated it mathematically, that allow us to find out $\mu$ also in this type of systems.
+with $\mu_i^0$ the chemical potential of the $i$-th component in its separated form. This makes so that the final form of the free energy is no more symmetric with minima that are not the same of the free energy of mixing, in fact the added terms shift the minima in others point so that they don't really represent the equilibrium phases. In fact, if we use the \textbf{tangent construction} to evaluate $\mu_i$ of the two phases, by taking the tangents in the two minima, we would have that the results, $\mu_i(X_2^\alpha)$ and $\mu_i(X_2^\beta)$, would be at different height and so the equilibrium conditions of \eqref{eq:GenralEquilibriumConditions} are not respected. Nevertheless, we can overcome this problem in a simple way by using the so-called \textbf{Double tangent construction}. 
+\thm{Double tangent construction}
+{
+    Let $G$ be the Gibbs free energy of the system under study, to find out the minimum of $\Delta G$ we can search for two points on the curve that posses same derivative so that a tangent line connect them without crossing the graph.
+}
+\pf{Proof}
+{
+    More than a mathematical proof this is a reasoning. We know that the intercept of the tangent to a graph with the delimiting axis will give out the values of the chemical potential related to the two components inside the system. Therefore, using this construction we have found out two points that posses same intercepts, as depicted in \figref{fig:DoubleTang}, and so have the same chemical potential for the two components respectively, satisfying by construction the equilibrium conditions.
+}
+\noindent
+Therefore, in this way the two real phases that are stable at equilibrium constituting the minima of $\Delta G$ are found graphically in a simple way analogous to the tangent construction present inside the homogeneous systems. Also, this construction works also if the system posses several Gibbs free energy of different type of phases that are contending with each other like: liquid state $G^L$, gases state $G^g$ or different types of solid phases, bcc structure, fcc and so on. All of them can be present, and you can study the ones that are in equilibrium with each other by using as the real free energy
+\begin{equation}
+    G(X) = \min\{ G^L(X), G^g(X), \dots \},
+\end{equation}
+so that the construction remains the same, only changes that more phases can be in equilibrium together.
+
+\nt
+{
+    I also wanted to point out that the double tangent construction also allows to understand that the points in the middle of the two that defines the tangent constitute a miscibility gap. Having so that a two phase field is present every time the double tangent is constructed. Thus, if the point is onto the far left or the far right of the curve the system will be in a homogeneous situation since no tangent con be constructed, meaning that no other state has same chemical potential and so can be in equilibrium with it.
+}
+
+
+\subsection{Examples of binary phase diagrams}
+
+At last, we can show some examples of some standard phase diagrams of binary components that may allow comprehending better the concepts shown so far while seeing how much phase diagrams can tell us on the systems we are looking at. While looking at the different examples one can also keep in mind that the most of them can be reproduced using as models for the Gibbs energy of the different phases a regular solution like
+\begin{align}
+    &G^L = \mu^{0,L}_1 X_1^L + \mu^{0,L}_2 X_2^L + RT(X_1^L\ln X_1^L + X_2^L\ln X_2^L) + \Omega^L X_1^LX_2^L,\\
+    &G^\alpha = \mu^{0,\alpha}_1 X_1^\alpha + \mu^{0,\alpha}_2 X_2^\alpha + RT(X_1^\alpha\ln X_1^\alpha + X_2^\alpha\ln X_2^\alpha) + \Omega^\alpha X_1^\alpha X_2^\alpha.
+\end{align}
+Where the $\alpha$ phase usually represent a particular type of solid state. Therefore, by changing the values of $\mu_i^{0,j}$ and the interactions parameters $\Omega^j$ one should be able to obtain in good approximation all the examples we will show.
+
+\paragraph{Isomorphous Systems.} These are systems where the Two elements are completely soluble in each other in solid and liquid states. To have two atoms be able to achieve this type of solutions they need to possess some particular characteristics called \textbf{Hume-Rothery Rules}. The latter are empirical properties that have been observed through experiments, and shows that the atoms need to have: 
+\begin{align*}
+    & 1)\text{ similar radii,} \hspace{4.05cm} 2)\text{ same crystal structure,}\\
+    & 3)\text{ similar electronegativity,} \hspace{2cm} 4)\text{ solute should have higher valence.}
+\end{align*}
+The most simple example that respect those conditions is \ce{Cu-Ni} which forms a really simple system whose phase diagram is reported in \figref{fig:Cu-Ni}.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Immagini/Cu-Ni.png}
+    \includegraphics[width=0.3\textwidth]{Immagini/Cu-NiDoubTg.png}
+    \caption
+    {
+        Phase diagram of \ce{Cu-Ni} system on the left, with double tangent construction of it on the right for a certain fixed temperature reported on the image. 
+    }
+    \label{fig:Cu-Ni}
+\end{figure}
+From the latter we can simply see how the system can change phase, going from an $\alpha$ solid phase to the liquid one passing through a double one where both liquid and solid exist. Nevertheless, no miscibility gap is present, meaning that there's not a portion of the phase space where the system splits in two phases that have different atomic percentage of the two components. In fact, we will give the following definition for an element to be soluble inside another.
+\dfn{Solubility of an element}
+{
+    Inside a multicomponent system, we will tell that one element has a solubility $\gamma$ inside another element at certain temperature when, taken $X$ the molar fraction of that element in the solution, the following is true
+    \begin{align}
+        &X < \gamma,\text{ homogeneous}; &X > \gamma,\text{ heterogeneous}.
+    \end{align}
+}
+\noindent
+Basically, an element is soluble inside another as long as the two form a homogeneous phase mixing together, but after a certain amount a miscibility gap can be found and the system separate in two forming a heterogeneous one. That is the phenomenon from which the miscibility gap takes the name. Also, this definition shows that the system ce{Cu-Ni} is effectively miscible over all phase space.
+
+From this type of graph we can also take other types of information, for example the marginal lines describes the behaviors of the single elements. Therefore, giving us the values of the melting points of \ce{Cu} and \ce{Ni} being at \SI{1085}{\celsius} and \SI{1455}{\celsius} respectively. Then, we can also talk about the evolution of the system as it moves inside the phase space itself, trying to understand how the system will reach equilibrium as it gets cooled or heated. Understanding this can be non-trivial, and an example of this can be seen in \figref{fig:Cu-NiEvo} where a cooling evolution is showed for a slow and quick process.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.47\textwidth]{Immagini/Cu-NiEvo.png}
+    \includegraphics[width=0.39\textwidth]{Immagini/Cu-NiEvoQuick.png}
+    \caption
+    {
+        Illustration of the cooling of the system from the liquid phase to the solid one using a slow process, on the left, and a quick one where system as no time to reach equilibrium at every step, on the right.
+    }
+    \label{fig:Cu-NiEvo}
+\end{figure}
+
+% TODO: descrivere semplicemente l'evoluzione in equilibrio e quella veloce che non riesce a raggiungere l'equilibrio. Poi passa al prossimo.
