@@ -510,7 +510,7 @@
 % NOTE BOX
 %================================
 
-\usetikzlibrary{arrows,calc,shadows.blur,positioning,shapes,shapes.multipart}
+\usetikzlibrary{arrows,calc,shadows.blur,positioning,shapes,shapes.multipart,shapes.symbols}
 \tcbuselibrary{skins}
 \newtcolorbox{note}[1][]{%
 	enhanced jigsaw,
@@ -720,6 +720,22 @@
  		\draw[color=doc!60, line width=2pt] (a)--(b);
 	\end{tikzpicture}
  }
+
+%------------------------------------------
+% PARAGRAPH
+%------------------------------------------
+
+% \titleformat{\paragraph}
+%  [runin]
+%  {}
+%  {}
+%  {}
+%  { 
+% 	\bfseries #1
+% 	\begin{tikzpicture}[overlay]
+% 		\node[fill=cyan!80!black, signal, signal to=east] (a) {\bfseries #1};
+%    \end{tikzpicture}
+%  }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % COMAND FOR REFERENCES

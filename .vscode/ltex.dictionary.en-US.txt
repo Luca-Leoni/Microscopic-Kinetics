@@ -1,3 +1,10 @@
 thermodynamical
 ideality
 spinodal
+isomorphous
+Eutectoid
+eutectoid
+Cementite
+tectic
+tectoid
+nanoscience
