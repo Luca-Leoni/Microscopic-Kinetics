@@ -1,0 +1,90 @@
+\section{Irreversible Thermodynamics}
+
+When we talked about physical quantities we mentioned also the presence of a part of them called transport properties, where was sad that they appeared in the study of irreversible phenomena. Such phenomena are can be thought simply as the kinetic evolution of the system in time when it's out of equilibrium. In fact, a system where transport of matter, energy or momenta is present inside it can't be in equilibrium and can be seen by some simple examples. Take two thermal reservoirs at temperatures $T$ and $T + \Delta T$ that are in contact through a cave. A thermal current $I_Q$ will be present between the two, and we know that a variation of entropy is generated in both of them as
+\begin{align}
+    &\dv{S_1}{t} = -\frac{I_Q}{T + \Delta T}, &\dv{S_2}{t} = \frac{I_Q}{T}.
+\end{align}
+Thus, we can write down the total variation of entropy inside the system by taking the sum of the two and seeing how
+\begin{equation}
+    \dv{S}{t} \approx \frac{I_Q}{T}\frac{\Delta T}{T} > 0,
+\end{equation}
+meaning that the process is irreversible since a variation of entropy is created and the system is not in equilibrium as it happens. Also, this is only an example, but every single process that involve a current posses the same property, like charge current $I_q$. The power dissipated in the environment through Jaul effect, in fact, generates entropy since we have
+\begin{align}
+    &P = \Delta V I_q, & \dv{S}{t} = \frac{P}{T} = \frac{\Delta V}{T}I_q.
+\end{align}
+Where we can see how in both cases the entropy increase has a form composed by the product of a \textbf{flux}, like $I_Q$ or $I_q$, by a gradient, which usually represent the \textbf{driving force} that in these cases were the electric force $\Delta V$ and the thermal gradient $\Delta T$.
+
+Therefore, if we aim at describing the kinetic properties of matter and how atoms move inside it, we will need to restate thermodynamics in order to account also for irreversible process.
+
+\subsection{Entropy production}
+
+The first thing we need to do is understand how entropy is created to its core, and to do it we are going to make a general construction to tackle the problem using already known results. Basically we want to imagine that every non equilibrium system can still be seen as multiple ones that are in local equilibrium that interacting altogether locally generates entropy over time. Basically we are assuming something that we are going to call \textbf{local thermodynamic equilibrium} that we are going to formally define in the following way.
+\dfn{Local thermodynamic equilibrium}
+{
+    A general system is in local thermodynamic equilibrium if it can be divided in a series of smaller subsystems with thermodynamics fully defined by the values of the thermodynamic potential within the cell. Meaning that the generalized first principle is valid within the subsystem as
+    \begin{equation}
+        \label{eq:LocTheEqui}
+        T\dd s = \dd u - \psi_i\dd \xi_i,
+    \end{equation}
+    where $\psi_i$ are the thermodynamic potentials, and $\xi_i$ are their conjugate responses.
+}
+\noindent
+Notice how small letters, like $s$, $u$, were used in the definition since we are focussing on densities and not on the total properties in the system. Also, notice how we are using Einstein convention.
+
+This principle will be our key to use known results in the study of the more complex behaviors of irreversible processes. In particular, by assuming it on a system we can easily obtain a first result inside a general system as follows.
+\thm{General continuity equation}
+{
+    Inside a system in local thermodynamic equilibrium, where non-zero local entropy production $\dot{\sigma}$ is present the following continuity relation for the entropy is valid
+    \begin{equation}
+        \label{eq:ContEquEntropy}
+        \pdv{s}{t} = \dot{\sigma} - \grad\vdot\vb{J}_s.
+    \end{equation}
+}
+\pf{Proof}
+{
+    The proof it's really easy, basically from classical mechanics we know how a conserved quantity $c$ needs to respect the continuity equation
+    \begin{equation}
+        \pdv{c}{t} = - \grad\vdot\vb{J}_c,
+    \end{equation}
+    which tells us that the variation of $c$ are given by the quantity that was entering minus the one going out. In the case of entropy here we have that in it is also being created by the system \textbf{locally}, assumption given by the local equilibrium. Thus, the variation in time of the entropy must account also for $\dot{\sigma}$ giving \eqref{eq:ContEquEntropy}.
+}
+\noindent
+Therefore, we are starting to account for the presence of source of entropy inside our system that can change the behavior of the whole solid, but one may ask what those sources are. We have already seen them in the previous discussion, in reality, seeing how currents are able to generate variations of entropy locally and that can be set on a general ground in the following way.
+\thm{Current generates entropy}
+{
+    Inside a system in local thermodynamic equilibrium the variation of entropy is generated through the presence of current inside a system, where the local generation of entropy $\dot{\sigma}$ is given by
+    \begin{equation}
+        T\dot{\sigma} = -\frac{\vb{J}_Q}{T}\vdot\grad T - \vb{J}_i\vdot\grad\xi_i.
+    \end{equation}
+}
+\pf{Proof}
+{
+    We can start by writing down a form for the variation of entropy in time by using \eqref{eq:LocTheEqui}
+    \begin{equation}
+        \pdv{s}{t} = \frac{1}{T}\pdv{u}{t} - \frac{1}{T}\psi_i\pdv{\xi_i}{t}.
+    \end{equation}
+    Then, we can use the normal continuity equations on the energy densities and on the conjugates responses having that
+    \begin{equation}
+        \pdv{s}{t} = -\frac{1}{T}\grad\vdot\vb{J}_u + \frac{1}{T}\psi_i\grad\vdot\vb{J}_i,
+    \end{equation}
+    with $\vb{J}_i$ the flux related to quantity $\xi_i$. Then we can use the algebraic identity $A\grad\vdot \vb{B} = \grad(A\vb{B}) - \vb{B}\vdot\grad A$ to obtain the following form
+    \begin{equation}
+        \label{eq:intermediateCGE}
+        \pdv{s}{t} = \vb{J}_u\vdot\grad\left( \frac{1}{T} \right) - \vb{J}_i\vdot\grad\left( \frac{\psi_i}{T} \right) - \grad\vdot\left( \frac{\vb{J}_u - \psi_i\vb{J}_i}{T} \right).
+    \end{equation}
+    We can then use once again \eqref{eq:LocTheEqui} and taking its time derivative to notice how the last term is simply $\grad\vdot\vb{J}_s$, so that by substituting \eqref{eq:intermediateCGE} inside \eqref{eq:ContEquEntropy} we can find out that
+    \begin{equation}
+        \dot{\sigma} = \vb{J}_u\vdot\grad\left( \frac{1}{T} \right) - \vb{J}_i\vdot\grad\left( \frac{\psi_i}{T} \right).
+    \end{equation}
+    Nevertheless, we can use the general first principle of thermodynamics to rewrite the flux of energy in a form that simplify the expression as
+    \begin{align}
+        &\dd u = \delta Q + \psi_i \dd \xi_i, &\vb{J}_u = \vb{J}_Q + \psi_i\vb{J}_i,
+    \end{align}
+    that inserted in the previous result allow us to arrive at the form
+    \begin{equation}
+        \dot{\sigma} = \vb{J}_Q\vdot\grad\left( \frac{1}{T} \right) - \frac{\vb{J}_i}{T}\vdot\grad\psi_i.
+    \end{equation}
+    Then by using the known relation $\grad 1/T = -T^{-2}\grad T$ we obtain the wanted result.
+}
+
+% TODO: Inserisci il postulato come definizione o teorema, poi passa alla linearizzazione.
