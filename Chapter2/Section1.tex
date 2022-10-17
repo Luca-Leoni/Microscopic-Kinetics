@@ -54,6 +54,7 @@ Therefore, we are starting to account for the presence of source of entropy insi
 {
     Inside a system in local thermodynamic equilibrium the variation of entropy is generated through the presence of current inside a system, where the local generation of entropy $\dot{\sigma}$ is given by
     \begin{equation}
+        \label{eq:EntroProduct}
         T\dot{\sigma} = -\frac{\vb{J}_Q}{T}\vdot\grad T - \vb{J}_i\vdot\grad\xi_i.
     \end{equation}
 }
@@ -86,5 +87,88 @@ Therefore, we are starting to account for the presence of source of entropy insi
     \end{equation}
     Then by using the known relation $\grad 1/T = -T^{-2}\grad T$ we obtain the wanted result.
 }
+\noindent
+Therefore, the presence of a current means that an irreversible process is happening and vice versa. For this reason will be useful to see some examples of possible currents that will probably appear in our studies like
+\begin{align}
+    &\text{Heat}, \hspace{2cm} \vb{J}_Q, \hspace{2cm} -\frac{\grad T}{T}, \hspace{2cm} \vb{J}_Q = -\kappa \grad T;\\
+    &\text{Charge}, \hspace{1.6cm} \vb{J}_q, \hspace{2.1cm} -\grad \phi, \hspace{2cm} \vb{J}_q = -\rho^{-1} \grad \phi;\\
+    &\text{Matter}, \hspace{1.7cm} \vb{J}_i, \hspace{2.2cm} -\grad \mu, \hspace{2cm} \vb{J}_i = -c_i M_i \grad \mu.
+\end{align}
+Where along with the general known forms for the conjugated flux also the driving force was reported, and is possible to see how the latter is always a gradient so that the product of flux and force generate an \textbf{energy density dissipation}. Also, the relations known that connect the two is always linear relation with a transport property, like $\kappa$, $\rho$ or $c_i M_i$, that connects force and response.
 
-% TODO: Inserisci il postulato come definizione o teorema, poi passa alla linearizzazione.
+The result obtained is actually really great one that allows us to understand how the variation of entropy is effectively created inside a system. Nevertheless, something else can be actually sad about the variation of entropy. In particular, from second principle we know that in general the total entropy of the system always increase, so that is possible to have situations where the local entropy decrease but the one of the environment compensate having a total that is positive. Still, this situation can be really complex to tackle in a general situation so that we are going to make a really important assumption in order to make things easier.
+\dfn{Postulate of irreversible thermodynamic}
+{
+    In proximity of equilibrium, the local rate of entropy production is non-negative
+    \begin{equation}
+        \dot{\sigma} \ge 0.
+    \end{equation}
+}
+\noindent
+Basically, we are ruling out the possibility of even having local increase of the order of the system if we are in a situation close to equilibrium. That is actually interesting since we can easily apply it to \eqref{eq:EntroProduct} to see that
+\begin{equation}
+    T\dot{\sigma} = -\vb{J}_Q\vdot\frac{\grad T}{T} = \frac{\kappa \laplacian T}{T} \ge 0,
+\end{equation}
+meaning that the value of $\kappa$ needs to be positive near equilibrium. This applies on every transport property, having that $\rho$ and all $M_i$ needs to be positive near equilibrium.
+
+\subsection{Linear irreversible thermodynamics}
+
+Now, we have seen how as in equilibrium thermodynamic we have generalized forces connected to conjugated responses here we have driving forces that are related to flows. Therefore, we might want to follow the same reasoning and find out a constitutive relation between the driving forces and the fluxes. In particular, recalling the general form obtained for the static physical quantities we can imagine that a flux $\vb{J}$ do not only depend on it's driving force but all of them give a contribution, having in general
+\begin{align}
+    &\vb{J} = \vb{J}(\vb{F}), &\vb{F} = \left(\frac{\grad T}{T}, \grad \phi, \dots\right).
+\end{align}
+Then, we can make a linear approximation for this relation since we have already seen how some known forms for the fluxes linearly depend on the conjugated driving forces. Therefore, we can simply assume that a form for the general relation between the two quantities is the following
+\begin{equation}
+    J_\alpha = \pdv{J_\alpha}{F_\beta}F_\beta = \mathcal{L}_{\alpha\beta}F_\beta.
+\end{equation}
+Defining, so, a general matrix $\vb*{\mathcal{L}}$ that contains all the information on the transport properties of the system.
+
+Also, we can now study this new matrix and see their properties in a way analogous to the one seen for the $\mathcal{K}$ matrix seen for static properties. In particular the first thing that we can say is the following.
+\thm{Positivity of $\mathcal{L}$}
+{
+    In a near equilibrium situation the $\mathcal{L}$ matrix is a positive one.
+}
+\pf{Proof}
+{
+    We can use the principle of irreversible thermodynamic to write down the following thing
+    \begin{equation}
+        T\dot{\sigma} = J_\alpha F_\alpha = \mathcal{L}_{\alpha\beta}F_\beta F_\alpha \ge 0,
+    \end{equation}
+    which is valid for every value of $F_\alpha$ and $F_\beta$ meaning that $\vb*{\mathcal{L}}$ is positive.
+}
+\noindent
+Still, the most important relations, as we have seen in the first part, concern the symmetry properties of the matrix, which are similar to the one of $\mathcal{K}$ since the following result can be proven formally.
+\thm{Onsager’s symmetry principle}
+{
+    The $\mathcal{L}$ matrix is a symmetric one, and therefore the following is true
+    \begin{equation}
+        \mathcal{L}_{\alpha\beta} = \mathcal{L}_{\beta\alpha}.
+    \end{equation}
+}
+\pf{Proof}
+{
+    The proof is complex and goes microscopically imposing the detailed balance on the fluxes near equilibrium. We haven't seen it during the course, and so I'm not going put it here for now.
+}
+
+\noindent
+The same symmetric properties that is often present inside important physics matrices, if not all of them, is found out. We can also have a look at how this property can also be restated as
+\begin{equation}
+    \pdv{J_\alpha}{F_\beta} = \pdv{J_\beta}{F_\alpha},
+\end{equation} 
+which have a form similar to Maxwell's relations seen in equilibrium thermodynamics. Also, as we have seen for the $\mathcal{K}$ matrix we can see how various blocks are presen,t and we can have a little look at them really quickly
+
+\paragraph{\bf k thermal conductivity, $\vb*{T}_S(2)$.} Relates temperature gradient and heat current, and from symmetry properties it's easy to see how
+\begin{equation}
+    k_{\alpha\beta} = k_{\beta\alpha}.
+\end{equation}
+
+\paragraph{$\vb*{\sigma}$ \bf electrical conductivity, $\vb*{T}_S(2)$.} Relates electric potential and charge current, its inverse is the resistivity and also this is symmetric.
+
+\paragraph{$\vb*{\beta}$, $\vb*{\beta}'$ \bf thermoelectric cross effects.} Off diagonal term that relates the electric potential with heat current and temperature gradient with charge current. It's easy to see how from $\mathcal{L}$ symmetry one can find out that since are off diagonal terms
+\begin{equation}
+    \beta_{ij} = \beta'_{ji}.
+\end{equation}
+
+\paragraph{\bf $\vb{D}_i$ diffusivity, $\vb*{T}_S(2)$.} It's the more general way of writing down $c_i M_i$ term for matter transport appearing in Fick's law, the real way of writing down $\vb{J}_i$. The appendix $i$ describe the type of component is getting transported, and $D_i$ has the same symmetry properties of the others diagonal terms.
+
+\subsection{Thermoelectric materials}
