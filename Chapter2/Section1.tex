@@ -166,9 +166,29 @@ which have a form similar to Maxwell's relations seen in equilibrium thermodynam
 
 \paragraph{$\vb*{\beta}$, $\vb*{\beta}'$ \bf thermoelectric cross effects.} Off diagonal term that relates the electric potential with heat current and temperature gradient with charge current. It's easy to see how from $\mathcal{L}$ symmetry one can find out that since are off diagonal terms
 \begin{equation}
+    \label{eq:ThermoeTensorProp}
     \beta_{ij} = \beta'_{ji}.
 \end{equation}
 
 \paragraph{\bf $\vb{D}_i$ diffusivity, $\vb*{T}_S(2)$.} It's the more general way of writing down $c_i M_i$ term for matter transport appearing in Fick's law, the real way of writing down $\vb{J}_i$. The appendix $i$ describe the type of component is getting transported, and $D_i$ has the same symmetry properties of the others diagonal terms.
 
 \subsection{Thermoelectric materials}
+
+To make an example of the use irreversible thermodynamic theory can have we can look at the properties of thermoelectric materials. The latter are systems that are able to generate potential gradients due to the presence of a thermal one, and vice versa. Basically, thermoelectric materials are systems that posses a non-zero $\beta$ component inside the $\mathcal{L}$ matrix, so that the constitutive relations of the heat and charge flux becomes coupled equations with
+\begin{align}
+    \label{eq:ConstThermoe}
+    &\vb{J}_Q = -k\grad T - \beta'\grad \phi, &\vb{J}_q = -\frac{\beta}{T}\grad T - \sigma\grad \phi.
+\end{align}
+This shows how the movement of the microscopic elements inside the material is intrinsically related to the flux of both charge and energy. In fact, the electrons are the main charge and heat transport carrier inside matter, meaning that a movement of heat inside a material often means that also charge is being transported. Nevertheless, we want to focus on the relation between the driving forces in this case and in particular in an equilibrium situation where the fluxes are zero meaning that $\vb{J}_q = 0$ and
+\begin{align}
+    &\grad \phi = -S\grad T, &S = \frac{\rho\beta}{T}.
+\end{align}
+A linear relation between the two appears giving rise to the \textbf{Seebeck effect}, a really important phenomenon that tells us that a variation of temperature can generate a potential with an intensity dependent on $S$. This is a really important information that is used a lot in technological applications to measure temperature using instruments called thermocouples. Still, this is not the only interesting thing we can say about equations \eqref{eq:ConstThermoe} since another situation can appear where, at non equilibrium, we have both transport of charge and heat but with a constant temperature in the system. This condition is called \textbf{Peltier effect} and describes how the presence of electrons moving in the system due to a potential gradient also generates a heat current even if no heat gradient is present in the material. Therefore, by placing $\grad T$ to be null we can see how
+\begin{align}
+    &\vb{J}_Q = \Pi\vb{J}_q, &\Pi = \beta'\rho,
+\end{align}
+where we can also see how a relation between $\Pi$ and $S$ is present. In fact, by using that $\rho$ is a symmetric tensor and \eqref{eq:ThermoeTensorProp} we can easily see that
+\begin{equation}
+    \Pi_{ij} = TS_{ij},
+\end{equation}
+which is an interesting relation first proven by lord Kelvin.
