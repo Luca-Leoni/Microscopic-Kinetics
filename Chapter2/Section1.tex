@@ -183,7 +183,7 @@ This shows how the movement of the microscopic elements inside the material is i
 \begin{align}
     &\grad \phi = -S\grad T, &S = \frac{\rho\beta}{T}.
 \end{align}
-A linear relation between the two appears giving rise to the \textbf{Seebeck effect}, a really important phenomenon that tells us that a variation of temperature can generate a potential with an intensity dependent on $S$. This is a really important information that is used a lot in technological applications to measure temperature using instruments called thermocouples. Still, this is not the only interesting thing we can say about equations \eqref{eq:ConstThermoe} since another situation can appear where, at non equilibrium, we have both transport of charge and heat but with a constant temperature in the system. This condition is called \textbf{Peltier effect} and describes how the presence of electrons moving in the system due to a potential gradient also generates a heat current even if no heat gradient is present in the material. Therefore, by placing $\grad T$ to be null we can see how
+A linear relation between the two appears giving rise to the \textbf{Seebeck effect}, a really important phenomenon that tells us that a variation of temperature can generate a potential with an intensity dependent on $S$, called \textbf{thermopower}. This is a really important information that is used a lot in technological applications to measure temperature using instruments called thermocouples. Still, this is not the only interesting thing we can say about equations \eqref{eq:ConstThermoe} since another situation can appear where, at non equilibrium, we have both transport of charge and heat but with a constant temperature in the system. This condition is called \textbf{Peltier effect} and describes how the presence of electrons moving in the system due to a potential gradient also generates a heat current even if no heat gradient is present in the material. Therefore, by placing $\grad T$ to be null we can see how
 \begin{align}
     &\vb{J}_Q = \Pi\vb{J}_q, &\Pi = \beta'\rho,
 \end{align}
@@ -191,4 +191,47 @@ where we can also see how a relation between $\Pi$ and $S$ is present. In fact, 
 \begin{equation}
     \Pi_{ij} = TS_{ij},
 \end{equation}
-which is an interesting relation first proven by lord Kelvin.
+which is an interesting relation first proven by lord Kelvin. Thus, all thermoelectric properties can be described by the value of $S$, which can be found out using particular transport models. We have, obviously, not seen those since can be really complex, especially if a semi-classical one is used, giving out directly the final results for \textbf{metal} and \textbf{semiconductor} respectively
+\begin{align}
+    &S_{met} \approx \left( \frac{k_B}{e} \right)\frac{k_BT}{E_F}, &S_{sco} \approx \left( \frac{k_B}{e} \right)\frac{E_g}{k_BT}.
+\end{align}
+Where, we can understand that the constant in front gives out the order of magnitude for the value of $S$, which is $k_B/e \approx \SI{87}{\micro\volt/\kelvin}$. Also, we can see how metals and semiconductors differ since $S$ is much smaller in the formers than the others since usually $E_F \gg k_BT$ at room temperature, while $E_g \approx k_BT$. In addition, semiconductors can display both negative and positive thermopower, for electron and hole conduction respectively, so that in general the real value of the coefficient is a weighted mean of the two
+\begin{equation}
+    S\approx \frac{\sigma_nS_n + \sigma_pS_p}{\sigma_n + \sigma_p}.
+\end{equation}
+Where the subscript $n$ is for electrons while $p$ is for holes.
+
+Seebeck and Peltier effects are extensively used for technological applications of several kinds. For example, the Peltier effect can be used to create efficient and simple refrigeration mechanisms where, by using an electric current you can induce a heat one between two objects that will then cool down. Also, similarly you can use heat to generate $\vb{J}_Q$ that induces electrical transport to power other apparatus. This two type of applications are described schematically in \figref{fig:ThermoAppl}, and are impactful in a lot of fields like spacecraft engineering where Radioisotope Thermoelectric Generators(RTG) are widely used.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/ThermoAppl.png}
+    \caption
+    {
+        Diagram of a Peltier thermoelectric couple made of an n-type and a p-type thermoelectric material. Refrigeration and power generation modes are possible, depending on the configuration.
+    }
+    \label{fig:ThermoAppl}
+\end{figure}
+Such devices bring a lot of advantages in genera, like the fact that no moving parts are present giving: high reliability, no noise, no vibration or torque. Also, they are usually highly resistant to radiations and can be miniaturized. Therefore, it's of our interest to understand the characteristic that a material needs to have in order for it to be a good one to create such instruments. Thus, a figure of merit for thermoelectric materials is defined in the following way
+\begin{equation}
+    \label{eq:ZT}
+    ZT \equiv \frac{S^2\sigma T}{\kappa},
+\end{equation}
+where $\sigma$ is the electrical conductivity, while $\kappa$ is the thermal conductivity. Still this is the definition for a device made of a single material, while it's possible to have one made out of both n and p type conductors do that a more general definition that takes that into account would be
+\begin{equation}
+    ZT \equiv \frac{\left( S_n - S_p \right)^2T}{\sqrt{\left( \rho_n\kappa_n \right)^2 + \left( \rho_p\kappa_p \right)^2}}.
+\end{equation}
+Using this definition we can also see the efficiency of the machince that we are going to build by using the following relation
+\begin{equation}
+    \eta = \frac{T_H - T_C}{T_H}\left( \frac{\sqrt{1 + ZT_M} - 1}{\sqrt{1 + ZT_M} + T_C/T_H} \right),
+\end{equation}
+where $T_H$, $T_C$ and $T_M$ are hot, cold and mean temperature in the system. Where we can see how the term in front has the form of the Carnot efficiency, meaning that the two are related and that $\eta \to \eta_{c}$ for $ZT \to \infty$. Therefore, we are looking for materials that posses $ZT$ high as possible in order to increase our efficiency closer as we can to the thermodynamic limit.
+
+In order to maximize the value of $ZT$ we can look at \eqref{eq:ZT} and see how the best thing is to have low thermal conductivity but greate electrical one. Still this is not so easy to achive since we know that two contributions are present inside $\kappa$, electrical and phononic one, and the former is related to $\sigma$ by the \textbf{Wiedenmann-Franz law}
+\begin{align}
+    &\kappa = \kappa_E + \kappa_P, &\kappa_E = L\sigma T,
+\end{align}  
+where $L$ is a constant called Lorentz number. Therefore, the best we can do is to get $\kappa_P$ as low as possible meaning that we aim at having the smallest phonon free path since we know that
+\begin{equation}
+    \kappa_P = \frac{1}{3}v_sC\lambda_{P},
+\end{equation}
+where $v_s$ is the velocity of sound. In general, we can imagine that a really low value of $\lambda_P$ would be as the interatomic distance so that an estimate of $\kappa_P$ would be \SI{0.25}{W\metre^{-1}\kelvin^{-1}}. But, even if $\kappa_P$ would be really low the thermopower needed in order to achieve a value of $ZT = 1$ is really high. In particular, by using an idea zero phonon conductivity model we would obtain $S = \sqrt{L}$ which means \SI{160}{\micro\volt\kelvin^{-1}}. In this optic the better type of material we can aim for are semiconductors with narrow-bandgap which posses high mobility, in order to maximize the value of $S$ by the fact that hole and electron coefficients add up.
