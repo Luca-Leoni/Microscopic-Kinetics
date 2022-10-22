@@ -10,3 +10,6 @@ tectoid
 nanoscience
 thermopower
 Peltier
+Kirkendall
+Fick
+interdiffusivity
