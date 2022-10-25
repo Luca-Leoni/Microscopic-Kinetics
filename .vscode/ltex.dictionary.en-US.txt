@@ -13,3 +13,4 @@ Peltier
 Kirkendall
 Fick
 interdiffusivity
+macroscopical

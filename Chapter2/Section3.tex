@@ -1,0 +1,62 @@
+\section{Diffusion equation and atomic models}
+
+We have already discussed how diffusion can be model on a macroscopical base using non equilibrium thermodynamics obtaining interesting result both for the forms of the fluxes and of the diffusion constant. Now, we want to look at a more microscopic level trying first to describe how we can understand the motions of atoms looking at their density $c(\vb{x}, t)$ inside the material.
+
+We have seen in the previous section how the flux of particles $\vb{J}$ can be described by using the density of atoms inside the material via Fick's first law, \eqref{eq:FickLaw}. Still, we can also try to describe the density of atoms inside the system, in fact the function $c$ describing the number of atoms inside the material will need to respect some continuity condition such as \eqref{eq:ContEquEntropy}. These two conditions taken together allow us to obtain a really powerful tool in order to study the evolution of density inside materials.
+\thm{Second Fick's law}
+{
+    Inside a multicomponent material the density $c_i(\vb{x}, t)$ of the $i$-th component respect the following differential equation
+    \begin{equation}
+        \label{eq:SecFickLaw}
+        \pdv{c_i}{t} = D_i \laplacian c_i.
+    \end{equation}
+}
+\pf{Proof}
+{
+    We can write down the continuity equation for the densities assuming that source or sink terms $\dot{n}_i$ are negligible, since the vast majority of the time this is the case, so that we have
+    \begin{equation}
+        \pdv{c_i}{t} = -\grad\vdot\vb{J}_i = \grad\vdot\left( D_i\grad c_i \right).
+    \end{equation}
+    In general $D_i$ should be a tensor, still we are going to think at it as a simple scalar which in general can be assumed to depend on position through the density, as $D_i(c_i)$. Meaning that the diffusivity can be expanded using Taylor as
+    \begin{equation}
+        D_i \approx D(\left\langle c_i \right\rangle) + \left( c_i - \left\langle c_i \right\rangle \right)\eval{\pdv{D_i}{c_i}}_{\left\langle c_i \right\rangle},
+    \end{equation}
+    where $\left\langle c_i \right\rangle$ is the average value of the density inside the material and was chosen as the expansion point for simplicity. Inserting that expansion inside the continuity equation we get
+    \begin{equation}
+        \grad\vdot\left( D_i\grad c_i \right) = D(\left\langle c_i \right\rangle)\laplacian c_i + \eval{\pdv{D_i}{c_i}}_{\left\langle c_i \right\rangle} \left( \laplacian c_i + \grad c_i \vdot \grad c_i \right),
+    \end{equation}
+    but the second term is often neglected since the diffusivity has a general low dependence on the density, obtaining the wanted result.
+}
+
+\noindent
+This equation allow us to describe the density of atoms inside the material in every moment in time given some initial conditions. To make an example, in 1D it's easy to see how if you take as a boundary condition for the density $c_i (x, t\to 0) = n_i\delta(x)$ than the following function is the solution
+\begin{equation}
+    c_i(x, t) = \frac{n_i}{\sqrt{4\pi D_it}}e^{-\frac{x^2}{4D_it}}.
+\end{equation}
+Where $n_i$ is the total number of atoms so that $c_i$ will be the number of atoms divided by a lenght, and one can easily see how that expression satisfy both the partial differential equation and the boundary conditions. From it, we can see how the atoms will start centered in the  origin and then will start to spread from it inside the material. In particular one can see how the average displacement of the atoms will be equal to the spread of the Gaussian itself $\sigma$ which can be easily computed using the known formula
+\begin{align}
+    \label{eq:Displ1D}
+    &G(\mu, \sigma) = \frac{C}{\sqrt{2\pi\sigma}}e^{-\frac{(x - \mu)^2}{2\sigma^2}}, &\sigma = \sqrt{2D_it}.
+\end{align}
+Meaning that the average displacement will be proportional to $\sqrt{t}$, which is typical for diffusion phenomena showing how the process is slow needing much more time to spread the atoms as the dimensions of the system increase.
+
+This result is general also when we look at higher dimensions, since it's possible to see that the same boundary condition and solution can be used even in 2D or 3D so that the solution is a simple product of the 1D one
+\begin{equation}
+    c_i(\vb{r}, t) = \frac{n_i}{\left( 4\pi D_it \right)^{d/2}}e^{-\frac{\vb{r}^2}{4D_it}}.
+\end{equation}
+Where $d$ is the dimensionality of the system, and we can see how the Dirac delta form for $t \to 0$ is still respected along with the differential equation. Also, the form of the average displacement is closer to the naive 1D case, but we can find out a more general form by evaluating it explicitly as
+\begin{equation}
+    \left\langle R^2(t) \right\rangle = \frac{\int_{\mathbb{R}^+}\int_{\Omega}r^2c(r, t) r^2\dd \Omega\dd r}{\int_{\mathbb{R}^+}\int_{\Omega}c(r, t) r^2\dd \Omega\dd r} = 2dD_it,
+\end{equation}
+which is consistent with \eqref{eq:Displ1D}. This result is telling us that doesn't matter the dimension, the evolution of the displacement in a diffusive process only depend on the nature of the process itself and scales in time as $\sqrt{t}$, usually slow.
+
+Therefore, using these results we were able to already describe some interesting properties of the diffusion process in a material having some important quantitative results. Still, this is only the beginning this model can be highly refined by using several considerations that will allow for it to be of great precision.
+
+\nt
+{
+    The Gaussian form of the solution is interesting not only for the description of the evolution in time itself, but also on an experimental point of view. In fact, if one is able to evaluate $c(x, t)$ as function of position and time can see how
+    \begin{equation}
+        \ln c_i = const. - \frac{x^2}{4D_it},
+    \end{equation}
+    meaning that by making a linear fit in a $ln c_i$ vs $x^2$ plot at a certain time will allow us to estimate $D_i$ experimentally.
+}
