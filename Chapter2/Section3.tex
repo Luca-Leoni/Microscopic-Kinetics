@@ -46,6 +46,7 @@ This result is general also when we look at higher dimensions, since it's possib
 \end{equation}
 Where $d$ is the dimensionality of the system, and we can see how the Dirac delta form for $t \to 0$ is still respected along with the differential equation. Also, the form of the average displacement is closer to the naive 1D case, but we can find out a more general form by evaluating it explicitly as
 \begin{equation}
+    \label{eq:DiffEquaModel}
     \left\langle R^2(t) \right\rangle = \frac{\int_{\mathbb{R}^+}\int_{\Omega}r^2c(r, t) r^2\dd \Omega\dd r}{\int_{\mathbb{R}^+}\int_{\Omega}c(r, t) r^2\dd \Omega\dd r} = 2dD_it,
 \end{equation}
 which is consistent with \eqref{eq:Displ1D}. This result is telling us that doesn't matter the dimension, the evolution of the displacement in a diffusive process only depend on the nature of the process itself and scales in time as $\sqrt{t}$, usually slow.
@@ -60,3 +61,47 @@ Therefore, using these results we were able to already describe some interesting
     \end{equation}
     meaning that by making a linear fit in a $ln c_i$ vs $x^2$ plot at a certain time will allow us to estimate $D_i$ experimentally.
 }
+
+\subsection{Diffusion and random walk}
+
+Another way to approach the modelling of diffusion is describing it using the mathematical model of the \textbf{random walk}. We can consider the atom moving by performing a series of possible jumps in space defined by the vectors $\{\vb{r}_i\}$, where every jump can be done with a frequency $\Gamma$. This means that after a certain time $t$ the number of jumps performed would be $\mean{N_{t}} = \Gamma t$ and the distance travelled by the atom would be
+\begin{align}
+    &\vb{R}(t) = \sum_{i=1}^{\Gamma t} \vb{r}_i, &R^2(t) = \sum_{i=1}^{\Gamma t} r_i^2 + 2\sum_{i=1}^{\Gamma t - 1} \sum_{j=1}^{\Gamma t - i} \vb{r}_i \vdot \vb{r}_{i+j}.
+\end{align}
+Where also the square of the displacement was reported since our aim is to evaluate the mean square displacement of the average walker inside the diffusion process and confront it with the previous model. Therefore, by taking the average of $R^2$ it's possible to see how it's value will take the form of
+\begin{equation}
+    \label{eq:RandWalkMod}
+    \mean{R^2(t)} = \Gamma t\mean{r^2} + 2\mean{\sum_{i=1}^{\Gamma t - 1} \sum_{j=1}^{\Gamma t - i} \vb{r}_i \vdot \vb{r}_{i+j}} = \Gamma t\mean{r^2} + 2\Pi(t),
+\end{equation}
+where $\Pi$ is the time correlation function between the jumps, describing how much the jumps influence one another. Now, in the case of a pure random walk, the jumps are totally uncorrelated with a uniform probability of going in every possible direction. Meaning that $\Pi = 0$ and average displacement takes a form analogous to the one already seen
+\begin{align}
+    &\mean{R^2(t)} = \Gamma t\mean{r^2},
+\end{align}
+showing how the evolution is still proportional to $t^{1/2}$ as expected from diffusion.
+
+We can now confront the model just obtained, \eqref{eq:RandWalkMod}, and the more macroscopic description given by the solution of the diffusion equation, in \eqref{eq:DiffEquaModel}, and see how we can retain a form for the diffusivity.
+\thm{Microscopic diffusivity}
+{
+    Inside an atomistic model the diffusion can be though as a random walk with frequency of jump $\Gamma$, so that macroscopically the density can be described using FIck's law with a diffusivity given by the microscopic properties as follows 
+    \begin{align}
+        &D = \frac{\Gamma\mean{r^2}f}{2d}, &f = 1 + \frac{2\Pi(t)}{\Gamma t\mean{r^2}},
+    \end{align}
+    where $\Pi(t)$ is the time correlation function for the jumps.
+}
+\pf{Proof}
+{
+    At first, we can see how \eqref{eq:RandWalkMod} can be recast in a simpler form analogous to the one in \eqref{eq:DiffEquaModel} by using
+    \begin{align}
+        &\mean{R^2(t)} = \Gamma t\mean{r^2}f, &f = 1 + \frac{2\Pi(t)}{\Gamma t\mean{r^2}}.
+    \end{align}
+    Which can be confronted with the mean square displacement of the macroscopic diffusion model to see that
+    \begin{equation}
+        D = \frac{\Gamma\mean{r^2}f}{2d},
+    \end{equation}
+    having our final result.
+}
+\noindent
+Therefore, by simple consideration on the microscopic nature of the diffusion mechanism we were able to connect the diffusivity to the rate of jump inside the lattice. All we have to do now is describe how such rate can be expressed quantitatively, and then the whole model would be complete.
+
+\subsection{Thermally activated jumps}
+
