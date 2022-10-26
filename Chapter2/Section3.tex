@@ -84,6 +84,7 @@ We can now confront the model just obtained, \eqref{eq:RandWalkMod}, and the mor
 {
     Inside an atomistic model the diffusion can be though as a random walk with frequency of jump $\Gamma$, so that macroscopically the density can be described using FIck's law with a diffusivity given by the microscopic properties as follows 
     \begin{align}
+        \label{eq:MicroDiff}
         &D = \frac{\Gamma\mean{r^2}f}{2d}, &f = 1 + \frac{2\Pi(t)}{\Gamma t\mean{r^2}},
     \end{align}
     where $\Pi(t)$ is the time correlation function for the jumps.
@@ -105,3 +106,79 @@ Therefore, by simple consideration on the microscopic nature of the diffusion me
 
 \subsection{Thermally activated jumps}
 
+We now consider a statistical model to evaluate the transition rate of the jump between the different main states inside the material, starting from a minimum and jumping to a maximum, called transition state, to then go into another minimum, as depicted in \figref{fig:ThermAct}. In particular, we are going to make some important assumption in order to work out the model:
+\begin{enumerate}
+    \item[1)] Single particles in a potential energy with harmonic wells, 
+    \item[2)] Thermal equilibrium described by classical partition function, 
+    \item[3)] Quantum tunneling is negligible.
+\end{enumerate}
+Using this assumption is possible to create a microscopic model that allow us to obtain a quantitative evaluation of the transition rate that is given by the following result.
+\thm{Thermally activate transition rate}
+{
+    A thermal activated process inside a system where quantum tunneling is negligible posses a transition rate that can be expressed with the form
+    \begin{align}
+        &\Gamma = z\nu\exp\left( -\frac{E^m}{k_BT} \right), &\nu = \frac{1}{2\pi}\sqrt{\frac{\beta}{m}}.
+    \end{align}
+    Where $E^m$ is called \textbf{migration energy}, defined as the difference between the energy of the minimum of the starting point and the transition point energy, while $\beta$ is the first order coefficient of the Taylor expansion on the minimum and $z$ the numbers of neighboring sites.
+}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/ThermAct.pdf}
+    \caption
+    {
+        Representation of the energy landscape of a possible system under study in the context of thermally activated processes. Where the path followed by the atom is in 1D and is described by the directions of the arrows.
+    }
+    \label{fig:ThermAct}
+\end{figure}
+\pf{Proof}
+{
+    From the assumption we can evaluate the value of the medium time for a transition to happen as the quantity
+    \begin{align}
+        &\tau_{cross} = \frac{L_A}{\mean{v}}, &\mean{v} = \frac{\int_{\mathbb{R}^+} ve^{-\frac{mv^2}{2k_BT}} \dd v}{\int_{\mathbb{R}^+} e^{-\frac{mv^2}{2k_BT}} \dd v} = \sqrt{\frac{2\pi m}{k_BT}},
+    \end{align}
+    where a Maxwell-Boltzmann distribution for the velocities was used in the computations of the mean. So, the value of $1/\tau_{cross}$ will give us the probability of a particle to cross the energy barrier in the unit time, now to complete the probability of transition we need the probability of having a particle to be ready to jump, which can be given by
+    \begin{equation}
+        P_{A} = \frac{N_A}{N_T} = \frac{N_A}{N_A + N_{well}} \approx \frac{N_A}{N_{well}} = \frac{Z_A}{Z_{well}}.
+    \end{equation}
+    Where $Z_A$ and $Z_{well}$ are the partition functions of the well and transition state of the one-particle system, also we assumed that the number of particle in the minimum are much larger that the one in the transition state. Now, the value of the partition function can be evaluated by assuming that the minimum has an energy that can be approximated using $E(x_{well}) = E_{min} + \beta(x - x_{well})^2$ while the maximum is nearly constant in the $L_A$ distance having that
+    \begin{equation}
+        \frac{Z_A}{Z_{well}} = \frac{\int_{-L_A/2}^{L_A/2} e^{-\frac{E(x)}{k_BT}}\dd x}{e^{-\frac{E_{min}}{k_BT}}\int_{-L_{well}/2}^{L_{well}/2} e^{-\beta\frac{(x - x_{well})^2}{k_BT}}\dd x} \approx L_Ae^{-\frac{E_A - E_{min}}{k_BT}}\sqrt{\frac{\beta}{2\pi k_BT}}.
+    \end{equation}
+    Where we also assumed that the integral over the well could be extended to the all domain in order to count also for the tails and have an analytic form for the solution. Therefore, we can so define $\Gamma'$ as the following quantity 
+    \begin{equation}
+        \Gamma' = \frac{P_A}{\tau_{cross}} = \frac{Z_A}{Z_{well}}\frac{1}{\tau_{cross}} = \nu e^{-\frac{E^m}{k_BT}},
+    \end{equation}
+    which represent the transition rate in a specific direction in space, since the model was in 1D, in reality the hopping can happen in all the possible directions of neighboring sites. Assuming that the probability of going in equivalent sites near the well has same $\Gamma'$ rates we need to sum all them up in order to obtain the total one, finding out the final result as claimed.
+}
+\noindent
+We can see how the transition rate obtained in this particular one particle model is interesting, having a frequency multiplied by an exponential factor that goes down as the potential barrier needed to overcome the jump increases. Such a form allows us to give a simple and strong physical interpretation to the result, where the particle in equilibrium \textbf{vibrates on the minimum} with a changing intensity over time such that has a \textbf{non-zero possibility of vibrate with enough strength in order to overcome the barrier and hope}. Meaning that, in average, all particles stay in an equilibrium position for a time $1/\Gamma$ before hopping to another minimum inside the lattice due to thermal vibrations.
+
+Such a model is so able to describe the on a first principle base the very nature of the hopping as a statistical process, giving a quantitative evaluation of the transition rate that is at the very core of really important mechanism such as chemical reactions, not only atoms' diffusion. For this reason such theory, called \textbf{transition state theory}, is of great interest not only on a theoretical point of view and has been refined over time to also include the presence of many particles inside the system, relaxing the single particle assumption. We have not the time to undergo the study of such a complex theory, nevertheless we are going to make use of its result so that we are going to use the following form for the transition rate.
+\cor{Many-body case}
+{
+    If we relax the condition of a single particle inside the system imagining to have a many-body interacting one, the transition rate take the following form
+    \begin{equation}
+        \label{eq:MBtransRate}
+        \Gamma = z\nu\exp\left( -\frac{G^m}{k_BT} \right) = z\nu\exp\left( \frac{S^m}{k_B} \right)\exp\left( -\frac{H^m}{k_BT} \right).
+    \end{equation}
+} 
+\noindent
+Basically the energy of migration is exchanged with the free energy of migration. We can so use such a model for the transition rate to give out a final form that we can use for the diffusivity constant, since by inserting \eqref{eq:MBtransRate} into \eqref{eq:MicroDiff} we can obtain
+\begin{equation}
+    D = \frac{z\mean{r^2}f}{2d}\nu\exp\left( \frac{S^m}{k_B} \right)\exp\left( -\frac{H^m}{k_BT} \right).
+\end{equation}
+Which is the final microscopic form for the diffusivity where we can see how such a complex parameter depend on sever factors. The \textbf{geometry} of the system defined by the neighboring sites, $z$, the dimensionality and the correlation, $d$ and $f$. Then, \textbf{vibrations} with their general value of $\nu$ and \textbf{migration entropy} give a contribution, which in general is not too high having that often such factor are kept constant to reference values with right order of magnitude. At last, the most important contribution is given by the \textbf{migration enthalpy} which is generally the factor that influences the most the value of $D$, having not only a strong dependence on temperature, showing how the process is \textbf{thermally activated}, but also since its value can be high.
+
+\nt
+{
+    It's interesting to note how $\nu \propto m^{-1/2}$, meaning that the mass of the atoms has an impact on the diffusion properties of the material. This implies that different isotope of the same element can show better or worst diffusion properties due to that, generating a so-called \textbf{isotope effect}. 
+}
+
+\ex{Vacancy diffusion}
+{
+    A simple example of application of such an equation is the case of diffusion of vacancy inside a fcc lattice. We know how $z = 12$ inside such a geometry and the distance between neighbors is $a/\sqrt{2}$, where $a$ is the lattice constant, meaning that $\mean{r^2} = a^2/2$. If we assume that the jumps are uncorrelated for the movement of a vacancy inside a lattice then we can easily see how the final form for the diffusivity is
+    \begin{equation}
+        D_V = a^2 \nu \exp\left( \frac{S^m_V}{k_B} \right)\exp\left( -\frac{H^m_V}{k_BT} \right).
+    \end{equation}
+    Such an equation gives us a lot of information, especially since we can experimentally evaluate $D$ at different temperatures so that by fitting $\ln D$ vs $1/T$ we can estimate $H^m_V$ which can be compared to first principle DFT computations of such value.
+}
