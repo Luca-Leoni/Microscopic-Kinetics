@@ -151,7 +151,7 @@ Using this assumption is possible to create a microscopic model that allow us to
     which represent the transition rate in a specific direction in space, since the model was in 1D, in reality the hopping can happen in all the possible directions of neighboring sites. Assuming that the probability of going in equivalent sites near the well has same $\Gamma'$ rates we need to sum all them up in order to obtain the total one, finding out the final result as claimed.
 }
 \noindent
-We can see how the transition rate obtained in this particular one particle model is interesting, having a frequency multiplied by an exponential factor that goes down as the potential barrier needed to overcome the jump increases. Such a form allows us to give a simple and strong physical interpretation to the result, where the particle in equilibrium \textbf{vibrates on the minimum} with a changing intensity over time such that has a \textbf{non-zero possibility of vibrate with enough strength in order to overcome the barrier and hope}. Meaning that, in average, all particles stay in an equilibrium position for a time $1/\Gamma$ before hopping to another minimum inside the lattice due to thermal vibrations.
+We can see how the transition rate obtained in this particular one particle model is interesting, having a frequency multiplied by an exponential factor that goes down as the potential barrier needed to overcome the jump increases. Such a form allows us to give a simple and strong physical interpretation to the result, where the particle in equilibrium \textbf{vibrates on the minimum} with a changing intensity over time such that has a \textbf{non-zero possibility of vibrate with enough strength in order to overcome the barrier and hope}. Meaning that, in average, all particles stay in an equilibrium position for a time $1/\Gamma$ before hopping to another minimum inside the lattice due to thermal vibrations. Also, it's possible to see how the latter posses a typical amplitude $\nu\propto m^{-1/2}$ as expected from classical vibrations, meaning that also the \textbf{mass of the atom} gives a contribution, so that different isotope of the same element have different diffusive behaviors. This phenomenon created what takes the name of \textbf{isotope effect}.
 
 Such a model is so able to describe the on a first principle base the very nature of the hopping as a statistical process, giving a quantitative evaluation of the transition rate that is at the very core of really important mechanism such as chemical reactions, not only atoms' diffusion. For this reason such theory, called \textbf{transition state theory}, is of great interest not only on a theoretical point of view and has been refined over time to also include the presence of many particles inside the system, relaxing the single particle assumption. We have not the time to undergo the study of such a complex theory, nevertheless we are going to make use of its result so that we are going to use the following form for the transition rate.
 \cor{Many-body case}
@@ -169,11 +169,6 @@ Basically the energy of migration is exchanged with the free energy of migration
 \end{equation}
 Which is the final microscopic form for the diffusivity where we can see how such a complex parameter depend on sever factors. The \textbf{geometry} of the system defined by the neighboring sites, $z$, the dimensionality and the correlation, $d$ and $f$. Then, \textbf{vibrations} with their general value of $\nu$ and \textbf{migration entropy} give a contribution, which in general is not too high having that often such factor are kept constant to reference values with right order of magnitude. At last, the most important contribution is given by the \textbf{migration enthalpy} which is generally the factor that influences the most the value of $D$, having not only a strong dependence on temperature, showing how the process is \textbf{thermally activated}, but also since its value can be high.
 
-\nt
-{
-    It's interesting to note how $\nu \propto m^{-1/2}$, meaning that the mass of the atoms has an impact on the diffusion properties of the material. This implies that different isotope of the same element can show better or worst diffusion properties due to that, generating a so-called \textbf{isotope effect}. 
-}
-
 \ex{Vacancy diffusion}
 {
     A simple example of application of such an equation is the case of diffusion of vacancy inside a fcc lattice. We know how $z = 12$ inside such a geometry and the distance between neighbors is $a/\sqrt{2}$, where $a$ is the lattice constant, meaning that $\mean{r^2} = a^2/2$. If we assume that the jumps are uncorrelated for the movement of a vacancy inside a lattice then we can easily see how the final form for the diffusivity is
@@ -181,4 +176,64 @@ Which is the final microscopic form for the diffusivity where we can see how suc
         D_V = a^2 \nu \exp\left( \frac{S^m_V}{k_B} \right)\exp\left( -\frac{H^m_V}{k_BT} \right).
     \end{equation}
     Such an equation gives us a lot of information, especially since we can experimentally evaluate $D$ at different temperatures so that by fitting $\ln D$ vs $1/T$ we can estimate $H^m_V$ which can be compared to first principle DFT computations of such value.
+
+    Inside such systems we can also rephrase the motion of vacancies in terms of motions of atoms inside the material, since as a vacancy move also an atom follows along. Therefore, we can simply think at the jumping rate of atoms as the one of vacancy multiplied by the probability of having vacancies to move in, so that
+    \begin{equation}
+        \Gamma_A = \Gamma_V \frac{N_V}{N_T} = \Gamma_V X_V.
+    \end{equation}
+    We know analytic expressions for both of the quantities, so that we can write down the general form of the diffusivity but still we need first to say that in reality the diffusion of atom is not totally uncorrelated. In particular, we have that an atom jumping into a vacancy leaves behind another one, so that the probability of jump back into the other vacancy is higher than to wait for another one to show up, creating a correlation factor of $f \approx 1 - 2/z$. Using that and \eqref{eq:VacancyPresence} we can so obtain the following form
+    \begin{equation}
+        D_A = fa^2\nu\exp\left( \frac{S_V^m + S_V^f}{k_B} \right)\exp\left( -\frac{H_V^m + H_V^f}{k_BT} \right) = D_A^0e^{-\frac{E}{k_BT}},
+    \end{equation}
+    where $S_V^f$ and $H_V^f$ are the entropy and enthalpy of formation for the vacancy inside the material. It's also good to see how in general $D_A^0 \approx \SI{0.1}{}-\SI{1.0}{cm^2\second^{-1}}$, in good agreement with the typical values of $a \approx \SI{3}{\angstrom}$, $\nu \approx \SI{1e13}{\second^{-1}}$ and $S_V^m + S_V^f \approx 2k_B/\text{atom}$. 
+}
+\nt
+{
+    Such a model can effectively be tested in experiment using different types of setups, some examples are on slides, allowing for the evaluations both $H_V^m$ and $H_V^f$, which are incredibly important for testing theoretical first principle computations. In particular, it's also interesting to see how such values are highly correlated to other ones, like formation enthalpy is correlated to \textbf{cohesive energy}, since stronger are the bonds in the material the more difficult create a vacancy is. Another interesting one is the fact that migration enthalpy is related to the \textbf{bulk modulus}, which tells us how difficult is to move an atom in the material, and it makes sense since $H_V^f$ tells us the variation of the energy in the material when a vacancy travels inside it moving atoms on the way.
+}
+
+\subsection{Diffusion in ionic materials}
+
+One of the most interesting application of diffusion in modern times is the understanding of how ions move inside materials, since ions are able to transport charge allowing for the creation of batteries. In fact, modern Lithium batteries uses Li ions as charge transports from anode to cathode making them diffuse inside liquid electrolyte, which allow for quick diffusion but at the risk of highly flammable batteries that can work only in a short range of temperatures. This lead to a lot of effort to substitute the organic electrolyte into a solid one making Li diffuse inside a material. We shall see how this is possible and how would also allow for high performance batteries to be created.
+
+In order to understand it we shall need first to address the study of a general reaction inside the material. For example take the following situation
+\begin{equation}
+    n_1^r R_1 + n_2^rR_2 + \dots + n_N^rR_N \rightleftharpoons n_1^p P_1 + n_2^pP_2 + \dots + n_M^pP_M,
+\end{equation}
+where $n^r_i$ and $n^p_i$ are the mole of all the reactant needed and product created. We can have a look at the thermodynamic of such a reaction and describe its chemistry finding out a really important result.
+\thm{Van't Hoff equation}
+{
+    In every reaction is possible to define an equilibrium constant $K_{eq}$ that describes the if the reaction is more favored in the direction of reactants or products, defined as
+    \begin{equation}
+        K_{eq} = \frac{\prod_{i=1}^M \gamma_i^p X_i^p}{\prod_{j=1}^N \gamma_j^r X_j^r} = \frac{\prod_{i=1}^M a_i^p}{\prod_{j=1}^N a_j^r},
+    \end{equation}
+    where the molar fractions are the one when the system is in thermal equilibrium. Such a constant is related to the free energy of the unmixed system, and at equilibrium we have that 
+    \begin{align}
+        &\Delta G^0 = -RT\ln K_{eq}, &K_{eq} = \exp\left( -\frac{\Delta G^0}{RT} \right).
+    \end{align}
+}
+\pf{Proof}
+{
+    We can start by writing down the form of the $\Delta G^0$ in a simple known way by using the form
+    \begin{equation}
+        \Delta G^0 = \sum_{i=1}^M n_i^p\mu_{i}^{p0} - \sum_{i=1}^N n_j^r\mu_{j}^{r0}.
+    \end{equation}
+    Then, we know that in the case where the various reactants and product start mixing forming a solution we can use another known form for the Gibbs free energy that looks like this
+    \begin{equation}
+        \Delta G = \sum_{i=1}^M n_i^p\left( \mu_{i}^{p0} + RT\ln a_i^p \right) - \sum_{i=1}^N n_j^r\left( \mu_{j}^{r0} + RT\ln a_j^r \right) = \Delta G^0 + RT \ln K.
+    \end{equation}
+    Where $K$ is not equal to $K_{eq}$ since the molar fractions can be different from the two, and the equilibrium in the reaction is reached only when the number of products and reactants are so that $K = K_{eq}$. To found out such a value we can simply impose the equilibrium inside the solution by assuming that $\Delta G = 0$ and finding out the wanted results.
+}
+\noindent
+This is a powerful result that allow us to see a lot of information on the reaction itself only by looking at the equilibrium constant. In particular, it's possible to see how if $K < K_{eq}$ then $\Delta G > 0$ and the products will decompose to generate reactants, instead for $K > K_{eq}$ the reactants will generate products.
+
+The Van't Hoff equation will be able to give us key information for describing the concentration of defects inside ionic crystals. In fact, the real difference from the diffusion in a normal or ionic material is the presence of atoms that carries a charge since anions and cations are present in equal amount inside the latter. Therefore, we can't really have the simple formation of vacancies inside ionic material since would mean that by eliminating a charge the total material would no more be neutral and that cannot be. Such a constraint make so that the type of defects present inside such materials needs to be more complex to maintain the total charge having that typically are of two types: \textbf{Schottky}, where an anion and a cation leaves the structure together leaving two vacancies but no accumulated charge, \textbf{Frenkel}, a cation takes an interstitial position leaving a vacancy in its place. Thus, our next tusk will be, understand how much of such complex defects are present in the material and to do it we will use also a powerful notation that will help us in the reasoning.
+\dfn{Kroger-Vink notation}
+{
+    We can write down a point defect inside an ionic crystal by using the form \ce{X_S^C}, where the various letters have the following meanings:
+    \begin{itemize}[align=left, leftmargin=*]
+        \item[\textbf{X}] is the element inside the defect, if a vacancy is present the letter V can be used or the symbol $\Box$;
+        \item[\textbf{S}] is the site that the defects has taken place in, can be used the name of the atom that has substituted for example;
+        \item[\textbf{C}] is the effective charge that the defect has inserted inside the system. For example, if a \ce{Cl^{+1}} is substituted by a vacancy its like having a negative charge more inside the material so that the defect is written as $\text{V'}_{\text{Cl}}$ where the apostrophe indicates $-1$. To write $+1$ a dot is used instead.  
+    \end{itemize}
 }
