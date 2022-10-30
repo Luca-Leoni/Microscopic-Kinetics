@@ -183,6 +183,7 @@ Which is the final microscopic form for the diffusivity where we can see how suc
     \end{equation}
     We know analytic expressions for both of the quantities, so that we can write down the general form of the diffusivity but still we need first to say that in reality the diffusion of atom is not totally uncorrelated. In particular, we have that an atom jumping into a vacancy leaves behind another one, so that the probability of jump back into the other vacancy is higher than to wait for another one to show up, creating a correlation factor of $f \approx 1 - 2/z$. Using that and \eqref{eq:VacancyPresence} we can so obtain the following form
     \begin{equation}
+        \label{eq:SelfDiffCoeff}
         D_A = fa^2\nu\exp\left( \frac{S_V^m + S_V^f}{k_B} \right)\exp\left( -\frac{H_V^m + H_V^f}{k_BT} \right) = D_A^0e^{-\frac{E}{k_BT}},
     \end{equation}
     where $S_V^f$ and $H_V^f$ are the entropy and enthalpy of formation for the vacancy inside the material. It's also good to see how in general $D_A^0 \approx \SI{0.1}{}-\SI{1.0}{cm^2\second^{-1}}$, in good agreement with the typical values of $a \approx \SI{3}{\angstrom}$, $\nu \approx \SI{1e13}{\second^{-1}}$ and $S_V^m + S_V^f \approx 2k_B/\text{atom}$. 
@@ -234,6 +235,68 @@ The Van't Hoff equation will be able to give us key information for describing t
     \begin{itemize}[align=left, leftmargin=*]
         \item[\textbf{X}] is the element inside the defect, if a vacancy is present the letter V can be used or the symbol $\Box$;
         \item[\textbf{S}] is the site that the defects has taken place in, can be used the name of the atom that has substituted for example;
-        \item[\textbf{C}] is the effective charge that the defect has inserted inside the system. For example, if a \ce{Cl^{+1}} is substituted by a vacancy its like having a negative charge more inside the material so that the defect is written as $\text{V'}_{\text{Cl}}$ where the apostrophe indicates $-1$. To write $+1$ a dot is used instead.  
+        \item[\textbf{C}] is the effective charge that the defect has inserted inside the system. For example, if a \ce{Cl^{+1}} is substituted by a vacancy its like having a negative charge more inside the material so that the defect is written as $\text{V}^\prime_{\text{Cl}}$ where the apostrophe indicates $-1$. To write $+1$ a dot is used instead, and an $X$ is for $0$.
     \end{itemize}
+}
+\noindent
+Using it we can write down chemical like equations for the generation of defects, for example we can easily write down how a Schottky one is generated inside \ce{KCl} as
+\begin{equation}
+    \ce{K_K^X} + \ce{Cl_{Cl}^X} = \ce{V_K}^\prime + \ce{V_{Cl}}^\bullet + \ce{K_K^X} + \ce{Cl_Cl^X}.
+\end{equation}
+This equation describes a situation where two atoms, one of Cl and one of K, moves inside the material up to the surface leaving behind a Schottky defect as in \figref{fig:SChotckyCreation}.
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/SChotckyCreation.png}
+    \caption
+    {
+        Graphical description of the creation of a Schottky defect inside an ionic crystal, where a cation and an anion travels up into the surface.
+    }
+    \label{fig:SChotckyCreation}
+\end{figure}
+Therefore, we can now study the thermodynamic of this reaction using the Van't Hoff equation, than we can understand how \ce{K_K^X} and \ce{Cl_{Cl}^X} appears in both side of the equation meaning that we can simplify them. Thus, we only need to care of the $a$ coefficients for the cation vacancies $a_{CV}$ and anion vacancies $a_{AV}$ that we can write explicitly since their concentration is really low, having a dilute solution with $\gamma_i \approx 1$, meaning
+\begin{align}
+    &a_{CV} = X_{CV} = \left[ \ce{V_K}^\prime \right], &a_{AV} = X_{AV} = \left[ \ce{V_{Cl}}^\bullet \right].
+\end{align}
+In this way the value of $K$ can be computed really easily finding out an analytic form for the Van't Hoff equation connecting the concentration of vacancy to the free energy of formation, where recalling that for charge conservation $\left[ \ce{V_K}^\prime \right] = \left[ \ce{V_{Cl}}^\bullet \right]$ we get
+\begin{align}
+    &K_{eq} = \left[ \ce{V_K}^\prime \right] \left[ \ce{V_{Cl}}^\bullet \right] = \exp\left( -\frac{G_S^f}{2k_BT} \right), &\left[ \ce{V_K}^\prime \right] = \left[ \ce{V_{Cl}}^\bullet \right] = \exp\left( -\frac{G_S^f}{2k_BT} \right).
+\end{align}
+The density of vacancies inside an ionic material can so be found in this way, having that the rate of hopping for self diffusion becomes slightly different respect to the one in normal solid
+\begin{equation}
+    \label{eq:DiffusivityIonic}
+    D_{K} = gfa^2\nu \exp\left( \frac{S_V^m + S_V^f/2}{k_B} \right)\exp\left( -\frac{H_V^m + H_V^f/2}{k_BT} \right).
+\end{equation}
+Which is analogous to \eqref{eq:SelfDiffCoeff}, but the energy of formation is reduced by a factor of two, since double the vacancies needs to be created to maintain charge, also $g$ is the geometric factor that account for the lattice geometry in the fcc was $1$. A totally analogous computation can be done to study also the Frenkel defects, only that now instead of generating two vacancy you create an interstitial atom and a vacancy, both helping diffusion.
+
+\subsection{Boosting ionic diffusion via doping}
+
+The real power of ionic crystal is not only contained in the decrease of the contribution inside the exponential of the diffusion constant inside the material, but the real power is the possibility of increasing the number of vacancies by using doping. In fact, the conservation of charge need to work not only inside the generation of vacancies but also when other elements with different oxidation number enters the material. Meaning that, if I dope \ce{KCl} with Ca the latter will substitute K in the lattice, but we will have that \ce{K^+} will transform in \ce{Ca^{2+}} leading the material to naturally form vacancies to compensate.
+\thm{Doping of \ce{KCl}}
+{
+    By doping \ce{KCl} with \ce{CaCl_2} a concentration of vacancies inside the material is inducted having the following ammount
+    \begin{equation}
+        \left[ \ce{V_K}^\prime \right] = \frac{\left[ \ce{Ca_K}^\bullet \right]}{2}\left( 1 + \sqrt{1 + \frac{4 \left[ \ce{V_K}^\prime \right]^2_{pure}}{\left[ \ce{Ca_K}^\bullet \right]^2}} \right),
+    \end{equation}
+    where $\left[ \ce{V_K}^\prime \right]_{pure}$ is the concentration of vacancies that is normally present in the crystal.
+}
+\pf{Proof}
+{
+    We can write down the equation for the creation of vacancies as
+    \begin{equation}
+        \left[ \ce{Ca_K}^\bullet \right] + \left[ \ce{V_{Cl}}^\bullet \right]_{pure} = \left[ \ce{V_K}^\prime \right],
+    \end{equation}
+    where we shall also remember how inside the pure crystal we need $\left[ \ce{V_{Cl}}^\bullet \right]_{pure} = \left[ \ce{V_K}^\prime \right]_{pure}$. Then, by using Van't Hoff equation we can write down the value
+    \begin{equation}
+        \left[ \ce{V_{Cl}}^\bullet \right]_{pure} \left[ \ce{V_K}^\prime \right]_{pure} = e^{-\frac{G_S^f}{k_BT}} = \left[ \ce{V_{Cl}}^\bullet \right] \left[ \ce{V_K}^\prime \right] = \left[ \ce{V_K}^\prime \right]\left( \left[ \ce{V_K}^\prime \right] - \left[ \ce{Ca_K}^\bullet \right] \right),
+    \end{equation}
+    which can be transformed in the wanted result after some algebra steps.
+}
+\noindent
+This result shows how the concentration of vacancies depends on the fraction $\eta = \left[ \ce{V_K}^\prime \right]_{pure}/\left[ \ce{Ca_K}^\bullet \right]$ that describes also the regime of doping we are working in. In particular, if $\eta \gg 1$ we are in a \textbf{intrinsic regime} and the number of vacancies is nearly the same as the of the pure material, meaning that the diffusion coefficient is still described by \eqref{eq:DiffusivityIonic}. Instead, the \textbf{extrinsic regime} is described by $\eta \ll 1$ and the number of vacancies transoforms into a constant number $\left[ \ce{V_K}^\prime \right] \approx \left[ \ce{Ca_K}^\bullet \right]$ so that no more exponential dependence on the $G_S^f$ is present inside $D_K$. This would lead to a great increase in the diffusivity of the material inside the extrinsic regime, where we are also able to highly slow down the decrease of $D_K$ as temperate goes up since the enthalpy of formation at the exponential vanishes.
+
+Using this property we are able to construct doped material that posses wanted behaviors for the diffusion of \ce{Li^+} to perform as a good electrolyte in a large range of temperatures. In this way, the problem of flammability of the liquid components would be solved at its core leaving also a lot of room for improvements. For example, solid state batteries will actually be much more compacts allowing them to be stacked in order to obtain much more power from them and higher durability. Such a technology would not only advance batteries, but can be implemented inside all the different devices that uses electrolytes such as fuel cells, for example, which would lead to the creation of high performance engine that could have high working temperatures quickening all the needed reactions.
+
+\nt
+{
+    Just to make a little note, a really promising material in application seems to be pure Zirconia, \ce{ZrO_2}, which shows a cubic fluorite structure at room temperate if doped with Yttria \ce{Y_2O_3}. In this situation not only the thermal and mechanical properties of the material are highly increased, but we are doping it with substitutional cations, \ce{Y^{3+}}, that have a lower valence than Zirconium, \ce{Zr^{4+}}, inducing generation of vacancies.
 }
