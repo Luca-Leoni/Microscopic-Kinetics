@@ -67,3 +67,142 @@ By such simple considerations we have already seen how interfaces can be a key p
 }
 
 \subsection{Surface free energy}
+
+As in every physical system the best way to see how a system evolve into generating an interface or to see how an interface is structured is to look at the energy. In this case it's easy to understand how creating an interface cost energy, since the creation of grains means that a series of bonds inside the material needs to be broken for the creation of \textbf{surfaces} that delimits the grain boundaries. Therefore, the idea is to focus on the increase of energy counted inside a specific quantity defined as follows.
+\dfn{Surface free energy}
+{
+    We define the surface free energy $\gamma$ as the work needed to create a unit of area inside the wanted material
+    \begin{equation}
+        \dd w = \gamma \dd A,
+    \end{equation}
+    where $\dd w$ is the differential of work and $\dd A$ the one of the area.
+}
+\noindent
+Basically, the idea is to compute the total free energy change $\Delta G$ due to interface, which will depend on $\gamma$ along with several factors, and minimize it in order to obtain the form in which such interfaces form inside the material. 
+
+In particular, it's possible to evaluate experimentally or numerically the value of $\gamma$ for several types of interfaces by taking a material separate it and then change the relative angle of orientation between the two pieces. In this way one can find a general increase in the free energy as the angle increase, due to the less coherence between the two parts making the creations of bonds more difficult. Such a phenomenon is well explained inside \figref{fig:Coh-Incoh},
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/Coh-Incoh.png}
+    \caption
+    {
+        Example of incoherent, coherent and semi-coherent interface, all of them increase the energy of the system but the value of $\gamma$ is lees to the far right and increase going to the left due to the less number of bonds.
+    }
+    \label{fig:Coh-Incoh}
+\end{figure}
+where it's possible to see how in the coherent interface the system is only deformed but all the bonds still holds like in the normal crystal minimizing $\gamma$, but maximizing the \textbf{strain energy} $\sigma$. Instead, as we go into the incoherent interface the opposite occur, the system is not deformed but a lot of bonds are broken, maximizing $\gamma$ while minimizing $\sigma$. Therefore, to understand the form that the interface would have in the end we shall minimize the total increase in energy due to its formation keeping in mind that will have a form of the type
+\begin{equation}
+    \Delta G \approx \gamma A + \sigma V.
+\end{equation}
+Using it we can understand how the minimization of the energy will bring to a coherent or incoherent interface depending on the extension of the structure variation. Meaning that, if the grain that is formed is small it will have a low $V$ and a larger $A$, bringing to a situation where it's better to minimize $\gamma$ having a coherent interface. While, as the dimensions increase $V$ grows faster respect to $A$ bringing to a preference for incoherent formation minimizing $\sigma$.
+
+Still, this is only an approximation and works only in the contest of tiny grains of particle size, when it comes to describing grain boundaries the volume variation becomes not important due to the fact that the grains are often of similar composition inside the material. This means that in general the main contribution is still given by $\gamma$ inside $\Delta G$ and our main focus will be in minimizing it.
+
+\subsection{Interface motion}
+
+A lot of different internal and external factor can cause interfaces to move or change on a morphological level. For example, the presence of an intrinsic difference in the free energy of the phases that compose the interface, like a crystal-liquid interface where $G_{cry} < G_{liq}$. Leading to an intrinsically lower energy barrier for atoms to hope from liquid to crystal generating a flux of particles. Another possibility is the presence of external stress that generates fluxes of particles inside the material in order to deform it, indirectly changing the grains form and so the interfaces. Still, the main mechanism that we want to discuss here is the one of \textbf{capillary forces} which are forces formed by the presence of $\gamma$ gradients on the interface itself. For example, the presence of two material with different $\gamma$ on a  surface generate a force that tend to mix the two of them in order to smooth $\gamma$ out, a phenomenon called \textbf{Marangoni effect}.
+
+In order to study such a behavior we need to first talk about how to better describe the interface and in particular of the really useful concept of curvature. In particular, we will define the curvature of a surface in a simplified way as follows.
+\dfn{Curvature}
+{
+    Inside a surface, the curvature $\kappa$ in a particular point of the surface is defined as the sum of the curvature on the two main principle axis taken as
+    \begin{equation}
+        \kappa = \kappa_1 + \kappa_2 = \frac{1}{R_1^c} + \frac{1}{R_2^c},
+    \end{equation}
+    where $R_i^c$ are the radii of the osculating circles that defines the curvature on the principle axis.
+}
+\noindent
+Such definition allow us to use the curvature inside our computations in order to link two important quantities inside the study of interfaces: area and volume changes. In particular, we can show that the following relation holds.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.3\textwidth]{Immagini/Curv.png}
+    \hspace{1cm}
+    \includegraphics[width=0.4\textwidth]{Immagini/CurvUse.png}
+    \caption
+    {
+        Graphical representation of a generic surface curvature and of the geometrical construction for the connection between the variation of volume and area.
+    }
+    \label{fig:Curv}
+\end{figure}
+\thm{Curvature property}
+{
+    Inside a generic object we can connect the variation of volume to the variation of surface area by the following relation
+    \begin{equation}
+        \dv{A}{V} = \frac{1}{R_1^c} + \frac{1}{R_2^c} = \kappa.
+    \end{equation}
+}
+\pf{Proof}
+{
+    We can imagine transforming the variation of volume $\dd V$ in a simple increase of the two osculating radii of a quantity $\dd w$, as shown in \figref{fig:Curv}. In this way we easily write down the variation of area and volume as
+    \begin{align}
+        &\dd A = \left( R_1 + \dd w \right)\dd \theta_1\left( R_2 + \dd w \right)\dd \theta_2 - R_1\dd \theta_1 R_2\dd \theta_2 = \left( R_1 + R_2 \right)\dd w \dd \theta_1 \dd \theta_2,\\
+        &\dd V = R_1\dd \theta_1 R_2 \dd \theta_2\dd w,
+    \end{align}
+    which can be used to compute the derivative seeing how the wanted relation holds.
+}
+\noindent
+Already, by using such a result, it's possible to see how the increase of energy due to interface expansion can be restated in a more simpler form inquiring volume expansion, like
+\begin{equation}
+    \dd w = \gamma\dd A = \gamma\kappa\dd V.
+\end{equation}
+Such a form is also similar to the one of the work done on the mechanical pressure on the system. In fact, at equilibrium the mechanical work $\Delta P \dd V$, where $\Delta P $ is the pressure difference across the interface, needs to be equal to the one done by the surface tension funding out the \textbf{Gibbs-Thomson equation}
+\begin{equation}
+    \label{eq:Gibbs-Thom}
+    \Delta P = \gamma\kappa = \gamma\left( \frac{1}{R_1^c} + \frac{1}{R_2^c} \right).
+\end{equation}
+This is a great result of classical thermodynamics that is really useful, and from our discussion was obtained really simply. Also, it's possible to understand how in the case we are working with a \textbf{spheric object} $R_1^c = R_2^c$ having $\kappa = 2/R^c$. At last, it's important to keep in mind that in the case we have a hollow inside the material the number of surfaces that increase as the volume changes are two, since the external one expands but also the one inside the hollow. Meaning that for a \textbf{hollow object} the surface tension needs to be multiplied by a factor of $2$.
+
+We want now to focus on a grain boundary surface where no hollow is present and the variation of volumes are created by atoms, or particles, of dimensions $\Omega$ can travel from one point to another through a flux. In this optic we can simply model that flux by setting as driving force the chemical potential biased by the presence of the surface energy as
+\begin{equation}
+    \Phi = \mu + \gamma\kappa\Omega.
+\end{equation}
+In this way we can see how an undulating surface will have some positions where the contribution given by $\gamma$ is positive or negative depending on the curvature. Bringing to the creation of a flux of particles that will smooth out the differences in curvature, meaning that the final equilibrium interface will result in a \textbf{smooth surface} with zero $\grad \Phi$. Thus, using some simple considerations we are able to describe really easily surface tension $\gamma$ will act inside the material smoothing the surfaces present in the interfaces, and this is only the beginning. In fact, from \eqref{eq:Gibbs-Thom} we can also grasp how $\gamma$ will also have a role in the description of the pressure around the material, something that can be seen as follows.
+\thm{Curvature and vapor pressure}
+{
+    At equilibrium the vapor pressure around a system depends on both $\gamma$ and $\kappa$ as
+    \begin{equation}
+        P^{eq}(\kappa) = P^{eq}(0)\exp\left( \frac{\kappa\gamma\Omega}{k_BT} \right).
+    \end{equation}
+}
+\pf{Proof}
+{
+    We can assume that the chemical potential explicit dependence on the pressure of the material is given by the relation
+    \begin{equation}
+        \mu(P) = \mu(P^0) + k_BT\ln(P/P^0),
+    \end{equation}
+    and the potential of the gas phase outside the system is given by $\mu(P^{eq}(\kappa))$, while the one inside it is $\mu(P^{eq}(0)) + \gamma\kappa\Omega$. Meaning that at equilibrium we can set them equal and obtain the wanted relation.
+}
+\noindent
+Basically, not only the curvature generate an atomic flux on the surface to smooth it out, but it also creates a gradient of pressure around the material that generate a flux of gasses particle in the same direction having two concurring mechanisms that smooth out the material. Also, the transport through gasses is much faster for obvious reasons.
+
+Another important consequence that we will need in the next studies is the influence that curvature posses in the composition around a $\beta$ particle immersed in an $\alpha$ matrix. Basically, we can imagine to work inside a system composed by two types of atoms $A$ and $B$ and having a two phase field where grains of $\alpha$ and $\beta$ compositions appear inside the material. We can use an argument analougus to the one of the vapor pressure in order to describe the fraction of $B$ atoms in the $A$-rich $\alpha$ matrix near a $\beta$ grain.
+\thm{Curvature and composition}
+{
+    Around a $B$-rich $\beta$ grain inside an $A$-rich $\alpha$ matrix the equilibrium value of $X_B$ is given by
+    \begin{equation}
+        X_B^{eq}(\kappa) = X_B^{eq}(0)\exp\left( \frac{\kappa\gamma\Omega}{k_BT} \right).
+    \end{equation}
+}
+\pf{Proof}
+{
+    The proof is totally analogous to the one before, only that to describe $\mu$ we need to assume the validity of the Henry's law and write
+    \begin{equation}
+        \mu_B^\alpha(\kappa) = \mu_B^\alpha(0) + k_BT\ln\left( X_B^{eq}(\kappa)/X_B^{eq}(0) \right),
+    \end{equation}
+    and then set the equilibrium as
+    \begin{equation}
+        \mu_B^\alpha(\kappa) - \mu_B^\alpha(0) = \mu_B^\beta(\kappa) - \mu_B^\beta(0) = \kappa\gamma\Omega.
+    \end{equation}
+}
+
+\noindent
+This is a really important result that will play an important role in the description of the coarsening process, as we will see, since will promote the formation of larger grains instead of a lot of smaller ones. In fact the idea is that larger grains have a minor concentration of $B$ atoms around respect to small ones, having that a flux due to concentration gradient is created bringing atoms from smaller grains to larger ones slowly consuming the small in favor of a bigger grain.
+
+\nt
+{
+    It's interesting to note how the surface tension is also important in the description of capillary effect such as the liquid that naturally rise inside a small tube. Where, after a simple description, it's possible to describe the height of the liquid column through the simple formula
+    \begin{displaymath}
+        h = \frac{2\gamma\cos\alpha}{\rho g r},
+    \end{displaymath}
+    where $\alpha$ is the contact angle, $\rho$ the density of the liquid, $\gamma$ the surface tension and $r$ the radius of the capillary. On slides the description is a little more accurate.
+}
