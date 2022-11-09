@@ -154,6 +154,7 @@ This is a great result of classical thermodynamics that is really useful, and fr
 
 We want now to focus on a grain boundary surface where no hollow is present and the variation of volumes are created by atoms, or particles, of dimensions $\Omega$ can travel from one point to another through a flux. In this optic we can simply model that flux by setting as driving force the chemical potential biased by the presence of the surface energy as
 \begin{equation}
+    \label{eq:CurvatureChemPot}
     \Phi = \mu + \gamma\kappa\Omega.
 \end{equation}
 In this way we can see how an undulating surface will have some positions where the contribution given by $\gamma$ is positive or negative depending on the curvature. Bringing to the creation of a flux of particles that will smooth out the differences in curvature, meaning that the final equilibrium interface will result in a \textbf{smooth surface} with zero $\grad \Phi$. Thus, using some simple considerations we are able to describe really easily surface tension $\gamma$ will act inside the material smoothing the surfaces present in the interfaces, and this is only the beginning. In fact, from \eqref{eq:Gibbs-Thom} we can also grasp how $\gamma$ will also have a role in the description of the pressure around the material, something that can be seen as follows.
@@ -180,6 +181,7 @@ Another important consequence that we will need in the next studies is the influ
 {
     Around a $B$-rich $\beta$ grain inside an $A$-rich $\alpha$ matrix the equilibrium value of $X_B$ is given by
     \begin{equation}
+        \label{eq:EquMolarFracCurva}
         X_B^{eq}(\kappa) = X_B^{eq}(0)\exp\left( \frac{\kappa\gamma\Omega}{k_BT} \right).
     \end{equation}
 }
@@ -196,7 +198,7 @@ Another important consequence that we will need in the next studies is the influ
 }
 
 \noindent
-This is a really important result that will play an important role in the description of the coarsening process, as we will see, since will promote the formation of larger grains instead of a lot of smaller ones. In fact the idea is that larger grains have a minor concentration of $B$ atoms around respect to small ones, having that a flux due to concentration gradient is created bringing atoms from smaller grains to larger ones slowly consuming the small in favor of a bigger grain.
+This is a really important result that will play an important role in the description of the coarsening process, as we will see, since will promote the formation of larger grains instead of a lot of smaller ones. In fact the idea is that larger grains have a minor concentration of $B$ atoms around respect to small ones, having that a flux due to concentration gradient is created bringing atoms from smaller grains to larger ones slowly consuming the small in favor of a bigger grain. This also means that in terms of free energy we will have that the smaller grain will have higher values of $\Phi$, since $\kappa$ is greater, as can be seen in \eqref{eq:CurvatureChemPot}. The equilibrium concentration of the $\alpha$ and $\beta$ phases will so change based on the dimensions of the grain, changing also the phase diagram of the grain itself.
 
 \nt
 {
@@ -205,4 +207,110 @@ This is a really important result that will play an important role in the descri
         h = \frac{2\gamma\cos\alpha}{\rho g r},
     \end{displaymath}
     where $\alpha$ is the contact angle, $\rho$ the density of the liquid, $\gamma$ the surface tension and $r$ the radius of the capillary. On slides the description is a little more accurate.
+}
+
+\subsection{Coarsening of microstructure}
+
+With the study of curvature we have seen how the grains inside the material will evolve in order to minimize $\kappa$ preferring the formation of bigger grains from the slow evaporation of smaller one. This process has a big relevance in the study of material structure and atomic diffusion inside it, and for this reason we want to create a model that allow us to predict how the grains are distributed inside the material. In particular, we will focus on the description of $f(R, t)$ the \textbf{particle size distribution} inside the material, where $R$ will be the grain radius assuming that all of them have a spherical shape.
+
+The idea to model the process is to assume that the material at equilibrium is composed by several spherically shaped grains with composition $\beta$ with an equilibrium concentration of atoms $B$ that depends on their shape as
+\begin{equation}
+    \label{eq:EquiConc}
+    c^{eq}(R) = c^{eq}(\infty) \exp\left( \frac{2\gamma\Omega}{k_BTR} \right) \approx c^{eq}(\infty)\left( 1 + \frac{2\gamma\Omega}{k_BTR} \right).
+\end{equation}
+Where we have used \eqref{eq:EquMolarFracCurva} substituting the value of the curvature of a sphere $2/R$. Such particles are inside an $\alpha$ matrix that is assumed to have a constant average concentration $\mean{c}$, so that a gradient of concentration appear near every grain since $c$ smoothly change from the average to $c^{eq}(R)$
+\begin{equation}
+    \grad c \approx \frac{c^{eq}(R) - \mean{c}}{R}\vb{n}.
+\end{equation}
+Such a gradient generates a flux of $B$ components, $\vb{J} = \tilde{D}\grad c$, that increase or decrease the grain size depending on the size of it. In particular, if the grain is large the equilibrium concentration is smaller bringing material to it, while if $R$ decrease the concentration rise making the $B$ components go away as depicted in \figref{fig:CoarsModel}.
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Immagini/CoarsModel.png}
+    \caption
+    {
+        Model used to describe the coarsening phenomenon inside a material, shows spherical grains inside a uniform concentration matrix where bigger ones attracts atoms while the smaller gave them away.
+    }
+    \label{fig:CoarsModel}
+\end{figure}
+Therefore, inside this simple construction we can describe how the grains grows inside the material by describing how the radius evolve over time in the following way
+\begin{equation}
+    \label{eq:rateOfChange}
+    \dv{R}{t} = J\Omega = \tilde{D}\Omega\frac{c^{eq}(R) - \mean{c}}{R}.
+\end{equation}
+This expression is already interesting, but it's not complete since we don't know how to write down $\mean{c}$. Nevertheless, a form for such an average can be found easily arriving at the following result.
+\thm{Growth rate}
+{
+    Assuming the total volume of the grains is constant the rate of change of the grains sizes takes the following form
+    \begin{equation}
+        \dv{R}{t} =\frac{2\tilde{D}\gamma\Omega^2c^{eq}(\infty)}{k_B TR}\left( \frac{1}{\mean{R}} - \frac{1}{R} \right).
+    \end{equation}
+}
+\pf{Proof}
+{
+    If the total volume of the grains remain constant we can write down a simple condition as follows
+    \begin{align}
+        &\sum_{Grain} R^3 = \text{const}, &\sum_{Grain} R^2\dv{R}{t} = 0.
+    \end{align}
+    In which we can substitute \eqref{eq:rateOfChange} and using \eqref{eq:EquiConc} inside it we will have
+    \begin{equation}
+        \sum_{Grain}\tilde{D}\Omega\frac{R^2}{R}\left( \mean{c} - c^{eq}(\infty) - c^{eq}(\infty)\frac{2\gamma\Omega}{k_BTR} \right) = 0.
+    \end{equation}
+    We can rewrite the expression by manipulating it in the following way
+    \begin{equation}
+        \left( \sum_{Grain}R \right)\tilde{D}\Omega\left( \mean{c} - c^{eq}(\infty) \right) = \sum_{Grain}c^{eq}(\infty)\frac{2\gamma\Omega}{k_BTR} = N_G c^{eq}(\infty)\frac{2\gamma\Omega}{k_BTR},
+    \end{equation}
+    then we can then remember how $\mean{R} = \sum_{Grain}R / N_G$ meaning that we simply obtain an evaluation for the average as
+    \begin{equation}
+        \mean{c} = c^{eq}(\infty)\left( 1 + \frac{2\gamma\Omega}{k_BT\mean{R}} \right).
+    \end{equation}
+    Substituting it inside the expression of $\dd R/\dd t$ gets us the wanted result.
+}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Immagini/RateGrowth.png}
+    \includegraphics[width=0.45\textwidth]{Immagini/RDistr.png}
+    \caption
+    {
+        Graph of the rate of growth of the grains inside the GLSW theory as a function of the particle size for two different types of grains, on the left. A graph of the solution of the continuity equation for the size distribution at equilibrium on the right.
+    }
+    \label{fig:rateRdist}
+\end{figure}
+
+\noindent
+This equation shows to us quantitatively when the grains will start to increase or decrease in size, seeing how they increase when $R > \mean{R}$ and vice versa. Also, if we plot it, as in \figref{fig:rateRdist}, we can see how it's form has a maximum for every grain type that is reached at $R = 2\mean{R}$ and then reaches a plateau as the dimensions grows further.
+
+At last, we shall describe how to work out a form for $f(R, t)$ and in order to do that we can still focus on the fact that the number of particle inside the system needs to be conserved. Meaning that the volume of the grains has to be conserved in the structure having that the continuity equation can be written out having
+\begin{equation}
+    \label{eq:DistEvo}
+    \pdv{f}{t} = -\pdv{J}{R} = -\pdv{}{R}\left[ f(R,t)\pdv{R}{t} \right].
+\end{equation}
+Where we have used the definition of flux as $\vb{J} = n\vb{v}$ with $n$ the density of material and $\vb{v}$ the average velocity, in our case the density is the distribution of grains volume and the velocity the growth rate. Such an equation allow us to know how the distribution evolves over time, meaning that the initial form of $f(R, 0)$ can be taken as wanted and then evolves following \eqref{eq:DistEvo} since it goes into equilibrium. An example of this is shown in \figref{fig:rateRdist} where the equilibrium form of $f$ is shown for a starting configuration given by a Gaussian. The latter shows how the most probable dimension of a grain is $1.13\mean{R}$ with a cut-off radius of $R_{co} = 1.5\mean{R}$ after which no grains are presents. That distribution also allows us to describe the evolution of the front over time, meaning that in time $R_{co}$ evolves and we can see how such evolution goes on as follows.
+\thm{Cut-off radius growth}
+{
+    The biggest possible size of grains inside a material grows with time following the simple equation
+    \begin{equation}
+        \label{eq:cutoffGrowth}
+        \mean{R(t)}^3 - \mean{R(0)}^3 = \frac{8\tilde{D}\gamma\Omega^2c^{eq}(\infty)}{9k_BT}t = K_Dt.
+    \end{equation}
+}
+\pf{Proof}
+{
+    Taking the distribution in \figref{fig:rateRdist} it's possible to take the average of the size as $2R_{co}/3$ so that we can write down
+    \begin{equation}
+        \eval{\dv{R}{t}}_{R=R_{co}} = \frac{2\tilde{D}\gamma\Omega^2c^{eq}(\infty)}{k_BTR_{co}}\left( \frac{3}{2R_{co}} - \frac{1}{R_{co}} \right) = \frac{\tilde{D}\gamma\Omega^2c^{eq}(\infty)}{k_BTR_{co}^2}.
+    \end{equation}
+    Then, we can take $R_{co}^3$ and take it's derivative to obtain the value
+    \begin{equation}
+        \dv{R_{co}^3}{t} = R^2_{co} \eval{\dv{R}{t}}_{R=R_{co}} = \frac{\tilde{D}\gamma\Omega^2c^{eq}(\infty)}{k_BT},
+    \end{equation} 
+    which can be integrated obtaining a form for the wanted value which then needs to be averaged over the $f$ distribution to obtain the final result.
+}
+\noindent
+This is the final result for this model for the coarsening or \textbf{Ostwald ripening} phenomenon in the contest of \textbf{Greenwood-Lifshitz-Slyozov-Wagner theory}, which is a diffusion limited theory. Meaning that all the velocity at which the grains' growth is dictated by the diffusion velocity inside the matrix. It's also possible to take into account a situation where diffusion in the matrix is really fast and the slow step is the transfer of material inside and outside the grains across the interface. This case is called source limited, the concentration of the matrix is really uniform thanks to fast diffusion, and \eqref{eq:cutoffGrowth} can be rewritten as
+\begin{equation}
+    \mean{R(t)}^2 - \mean{R(0)}^2 = K_St.
+\end{equation}
+\nt
+{
+    Just a little notice, during the lecture another really cool effect was just introduced called \textbf{Rayleigh instability}, which describes how a wire tend to not be stable as the temperatures rise up, or the thickness goes down. Basically, if I take a gold nanowire with a certain thickness we have a certain temperature after which will start to ripe and transform in a series of nanosphere with a certain spacial ordering given by $\lambda$. Also, the ripening temperature goes down as the thickness goes down having that a copper nanowire with \SI{30}{\nano\metre} in diameter will be completely formed by spheres at \SI{400}{\degreeCelsius} but a \SI{40}{\nano\metre} one not.
 }
