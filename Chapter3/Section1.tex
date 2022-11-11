@@ -68,3 +68,100 @@ In this first section we will focus first on the discontinuous type describing t
 
 Nucleation is an important phenomenon that consist in the spontaneous formation of cluster of components inside the material that will then grow over time through different mechanisms like coarsening. In particular, in the classical theory of nucleation the system goes through four different steps: an initial incubation where no cluster are formed over time, to then a steady-state situation where the number increase in time reaching a maxima where driving forces of nucleation start to reduce, and then the coarsening that will decrease the number generating bigger grains. Inside such a complex kinetic behavior we aim first in the description of the distribution of cluster inside cluster space $N_\nu(t)$, where $N_\nu$ is the number of cluster possessing $\nu$ monomers components inside them.
 
+To start the study we can try to write down a form for the variation of free energy of the system in the formation of a cluster with $\nu$ components. We can assume that inside a matrix in state $\alpha$ and chemical potential for component $\mu^\alpha$ start to grow a cluster in state $\beta$ which changes also the chemical potential of the $\nu$ monomers. Such a formation will so generate a simple variation of free energy to which we will need also to add the energy coming from the interface $\gamma A$, where $A \propto V^{2/3}$ and $V \propto \nu$, meaning that naming $\eta$ the constant of proportionality we have
+\begin{equation}
+    \Delta G_\nu = \nu\left( \mu^\beta - \mu^\alpha \right) + \eta\nu^{2/3}\gamma.
+\end{equation}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/FreeEnNucle.png}
+    \caption
+    {
+        Graph of the variation of free energy due to nucleation as a function of cluster size, in particular on the left there's the case where the chemical potential of the $\alpha$ matrix phase is more favorable than the one of the $\beta$ grain phase, and on the right the opposite.
+    }
+    \label{fig:FreeEnNucle}
+\end{figure} 
+It's form can be seen in \figref{fig:FreeEnNucle}, where we can see clearly how the starting bulk term completely determine the possibility of nucleation. In fact, when $\nu$ is small the term that leads the change in free energy is the surface one, which is always positive, meaning that cluster of small size will always be energetically unfavorable, while as $\nu$ increase $\mu^\beta - \mu^\alpha$ will start to lead. In this way we can understand that, if the difference in the chemical potential is negative, cluster starts to grow consistently only when they reach a certain critical value from which $\Delta G_\nu$ starts to decrease
+\begin{align}
+    &\eval{\dv{\Delta G_\nu}{\nu}}_{\nu = \nu_c} = 0, &\nu_c = -\left( \frac{2\eta\gamma}{3(\mu^\beta - \mu^\alpha)} \right)^3.
+\end{align}
+Therefore, we will have that in a first moment the cluster are not able to form for a long period of time due to the increase in free energy, but there is still a probability that due to thermal fluctuations, or other external factor, one cluster of size $\nu_c$ forms starting increasing its size naturally from there and forming the center of nucleation. Meaning that we are already able to understand the presence of the \textbf{incubation phase}, which can be overcome through probability fluctuations typical of a discontinuous phase transformation.
+
+We can now start to model the process of formation of the grains overtime, and in order to do that we want to work inside the space of cluster size $N_\nu$. Meaning that we want to find out a form for the flux $J_\nu(t)$ describing how many cluster goes at certain time from having $\nu$ components to $\nu+1$. Such a quantity can be easily modelled by assuming that the probability of one monomer to enter the cluster over time is $\beta_\nu$, while the probability for one to hoop out of it is $\alpha_\nu$ having that
+\begin{equation}
+    J_\nu(t) = \beta_\nu N_\nu(t) - \alpha_{\nu+1} N_{\nu+1}(t).
+\end{equation}
+Using such a description allows us to find out some important information on the form of the distribution itself. For example, we can see what happens in a case where the system reaches an equilibrium, assuming that the $\alpha$ phase is stable, $\mu^\beta - \mu^\alpha > 0$, we can find out the following.
+\thm{Equilibrium distribution}
+{
+    When the matrix $\alpha$ phase is stable respect to the grain $\beta$ one the system will evolve in time reaching an equilibrium where, still, a series of clusters are formed following the distribution given by
+    \begin{equation}
+        N_\nu^{eq} = N\exp\left( -\frac{\Delta G_\nu}{k_BT} \right),
+    \end{equation}
+    with $N$ the total number of atoms.
+}
+\pf{Proof}
+{
+    This demonstration was not done during the lectures.
+}
+\noindent
+Such a result is really helpful for us since allows for the creation of a relation between the different probabilities $\alpha_\nu$ and $\beta_\nu$ defined earlier. In fact, we can say that at equilibrium $J_\nu = 0$ for every value of $\nu$ and so the following is true
+\begin{equation}
+    \label{eq:CoeffRelation}
+    \beta_{\nu + 1} = \beta_\nu\frac{N_\nu}{N_{\nu+1}} = \beta_\nu\exp\left( -\frac{\Delta G_{\nu+1} - \Delta G_\nu}{k_BT} \right).
+\end{equation}
+Still, such a distribution is not the one we are more interested in, in fact inside such an equilibrium distribution we have only the formation of small clusters due to fluctuations inside the material, the number larger cluster is zero inside such a quick descending distribution. The situation in the case where the $\alpha$ phase is metastable, with $\mu^\beta - \mu^\alpha < 0$, the situation changes since the system will undergo an irreversible transformation that through the stable phase that involves nucleation. Meaning that the final goal is to find out a way to describe the non-equilibrium distribution of clusters $Z_\nu(t)$, in particular focussing on the form of $J_\nu$ still defined as before in a steady state situation.
+\thm{Non-equilibrium steady-state flux}
+{
+    When the matrix $\alpha$ phase of the material is metastable the system will undergo a nucleation that, passed the state of incubation, will grow in a steady state regime given by the flux in cluster size space $J$ as
+    \begin{equation}
+        J = N\beta_c \sqrt{\frac{\Delta G_c}{3\pi k_BT\nu_c^2}}\exp\left( -\frac{\Delta G_c}{k_BT} \right),
+    \end{equation}
+    where $\beta_c$ is the probability of capture by the critical size cluster.
+}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/DistributionsGrains.png}
+    \caption
+    {
+        Plot of the equilibrium and non equilibrium distribution in the two cases where $\alpha$ is stable and metastable in order to guide better the demonstration of the results.
+    }
+    \label{fig:DistributionsGrains}
+\end{figure}
+\pf{Proof}
+{
+    During such a demonstration we will assume the condition of constrained equilibrium allowing for the relation between the coefficients in \eqref{eq:CoeffRelation} to be valid also in this particular case\footnote{Probably better to look up on the internet for such a piece of theory.}. This allows us to write down that
+    \begin{equation}
+        J_\nu = \beta_\nu Z_\nu - \alpha_{\nu+1} Z_{\nu+1} = \beta_\nu N_\nu^{eq}\left( \frac{Z_\nu}{N_\nu^{eq}} - \frac{Z_{\nu+1}}{N^{eq}_{\nu+1}} \right),
+    \end{equation}
+    then we can recall that in a steady-state situation we have $J_\nu = J_\omega$ for every $\nu$ and $\omega$, so that $J_\nu = J$. Then we will also assume that for small $\nu$ also in $Z_\nu$ the leading term will be the one given by the surface energy, which do not change from equilibrium and non-equilibrium case, meaning that the distribution remains the same. While for larger sizes the distribution needs to drop respect to what $N^{eq}$ predict, since the exponent would have a positive term inside after $\nu_c$, having that we assume the form
+    \begin{equation}
+        Z_\nu = 
+        \begin{cases}
+            N_\nu & \nu \le p < \nu_c\\
+            0 & \nu \ge s > \nu_c
+        \end{cases}.
+    \end{equation}
+    Where $p$ and $s$ are integer values chosen in order for $Z_\nu$ to fit better to the equilibrium distribution as in \figref{fig:DistributionsGrains}. In this situation we can write down the following thing
+    \begin{equation}
+        \frac{J}{\beta_\nu N_\nu} = \left( \frac{Z_\nu}{N_\nu^{eq}} - \frac{Z_{\nu+1}}{N^{eq}_{\nu+1}} \right),
+    \end{equation}
+    which can be summed up over all the possible grain sizes in order to obtain a telescopic series
+    \begin{equation}
+        \sum_{\nu=p}^s \frac{J}{\beta_\nu N_\nu} = \frac{Z_p}{N_p} - \frac{Z_{s+1}}{N_{s+1}} = 1,
+    \end{equation}
+    since $Z_{s+1} = 0$ and $Z_p = N_p$. Therefore, we can write a simple form for $J$ as a summation that can be approximated remembering that $\beta_\nu$ needs to have a maximum at $\nu_c$ since is the size at which caching becomes favorable
+    \begin{equation}
+        J = \left[ \sum_{\nu=p}^s \frac{1}{\beta_\nu N_\nu} \right]^{-1} \approx \left[ \frac{1}{\beta_c N}\sum_{\nu=p}^s e^{\Delta G_\nu/k_BT} \right]^{-1}.
+    \end{equation}
+    In this situation we can approximate the sum for an integral and also expand $\Delta G_\nu$ around $\nu_c$ since is its maximum and the main contribution is near there, having
+    \begin{align}
+        &\Delta G_\nu \approx \Delta G_c + \frac{(\nu - \nu_c)^2}{2}\eval{\pdv[2]{\Delta G_\nu}{\nu}}_{\nu = \nu_c} &\eval{\pdv[2]{\Delta G_\nu}{\nu}}_{\nu = \nu_c} = -\frac{2}{9}\eta\gamma\nu_c^{-4/3} = -\frac{2}{3}\frac{\Delta G_c}{\nu_c^2}.
+    \end{align}
+    Then we can simply insert inside the summation and integrate as
+    \begin{equation}
+        \sum_{\nu=p}^s e^{\Delta G_\nu/k_BT} \approx e^{\Delta G_{c}/k_BT} \int_p^s \dd \nu \exp\left( -\frac{2}{3}\frac{\Delta G_c}{\nu_c^2k_BT}\frac{(\nu - \nu_c)^2}{2} \right) \approx e^{\Delta G_{c}/k_BT}\sqrt{\frac{3\pi k_BT\nu_c^2}{\Delta G_c}},
+    \end{equation}
+    where we have expanded the extreme of the Gaussian integral to cover the whole domain since the tails give a small contribution. Then by inserting such result inside the form of $J$ we obtain the wanted result.
+}
+Now, this is an interesting result that describes the evolution of the nucleation inside the material in the \textbf{steady-state phase} where the number of cluster with greater size increase linearly in time since $J$ is constant. Also, we can see how inside $J$ all the contribution are given by $\nu_c$, since is effectively the most important term, but still the factor $\sqrt{\bullet}$, called \textbf{Zeldovich factor}, is giving us corrections to consider also the surrounding contribution. In fact, if we didn't expand $\Delta G_\nu$ to first order but zeroth we will have had a $1$ in its place, instead a number $\sim 0.1$ is given. At last, we shall understand that the only term that we don't know how to write down inside $J$ is the form of $\beta_c$, which still can be described using a series of model resumed shortly inside the slides.
