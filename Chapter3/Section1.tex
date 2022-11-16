@@ -115,6 +115,7 @@ Still, such a distribution is not the one we are more interested in, in fact ins
 {
     When the matrix $\alpha$ phase of the material is metastable the system will undergo a nucleation that, passed the state of incubation, will grow in a steady state regime given by the flux in cluster size space $J$ as
     \begin{equation}
+        \label{eq:SteadyStateFlux}
         J = N\beta_c \sqrt{\frac{\Delta G_c}{3\pi k_BT\nu_c^2}}\exp\left( -\frac{\Delta G_c}{k_BT} \right),
     \end{equation}
     where $\beta_c$ is the probability of capture by the critical size cluster.
@@ -164,4 +165,88 @@ Still, such a distribution is not the one we are more interested in, in fact ins
     \end{equation}
     where we have expanded the extreme of the Gaussian integral to cover the whole domain since the tails give a small contribution. Then by inserting such result inside the form of $J$ we obtain the wanted result.
 }
+\noindent
 Now, this is an interesting result that describes the evolution of the nucleation inside the material in the \textbf{steady-state phase} where the number of cluster with greater size increase linearly in time since $J$ is constant. Also, we can see how inside $J$ all the contribution are given by $\nu_c$, since is effectively the most important term, but still the factor $\sqrt{\bullet}$, called \textbf{Zeldovich factor}, is giving us corrections to consider also the surrounding contribution. In fact, if we didn't expand $\Delta G_\nu$ to first order but zeroth we will have had a $1$ in its place, instead a number $\sim 0.1$ is given. At last, we shall understand that the only term that we don't know how to write down inside $J$ is the form of $\beta_c$, which still can be described using a series of model resumed shortly inside the slides.
+
+Before going into the next topic, we shall first make some remarks for the result that we have obtained right now. In particular, we shall say that the nucleation that we have described is generally called \textbf{homogeneous nucleation} and is characterized by the creation of the clusters out of atmosphere with no preferential position on where to appear. In this type of nucleation the result \eqref{eq:SteadyStateFlux} is telling us a lot on the velocity of the process, and its value depends strongly on $\Delta G_c$ giving us the following insights
+\begin{enumerate}[label*=\protect\fbox{\arabic{enumi}}]
+    \item $\Delta G_c \propto \gamma^3$ and in incoherent interfaces $\gamma \approx \SI{0.5}{Jm^{-2}}$, while in coherent is lower by at least a factor of three. Therefore, in most situations homogeneous nucleation is possible only for coherent interfaces;
+    \item $\Delta G_c \propto (\mu^\beta - \mu^\alpha)^{-2}$ shows how $J$ can increase suddenly due to temperature variations that modify the driving force;
+    \item One can estimate the value of $\Delta G_c$ to have an idea by using $J\approx \SI{1}{cm^{-3}s^{-1}}$ along with $\beta_c \approx 10^12$ and a Zeldovich factor of $0.1$ to find $\Delta G_c \approx 76k_BT$;
+    \item In the case of solid-solid nucleation we shall include inside the free energy also a strain term that is often described using the volumetric density of bulk free energy $\Delta g_B$. Basically, to the normal energy of the bulk inside the system a $\Delta g_\epsilon$ term due to the strain caused by the generation of solid clusters inside a solid appears, a term that can be neglected if the nucleation happens inside a liquid or a gas for obvious reasons.
+\end{enumerate}
+Such information can be important in the study of the phenomena in a general way, in particular we shall remember the notion of volumetric density of free energy $\Delta g$ since we are going to use it in future topics.
+
+\ex{CNT-Exercise}
+{
+    At the end of the topic the prof showed a really simple exercise to understand how much the steady-state flux depends on the free energy seeing how also small variations can cause rapid increases. The assumption is that in a system with an atomic fraction of $B$ atoms of $X_B = 0.3$ homogenized at $\SI{1200}{K}$ and quenched to $\SI{800}{K}$ has a $\beta$-phase nucleation rate of $\SI{e6}{m^{-3}s^{-1}}$. We want to increase the density of $B$ atoms in order to bring the flux at $\SI{e21}{m^{-3}s^{-1}}$ knowing that
+    \begin{align}
+        &\Delta g_B = [-100(X_B - 0.3) - 9]10^{7}\si{Jm^{-3}}, &\gamma = \SI{75}{Jm^{-2}}.
+    \end{align}
+    We can so write down the total variation of free energy of the system by using the following equation
+    \begin{equation}
+        \Delta G = \frac{4\pi}{3}r^3\Delta g_B + 4\pi r^2 \gamma,
+    \end{equation}
+    which can be maximized to found out $\Delta G_c$ at the value of
+    \begin{align}
+        &r_c = -2\frac{\gamma}{\Delta g_B}, &\Delta G_c = \frac{16\pi}{3}\frac{\gamma^3}{\Delta g_B^2}.
+    \end{align}
+    Knowing that we can insert everything in the known formula for $J$ and find out that in order to increase the flux by $15$ orders of magnitude we only need to increase $X_B$ by a $0.03$, so that $\Delta G_c$ becomes half.
+}
+
+\subsection{Heterogeneous nucleation}
+
+The next important case that we shall address is the case where the nucleation happens in some preferential points inside the system generating \textbf{Heterogeneous nucleation}. In particular, we will focus on the case where the cluster prefer to form in the interface's region, meaning that a surface is already present and so the formation of the grain can be more favorable due to variations of surface free energy. We will not go into the theoretical treatment of this particular phenomenon, but still we will need to address two cases: the creation of clusters in a grain boundary, where a solid-solid interface is present, and the film deposition, where the interface where the grain forms is a solid-gas one.
+
+In the first case we can have that the clustering begins in the interface between two solid phases $\alpha$ generating a grain that changes the free energy thanks to the variation of chemical potential of the grain's $\beta$ phase and the interface free energy variation. In the case without grain in the middle the interface posses an energy that is given by $\gamma^{\alpha\alpha}$, but it's possible that the $\alpha-\beta$ interface has a better surface free energy $\gamma^{\alpha\beta}$ having that the formation of clusters to substitute the $\alpha-\alpha$ interface is really favorable.
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/SolidSolidInter.png}
+    \caption{
+        Representation of a heterogeneous nucleation in the solid-solid interface, important to see how the cluster formed takes the shape of a lens with an angle that depends on the surface tensions.
+    }
+    \label{fig:SolidSolidInter}
+\end{figure}
+Also, the shape that the cluster will take depends on how favorable such substitution is, giving a general form of a lens as in \figref{fig:SolidSolidInter} with the angle given by a known result.
+\newpage
+\thm{Young's equation solid-solid}
+{
+    The shape of a grain in a solid-solid interface is defined by $\gamma^{\alpha\alpha}$ and $\gamma^{\alpha\beta}$ and is given by
+    \begin{equation}
+        \label{eq:YoungEqua}
+        \gamma^{\alpha\alpha} = \gamma^{\alpha\beta}\cos\psi.
+    \end{equation}
+}
+\noindent
+Where one can grasp a lot of information, for example if $\gamma^{\alpha\alpha} = 0$ means that we don't have the interface at all not having heterogeneous nucleation at all with $\psi = \pi/2$ so that the grain are spherical as in the homogeneous case. Instead, if $\gamma^{\alpha\alpha} = 2\gamma^{\alpha\beta}$ the angle is flat meaning that the interface catalyze the reaction so well that a continuous film around the interface is created. Also, we can evaluate the increase in free energy that such a grain can generate in the system by looking at the following result.
+\thm{Grain free energy}
+{
+    If a nucleation starts on a solid-solid interface the increase of free energy of the system takes the form
+    \begin{equation}
+        \Delta G^{GB} = \left( \frac{2\pi R}{3}\Delta g_B + 2\pi R^2\gamma^{\alpha\beta} \right)\left( 2 - 3\cos\psi + \cos^3\psi \right).
+    \end{equation}
+}
+\pf{Proof}
+{
+    We can proof it by using that fact that the volume and the area of the lens figure formed can be computed using
+    \begin{align}
+        &V = \frac{2\pi R}{3}( 2 - 3\cos\psi + \cos^3\psi ), &A = 4\pi R^2(1- \cos\psi),
+    \end{align}
+    where $R$ is the radius of the grain. Then we can evaluate the variation of energy due to the creation of a $\beta$ bulk and the increase of the interface along with the elimination of the $\alpha-\alpha$ one as
+    \begin{equation}
+        \Delta G^{GB} = V\Delta g_B + A\gamma^{\alpha\beta} - \pi r^2\gamma^{\alpha\alpha},
+    \end{equation}
+    then we can use the fact that $r \approx R\sin\psi$ along with Young's equation to obtain the final result.
+}
+\noindent
+One can see how such a form is similar to the one of the homogeneous case, having that we can see that the first term is exactly equal to $1/2$ the homogeneous energy while the angular term is what really defines if the heterogeneous nucleation is preferred or not. Such a term is also called \textbf{wetting factor}, and we can see how the following is true
+\begin{equation}
+    \frac{\Delta G_c^{GB}}{\Delta G_c^H} = \frac{1}{2}\left( 2 - 3\cos\psi + \cos^3\psi \right),
+\end{equation}
+this term shows how the energy is basically always less in the heterogeneous case, in fact one can see how since $\gamma > 0$ the wetting term is always contained in $[0, 1]$. Meaning that the nucleation phenomena is generally more favorable at the grain boundaries and becomes analogous at the homogeneous case only if the interface is coherent, as we have already anticipated previously. At last, it's possible to give an estimate of the steady-state rate of growth of the heterogeneous nucleation by using the homogeneous result and the density of boundary sites  as follows
+\begin{align}
+    &n^{GB} = n\frac{\delta}{D} &\frac{J^{GB}}{J^H} = \frac{n^{GB}}{n}\exp\left[ -\frac{\Delta G_c^{GB} - \Delta G_c^H}{k_BT} \right],
+\end{align}
+where $\delta$ is the grain boundary thickness and $D$ the average grain diameter.
+
+Now we can work with the case where the growth happens in a solid-gas interface, in this situation what happens is that three different surface free energies appears, since also the interface formed by the cluster and the gas will have a specific $\gamma$. In this situation is also possible to predict the form of the generated cluster 
