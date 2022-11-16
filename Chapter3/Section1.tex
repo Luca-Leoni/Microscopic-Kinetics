@@ -219,7 +219,7 @@ Also, the shape that the cluster will take depends on how favorable such substit
 }
 \noindent
 Where one can grasp a lot of information, for example if $\gamma^{\alpha\alpha} = 0$ means that we don't have the interface at all not having heterogeneous nucleation at all with $\psi = \pi/2$ so that the grain are spherical as in the homogeneous case. Instead, if $\gamma^{\alpha\alpha} = 2\gamma^{\alpha\beta}$ the angle is flat meaning that the interface catalyze the reaction so well that a continuous film around the interface is created. Also, we can evaluate the increase in free energy that such a grain can generate in the system by looking at the following result.
-\thm{Grain free energy}
+\thm{Grain free energy solid-solid}
 {
     If a nucleation starts on a solid-solid interface the increase of free energy of the system takes the form
     \begin{equation}
@@ -249,4 +249,44 @@ this term shows how the energy is basically always less in the heterogeneous cas
 \end{align}
 where $\delta$ is the grain boundary thickness and $D$ the average grain diameter.
 
-Now we can work with the case where the growth happens in a solid-gas interface, in this situation what happens is that three different surface free energies appears, since also the interface formed by the cluster and the gas will have a specific $\gamma$. In this situation is also possible to predict the form of the generated cluster 
+Now we can work with the case where the growth happens in a solid-gas interface, in this situation what happens is that three different surface free energies appears, since also the interface formed by the cluster and the gas will have a specific $\gamma$. In this situation is also possible to predict the form of the generated cluster that is given by the form seen in \figref{fig:SolidGasInterf},
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/SolidGasInterf.png}
+    \caption{
+        Representation of the nucleation on a solid-gas interface showing how the cluster formed is elongated due to surface effect generating a more uniform film.
+    }
+    \label{fig:SolidGasInterf}
+\end{figure}
+where we can see how the different surface tensions generate forces due to Marangoni effect giving at the cluster a more homogeneous form. The latter can be, once again, described using a clever result that connects the angle $\theta$ to surface tensions.
+\thm{Young's equation solid-gas}
+{
+    The shape of the cluster on a solid-gas interface is defined by the three surface tensions inside the system and is given by
+    \begin{equation}
+        \gamma^{sv} = \gamma^{fs} + \gamma^{vf}\cos\theta.
+    \end{equation}
+}
+\noindent
+Knowing that, we can have a look at how the cluster will look like in various cases. For example, if $\gamma^{sv} < \gamma^{fs} + \gamma^{vf}$ then the angle is greater than zero, so the atoms on the surface are more attracted to each other than the substrate forming various islands with same form. Instead, if the surface tensions are equal the angle is null giving out that the atoms prefer to attach to the substrate forming a perfect layer that grows homogeneously, also in autoepitaxy we set $\gamma^{fs} = 0$. At last, the case where $\gamma^{sv} > \gamma^{fs} + \gamma^{vf}$ posses a behavior similar to the one before generating a homogeneous film, but the strain energy increase as the layer growth giving rise to phenomena of strain release by separation in island during the growth. Then, to complete the analogy to the previous case we can have a look to the free energy change inside the system due to the cluster formation.
+\thm{Grain free energy solid-solid}
+{
+    If a nucleation starts on a solid-gas interface the increase of free energy at the critical size of the system takes the form
+    \begin{equation}
+        \Delta G_c = \frac{16\pi\gamma_{vf}^3}{3\Delta g_B^2}\frac{2- 3\cos\theta + \cos^3\theta}{4}.
+    \end{equation}
+}
+\pf{Proof}
+{
+    One can compute the total energy change that comes from the cluster by using the same approach as before obtaining
+    \begin{equation}
+        \Delta G = \pi(2 - 3\cos\theta + \cos^3\theta)\left( \frac{r^3\Delta g_B}{3} + r^2\gamma^{vf} \right),
+    \end{equation}
+    then we can maximize it and obtain the final result.
+}
+\noindent
+Once again one can see how this value is equal to the homogeneous nucleation one multiplied by a wetting factor that is always less than unity. Meaning that, again, the creation of nuclei inside a system is more favorable near an interface.
+
+\nt
+{
+    The fact that clusterization is more favorable near interfaces is an important fact in experimental techniques, in fact a lot of methods utilize them to achieve results. The simplest example is the physical vapor deposition, where a homogeneous thin film of material is constructed on a substrate inside a high vacuum chamber by vaporize a material so that the atoms from it travels in vacuum deposit on the surface of the substrate. In this way, by using the right materials, we can construct the film as described by the nucleation on solid-gas interface.
+}
