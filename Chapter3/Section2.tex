@@ -38,6 +38,7 @@ Therefore, the \eqref{eq:LocalFreeEnerg} will allow us to model the behavior of 
 {
     We can write down the total energy in the proximity of an interface by integrating the local free energy so that
     \begin{equation}
+        \label{eq:TotalFreeEnergyInter}
         F = \int_V \left[ f^{hom}(\xi) + K\left( \dv{\xi}{x} \right)^2 \right]\dd V,
     \end{equation}
     where we assumed that the interface is only in direction $x$ so that the gradient is present only in that component. We can then average the quantity over the volume of the interface by multipling and dividing for $A\delta$, where $A$ is the area of the interface and $\delta$ the width
@@ -53,4 +54,83 @@ Therefore, the \eqref{eq:LocalFreeEnerg} will allow us to model the behavior of 
 \noindent
 This is the result we expected after the previous description of the energy. In fact, we can see that as the parameter $K$, related to the gradient term, increase the width of the interfaces inside the material, while the average value of $f^{hom}$ decrease them, exactly as we said before.
 
-% TODO: Vai direttamente con l'equazione di Cahn-Hiliard, non perdere tempo.
+Know that we know how the interfaces and the free energy look like we can focus on the dynamics of the system. In particular, is possible by working on the total free energy of the system to define a particular quantity that help us to study the evolution of a general order parameter.
+\thm{Generalized diffusion potential}
+{
+    Inside a continuous phase transformation where the local free energy can be written as in \eqref{eq:LocalFreeEnerg} a generalized chemical potential can be defined describing the local evolution of the order parameter
+    \begin{equation}
+        \Phi(\vb{r}) = \pdv{f^{hom}}{\xi} - 2K\laplacian \xi.
+    \end{equation}
+}
+\pf{Proof}
+{
+    We can write down the total free energy of the system as in \eqref{eq:TotalFreeEnergyInter} and then try to minimize it by taking its functional derivative. Therefore, we can set $\xi \to \xi + \dd \xi$ to find out the following form for the variation
+    \begin{equation}
+        \delta F = \int_V \left[ \pdv{f^{hom}}{\xi}\delta\xi + 2K\grad\xi\vdot \grad(\delta\xi) \right],
+    \end{equation}
+    then we can use the vector identity $\grad\xi\vdot \grad(\delta\xi) = \grad\vdot(\delta\xi\grad\xi) - \delta\xi\laplacian\xi$ alongside Gauss theorem to have
+    \begin{equation}
+        \delta F  = \int_V\left[ \pdv{f^{hom}}{\xi} - 2K\laplacian \xi\right]\delta \xi\dd V - \int_{\partial V} \delta\xi\grad\xi\vdot \dd \vb{A}.
+    \end{equation}
+    The integral over the area gives no contribution in the thermodynamic limit since the volume to area ratio becomes so large that the volume part is the only one that matters. Now, the form obtained show a way to evaluate the variation of free energy inside a material by integrating the local change of energy due to a small $\delta \xi$ variation of the order parameter, and that defines exactly the generalized diffusion potential
+    \begin{equation}
+        \delta F  = \int_V\left[ \pdv{f^{hom}}{\xi} - 2K\laplacian \xi\right]\delta \xi\dd V = \delta F  = \int_V\Phi(\vb{r})\delta \xi\dd V.
+    \end{equation}
+}
+\noindent
+The form of $\Phi$ tells us how the parameter will change locally since if the potential is positive then the parameter will tend to lower its value, while if its negative will increase. Generalized potential is so really powerful in the study of evolution of phase transitions, but still it's not the full story. We can have a better insight on the dynamic by modelling the flux of the system in the case where $\xi$ is a conserved parameter like concentration of $B$ type atoms $c_B$. In that case a really important result can be obtained as follows.
+\thm{Cahn-Hilliard equation}
+{
+    Taking a binary system we can study the evolution of the concentration of $B$ atoms by treating it as a conserved order parameter so that it's evolution is given by the following differential equation
+    \begin{equation}
+        \pdv{c_B}{t} = \tilde{D}\left[ \laplacian c_B - \frac{2K}{f''}\nabla^4 c_B \right],
+    \end{equation}
+    where $f''$ defines the second derivative of $f^{hom}$ respect to the order parameter.
+}
+\pf{Proof}
+{
+    We can write down the flux of density by using the generalized potential $\Phi(\vb{r})$ as driving force, so that the following relation holds true
+    \begin{align}
+        &\vb{J} = -M\grad \Phi, &\pdv{c_B}{t} = -\grad\vb{J},
+    \end{align}
+    where the second condition holds since $c_B$ is conserved. Then, it's possible to demonstrate that the mobility $M$ is related to the interdiffusivity by the following relation
+    \begin{equation}
+        M = \frac{\tilde{D}}{\pdv[2]{f^{hom}}{c_B}} = \frac{\tilde{D}}{f''},
+    \end{equation}
+    which shows how since $M$ is always positive if the system is unstable, meaning $f'' < 0$ in the spinodal regime, then the interdiffusivity is negative. A negative diffusivity means that the flux will be created in order to increase the gradient of concentration instead of bringing it down, generating the domains as we predicted. We can so bring all together in order to write down
+    \begin{equation}
+        \pdv{c_B}{t} = \grad\vdot\left\{ M\grad\left[ \laplacian c_B - 2K\nabla^4 c_B \right] \right\},
+    \end{equation}
+    where we can assume that $M$ does not change much in space allowing us to substitute it with a space average $M_0 = \mean{M}$ that can be substituted with $M_0 = \tilde{D}/f''$ having the final result.
+}
+\noindent
+Now, this is something interesting, we have a partial differential equation that can be used in order to predict the evolution of the system density over time that contains the effect given by the generation of interfaces. In fact, if we bring the interface term to zero, $K = 0$, the equation return to be exactly the diffusion one that we have seen when talking about evolution of concentration in material. The second term adds a lot of information to the model allowing it to evolve through a phase transition if the system finds himself unstable generating domains with different order parameters. To see how this is the case we can simply look at the evolution of a concentration in 1D that posses a perturbation inside it and see how perturbation evolves. We will imagine that a general uniform concentration $c_B = (c_B^\alpha + c_B^\beta)/2$ is perturbed by a sine wave 
+\begin{equation}
+    c_B (x, t) = c_B + \varepsilon(t)\sin(kx),
+\end{equation}
+meaning that the uniform distribution will possess a series of domains with concentrations $c_B -\varepsilon$ and $c_B + \varepsilon$ separated by a distance given by the wavelength $\lambda = 2\pi/k$. If we insert such a solution inside the Cahn-Hilliard equation we can write down a differential equation for $\varepsilon$ that gives out the following result
+\begin{align}
+    &\dv{\varepsilon}{t} = -\tilde{D}\left( k^2 + \frac{2Kk^4}{f''} \right)\varepsilon, &\varepsilon(t) =\varepsilon(0) \exp\left[ -\tilde{D}\left( k^2 + \frac{2Kk^4}{f''} \right) t \right]. 
+\end{align}
+Where we can see how the perturbation will grow over time only if the term at the exponential is positive and that can be possible only if $f''$ is negative so that also $\tilde{D} < 0$. In such a situation the system is unstable and a small perturbation can grow exponentially over time. Also, one can see how the evolution depends also on the value of $k$, having that have a critical value $k_c = \sqrt{-f''/2K}$ over which the exponential return negative. This means that only perturbation, and so domains, with spatial width $\lambda < 2\pi/k_c$ are possible inside the material, and in particular the one with $k = k/\sqrt{2}$ will be the most present since that is the value of wave vector that maximize the exponent.
+
+This Fourier analysis allowed us to see how a system becomes unstable as quick as the second derivative of the free energy becomes negative. So that the system finds itself in the spinodal area and the decomposition of the system in stable domains goes quickly with domain sizes growing exponentially in time, starting by a situation where the system is all homogeneous to then form a lot of small islands surrounded by interface domains to then generate grains with different spatial extent. This phenomenon is therefore known as \textbf{spinodal decomposition} since happens in the spinodal region of the phase space, and as the system cross the spinodal points having $f'' > 0$ it stops leaving its place to discontinuous processes.
+
+As a last remark we have discussed the effect of strain inside such a model. Basically, we shall also include the fact that atoms are bounded one to another in a way that generating interfaces creates also a strain in the material. This increase the free energy of the system by a term that we can define as follows
+\begin{equation}
+    F^{el} = \alpha^2_c Y\int_V (c_B - c_0)^2\dd V,
+\end{equation}
+which uses a harmonic approximation approach and $\alpha_c$ is called Vegard's parameter computed as $a^{-1}\dd a/\dd c$, quantifying the deformation due to concentration variation, and $Y$ is the Yonug modulus orientation-dependent elastic parameter. If we account for this term inside \eqref{eq:TotalFreeEnergyInter} and still minimize as we did before the Cahn-Hilliard equation will have an added term as
+\begin{equation}
+    \pdv{c_B}{t} = \tilde{D}\left[ \left( 1 + \frac{2\alpha_c^2Y}{f''} \right)\laplacian c_B - \frac{2K}{f''}\nabla^4 c_B \right].
+\end{equation}
+That is interesting since is telling us that the strain inside the material is making it more stable, setting the condition in order to have a positive exponent and make the perturbations grow exponentially from $f'' < 0$ to
+\begin{equation}
+    f'' < -2\alpha_c^2Y.
+\end{equation}
+This is interesting, not only because influences generally the growth of domain, but because $Y$ depends on the crystallographic direction and so such a condition can change depending on where the interface is created. In this way we can have an \textbf{isotropic pattern} for the phase transformation, happening when $\alpha_c$ is small or $Y$ is nearly isotropic, or an \textbf{anisotropic pattern}, arising for large $\alpha_c$ and strongly anisotropic Young moduli.
+
+\nt
+{
+    It's interesting to see how the role of interfaces inside such a phenomenon is really important and can't be neglected because in the first part of the transformation, when the domains start to form, the system is basically only composed by interfaces. For this reason we need to be able to account them in the model, without that term we will miss the whole physics of the material.
+}
