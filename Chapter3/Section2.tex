@@ -110,6 +110,7 @@ Now, this is something interesting, we have a partial differential equation that
 \end{equation}
 meaning that the uniform distribution will possess a series of domains with concentrations $c_B -\varepsilon$ and $c_B + \varepsilon$ separated by a distance given by the wavelength $\lambda = 2\pi/k$. If we insert such a solution inside the Cahn-Hilliard equation we can write down a differential equation for $\varepsilon$ that gives out the following result
 \begin{align}
+    \label{eq:PertAnalConserv}
     &\dv{\varepsilon}{t} = -\tilde{D}\left( k^2 + \frac{2Kk^4}{f''} \right)\varepsilon, &\varepsilon(t) =\varepsilon(0) \exp\left[ -\tilde{D}\left( k^2 + \frac{2Kk^4}{f''} \right) t \right]. 
 \end{align}
 Where we can see how the perturbation will grow over time only if the term at the exponential is positive and that can be possible only if $f''$ is negative so that also $\tilde{D} < 0$. In such a situation the system is unstable and a small perturbation can grow exponentially over time. Also, one can see how the evolution depends also on the value of $k$, having that have a critical value $k_c = \sqrt{-f''/2K}$ over which the exponential return negative. This means that only perturbation, and so domains, with spatial width $\lambda < 2\pi/k_c$ are possible inside the material, and in particular the one with $k = k/\sqrt{2}$ will be the most present since that is the value of wave vector that maximize the exponent.
@@ -134,3 +135,34 @@ This is interesting, not only because influences generally the growth of domain,
 {
     It's interesting to see how the role of interfaces inside such a phenomenon is really important and can't be neglected because in the first part of the transformation, when the domains start to form, the system is basically only composed by interfaces. For this reason we need to be able to account them in the model, without that term we will miss the whole physics of the material.
 }
+
+\subsection{Allen-Chan equation}
+
+Another interesting situation is the case where the order parameter that is changing inside the phase transformation is not a conserved one. For example, take the long range order parameter $\eta(\vb{r}, t)$ and imagine that the phase transition affect a transformation that brings material from an order state to a disordered one creating an \textbf{order-disorder transformation}. Such transformation can be modelled in an analogous way to the precedent ones, having that the order parameter will evolve using the following result.
+\thm{Allen-Chan equation}
+{
+    The time evolution of a non conserved order parameter inside a material can be described using the following partial differential equation
+    \begin{equation}
+        \label{eq:AllenChaneq}
+        \pdv{\eta}{t} = -M_\eta \left\{ \pdv{f^{hom}}{\eta} - 2K_\eta \laplacian\eta \right\},
+    \end{equation}
+    where $M_\eta$ and $K_\eta$ are the same constant as in the previous case.
+}
+\pf{Proof}
+{
+    Such a demonstration is trivial since the only difference respect to the conserved parameter case is that no continuity equation is present. That mean how the following relation is true
+    \begin{equation}
+        \pdv{\eta}{t} = -M_\eta\Phi(\vb{r}),
+    \end{equation}
+    where we can substitute the definition of the generalized chemical potential to obtain the final result.
+}
+\noindent 
+As before, we can see how also in this case the system is unstable to certain types of perturbations. In particular if we take as perturbation the same form as before, in a 1D model, and make an assumption on the free energy
+\begin{align}
+    &\eta(x, t) = \varepsilon(t)\sin(kx), &f^{hom} = f_0^{hom}\left( \frac{1}{4} - \eta^2 \right)^2,
+\end{align}
+we can see how inserting it inside \eqref{eq:AllenChaneq} giving out
+\begin{equation}
+    \dv{\varepsilon}{t} = M_\eta(f_0^{hom} - 2K_\eta k^2)\varepsilon(t).
+\end{equation}
+The same equation obtained in \eqref{eq:PertAnalConserv} having so a result that has an exponential form and is unstable if the coefficient $f_0^{hom} - 2K_\eta k^2$ is positive. Therefore, we can see how in this case we have that the coefficient is higher as $k$ is smaller, having a maximum at $0$, showing no preferential wavelength that will grow faster than the other. Instead, we can see how a critical wavelength is still present at $k = \sqrt{f^{hom}_0/ 2K_\eta}$ meaning how during the phase transition ordered structure that are small will disappear leaving space for the larger ones that will grow in order exponentially.
