@@ -99,13 +99,128 @@ where the chemical potential of a specie in solution will be defined as
 \begin{align}
     &\mu_i = \pdv{G}{n_i} = \mu^0_i + RT\ln(a_i), &a_i = \gamma_i(c) c_i.
 \end{align}
-Basically, the potential the same as we have already seen, with the activity coefficient present. Still, this defintion does not take into account the electrostatic effect presents, that we can insert by using the potential per mole in phase $\alpha$ called $\phi^\alpha$. Such contribution to the energy can be inserted in the driving force giving the \textbf{electrochemical potential}
-\begin{equation}
-    \label{eq:ElecPotDef}
-    \overline{\mu} = \mu_i + z_i F \phi^\alpha,
-\end{equation}
-where $z_i$ is the charge number on the $i$-th species. That is the real potential we are going to use, so that the condition on the equilibrium of the system is given in terms of $\overline{\mu}$ and not simple $\mu$. For this reason even if all the electrochemical potential of the species are equal still we can have differences in electrical potential, generating potential differences even at equilibrium generating the cell potential. Also, it's interesting to see how inside the definition of \eqref{eq:ElecPotDef} we have how the chemical potential describe the short-range interactions while the electrical part counts for the long range since
+Basically, the potential the same as we have already seen, with the activity coefficient present. Still, this definition does not take into account the electrostatic effect presents, that we can insert by using the potential per mole in phase $\alpha$ called $\phi^\alpha$. 
+\dfn{Electrochemical potential}
+{
+    The chemical potential of the $i$-th component of an electrochemical system needs to take into account also the electric potential per mole in the phase $\alpha$ in which is present, $\phi^\alpha$, giving
+    \begin{equation}
+        \label{eq:ElecPotDef}
+        \overline{\mu} = \mu_i + z_i F \phi^\alpha,
+    \end{equation}
+    where $z_i$ is the charge number on the specie we are looking at.
+}
+\noindent
+That is the real potential we are going to use, so that the condition on the equilibrium of the system is given in terms of $\overline{\mu}$ and not simple $\mu$. For this reason even if all the electrochemical potential of the species are equal still we can have differences in electrical potential, generating potential differences even at equilibrium called cell potential. Also, it's interesting to see how inside the definition of \eqref{eq:ElecPotDef} we have how the chemical potential describe the short-range interactions while the electrical part counts for the long range since
 \begin{align}
     &\mu_i \propto r^{-6}, &z_iF\phi^\alpha \propto r^{-1}.
 \end{align}
 Therefore, we can have one component that wins on the other in specific situations, but still the two are strictly related. In particular, the real measurable quantity is $\overline{\mu}$ it's not possible to evaluate $\mu$ or $\phi$ separately since the measure of a potential always imply the creation of an interface during the measurement having both in the final result.
+
+The new definition of $\overline{\mu}$ can be put at use in a really simple way. For example, we can imagine taking a metal and apply a potential on it so that the electrochemical potential difference of the electron in two different positions of the material becomes
+\begin{equation}
+    \Delta \overline{\mu}_e = \overline{\mu}_e^\alpha - \overline{\mu}_e^\beta = \mu_e^\alpha - zF\phi^\alpha - \mu_e^\beta + zF\phi^\beta = -zF\Delta\phi.
+\end{equation}
+Where we assumed that the chemical potential of the single electron remained equal inside the metal. Using this result we can see how the flux of electron can be written as
+\begin{equation}
+    \vb{J}_e = - \left( \frac{c_eD_e}{RT} \right)\grad \overline{\mu}_e = zF\left( \frac{c_eD_e}{RT} \right)\grad \phi = R\grad \phi,
+\end{equation}
+the Hom's law was simply found. Still, this is only a trivial application what we want to do is studying what happens when two metals touching each others in equilibrium. Where we can easily see how the following becomes true.
+\thm{Interface potential}
+{
+    When two metals $M_1$ and $M_2$ are in contact with each others a potential difference appear at equilibrium in the interface of the two solid phases given by
+    \begin{equation}
+        \Delta \phi^{M_1-M_2} = \frac{\Delta \mu^{M_1 - M_2}_e}{zF}.
+    \end{equation}
+}
+\pf{Proof}
+{
+    That is incredibly easy, you only need to recall how the equilibrium condition in this case become $\overline{\mu}_e^{M_1} = \overline{\mu}_e^{M_2}$ so that you place them equal and obtain the result.
+}
+\noindent
+Therefore, using the electrochemical potential is really helpful in the study of how the chemistry of the system mix with its electrical properties. For this reason it's the main quantity that we are going to study inside batteries, and we can predict cells behaviors with that.
+
+\subsection{Interface at equilibrium}
+
+To understand how the electrochemical cell works properly we need first to develop a way to study how solid liquid interface works in general, since the cell is composed by two metal electrodes inside a liquid electrolyte in general. We have already seen what happens with solid-solid interface, but now we aim to look more into the equilibrium of a reduction reaction like
+\begin{equation}
+    \ce{O + ne^-(M)} \rightleftharpoons  \ce{R}.
+\end{equation}
+In such an equation we can easily find out the potential difference generated by the transport of electrons at equilibrium by the following important result.
+\thm{Nernst equation}
+{
+    The electrode potential generated by a redox reaction at equilibrium $E$, depend both on ambient condition and chemical properties of the system through the relation
+    \begin{equation}
+        E = E^0_{O/R} + \frac{RT}{nF}\ln(a_O/a_R),
+    \end{equation}
+    where $E^0_{O/R}$ is also called standard electrochemical potential.
+}
+\pf{Proof}
+{
+    we can start by setting the equilibrium by doing the following operation
+    \begin{equation}
+        \Delta \overline{\mu}_e = \overline{\mu}_R^s - (n\mu_e^M + \mu_O^s) = 0,
+    \end{equation}
+    where the up scripts $s$ and $M$ tells us if the element is in the electrolyte solution or in the solid component. Then, by using the definition of electrochemical potential and the fact that $z_R = z_O - n$ with $z_e = -1$ we can obtain
+    \begin{equation}
+        \label{eq:potentialAtSolidLiquidInterface}
+        z_OF(\phi^s - \phi^M) = (\mu_R^s - \mu_O^s) - n\mu_e^M,
+    \end{equation}
+    where the contributions from electrostatics, chemistry of the solution and the one of the solid were divided. We can now use the fact that $\mu_i = \mu_i^0 + RT\ln a_i$ to retain the following form
+    \begin{equation}
+        -\frac{z_O}{n}(\phi^s - \phi^M) = -\frac{\mu_R^{0,s} - \mu_O^{0,s}}{nF} + \frac{\mu_e^M}{F} + \frac{RT}{nF}\ln(a_O/a_R).
+    \end{equation}
+    Here we can finish the job by defining the two main variables in the Nernst equation as follows
+    \begin{align}
+        &E = -\frac{z_O}{n}(\phi^s - \phi^M), &E^0_{O/R} = -\frac{\mu_R^{0,s} - \mu_O^{0,s}}{nF} + \frac{\mu_e^M}{F} = -\frac{\Delta G^0}{nF}.
+    \end{align}
+    This also shows how the standard potential is also related to the form of the free energy difference.
+}
+\noindent
+That is a powerful result, but still works only at equilibrium and understand when interfaces are at equilibrium may not be so easy. We can generally say that if the charge transfer kinetics is very fast we can be in Nernstian conditions since the superficial activity rapidly equilibrates before mass.
+
+Now, we can imagine to level up and take into account a full cell composed by two electrodes in an electrolyte solution, so that two redox happens one for $M_1$ and one for $M_2$. Now, in order to work better with our system we are going to assume that the electrolytes solutions are separated by a porous material that allows still for charge equilibrating still avoiding the contamination of reactants.  In this way the electric potential in the solution $\phi^s$ is constant so that by writing the $\Delta \overline{\mu}$ for both reaction and sett equilibrium we obtain \eqref{eq:potentialAtSolidLiquidInterface} for both metals which can be summed up in order to obtain
+\begin{equation}
+    \label{eq:potentialInACell}
+    -z_{O2}F(\phi^M - \phi^{M2}) = \frac{z_{O2}}{z_O}(\mu_R^s - \mu_O^s) - z_{O2}\mu_e^M - (\mu_{R2}^s - \mu_{O2}^s) + z_{O2}\mu_e^{M2}.
+\end{equation}
+By assuming that $\mu_e^M = \mu_e^{M2}$ we can obtain a form of the potential between the electrodes, that is generated by the cell, depending on the chemical properties of the two semi-reactions present inside the cell. In particular, if we define the cell potential $E_{cell}$ to be that potential energy difference we can transform \eqref{eq:potentialInACell} into
+\begin{equation}
+    E_{cell} = E_{right} - E_{left}.
+\end{equation}
+Meaning that if we know the variation of the potential at the interface for the single reactions we can compute the total one. In particular, we can also have a look at how this knowledge can be used inside in order to evaluate the free energy difference of the reaction as follows.
+\thm{Gibbs and electrode potential}
+{
+    inside an electrochemical cell the variation of free energy of the system is proportional to the electrode potential following the relation
+    \begin{equation}
+        \Delta G = -nF E_{cell}.
+    \end{equation}
+}
+\pf{Proof}
+{
+    For a generic reversible reaction in a closed system the maximum amount of work that can be extracted from the cell is $\Gamma = -W_{chem}$. If that work is extracted through heat dissipation we can say that the chemical work is equal to the electrical one, which is given by the simple relation
+    \begin{equation}
+        W_{el} = nFE_{cell}.
+    \end{equation}
+    Which is the work done on every moving charge present, completing the result.
+}
+\noindent
+That is great, since that tells us that if $E_{cell}>0$ than the reaction is spontaneous. Meaning that only by looking at the components used in the cell and their reduction potentials, since the energies $E$ are referred to the reduction reaction $\mu_R - \mu_O$, we can tell not only what $E$ will be, but also in which direction it will point.
+
+The fact that the potential is strictly related to the free energy allows us also to write down another important relation that generalize Nernst equation and probably is the real version for physicist.
+\thm{Generalized Nernst equation}
+{
+    Consider a generic reaction at equilibrium $\ce{n_{R_1}R_1} + \dots \ce{->} \ce{n_{P_1}P_1} + \dots$ we can write down the electrode potential of the cell using
+    \begin{equation}
+        E_{cell} = E^0_{cell} + \frac{RT}{nF}\ln\left( \frac{\prod_i a_{R_i}}{\prod_i a_{P_i}} \right).
+    \end{equation}
+}
+\pf{Proof}
+{
+    Basically we know how the change in free energy can be written up using the chemical potentials as
+    \begin{equation}
+        \Delta G = \sum_i n_{P_i}\mu_{P_i} - \sum_i n_{R_i}\mu_{R_i}.
+    \end{equation}
+    Then we can recall the form of the chemical potential $\mu = \mu^0 + RT\ln a$ to obtain directly the final form by dividing by $-nF$.
+}
+\noindent
+That will allow to compute the cell potential also in the case of more complex reactions, which is really important for applications.
