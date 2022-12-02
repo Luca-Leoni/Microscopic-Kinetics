@@ -130,15 +130,37 @@ Therefore, we can choose to use one or more trick in order to eliminate the rela
 \end{equation} 
 Where the derivative is evaluated at the interface and in a stirred solution we can assume that the bulk concentration is stable in the middle of the solution, meaning that $C_O$ is constant at $C_{O,b}$ for $x$ large enough. In this way we can approximate the derivative simply as a difference of the kind
 \begin{equation}
-    J \approx nFD\frac{C_{O,b} - C_{O}(x=0)}{\sigma},
+    \label{eq:CurrentDiffusion}
+    J \approx nFD\frac{C_{O,b} - C_{O}(x=0)}{\delta},
 \end{equation}
-where $\sigma$ is a constant that needs to be tuned in order to optimize the approximation called \textbf{Nernst Diffusion Layer thickness} and can be seen in \figref{fig:ApproxDensGrad}.
+where $\delta$ is a constant that needs to be tuned in order to optimize the approximation called \textbf{Nernst Diffusion Layer thickness} and can be seen in \figref{fig:ApproxDensGrad}.
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.8\textwidth]{Immagini/ApproxDensGrad.png}
     \caption{
-        Representation of the concentration gradient approximation to understand what $\sigma$ effectively looks like and how the concentration is.
+        Representation of the concentration gradient approximation to understand what $\delta$ effectively looks like and how the concentration is.
     }
     \label{fig:ApproxDensGrad}
 \end{figure}
-From that we can see how the diffusion is quicker the smaller $\sigma$ is or the more negative the potential becomes. Still, it's quite difficult to know the value of $\sigma$ so that it's value is usually combined with the diffusivity defining the \textbf{mass-transfer coefficient} $m_i = D_i/\sigma_i$.
+From that we can see how the diffusion is quicker the smaller $\delta$ is or the more negative the potential becomes. Still, it's quite difficult to know the value of $\delta$ so that it's value is usually combined with the diffusivity defining the \textbf{mass-transfer coefficient} $m_i = D_i/\delta_i$. This relation can be used in order to describe the limiting behavior that the mass transport has on the kinetics of the reaction by seeing the following result.
+\thm{Limiting current}
+{
+    Inside an electrochemical cell where mass transport is driven by diffusion the system posses a limiting current given by
+    \begin{equation}
+        J_L = nFm_O C_{O,b}.
+    \end{equation}
+}
+\pf{Proof}
+{
+    Since electrons travels at higher speeds respect to diffusion of ions in the solution, the rate of the reaction is limited for high value of the overpotential by the maximum flux of ions possible in the electrolyte. In particular, we have seen how \eqref{eq:CurrentDiffusion} gives a way to estimate the rates inside the system for both O and R transfer, where the latter can be expressed by changing the constants and remembering how the electrode is positioned on the right and the solution on the left, so you need to invert the concentrations
+    \begin{equation}
+        J = nFm_R (C_{R, x=0} - C_{R,b}).
+    \end{equation} 
+    In both equations we can see how the maximum possible value that we can obtain is when the density of element on the surface of the electrode is zero, $C_{O, x=0} = 0$. That is the maximum flux that we can obtain, giving rise also to the maximum possible current inside the system.
+}
+\noindent
+This relation can also be used in order to rewrite the concentrations of the elements in the solution in a simpler way. In particular, if you use the previous relation alongside with the form of the limiting current we can obtain that
+\begin{align}
+    &C_{O}(x=0) = \frac{J_L - J}{nFm_O}, &\frac{C_{O}(x=0)}{C_{O, b}} = 1 - \frac{J}{J_L},
+\end{align}
+which will be really useful in further descriptions.
