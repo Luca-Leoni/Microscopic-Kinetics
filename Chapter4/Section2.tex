@@ -147,6 +147,7 @@ From that we can see how the diffusion is quicker the smaller $\delta$ is or the
 {
     Inside an electrochemical cell where mass transport is driven by diffusion the system posses a limiting current given by
     \begin{equation}
+        \label{eq:LimitingCurrent}
         J_L = nFm_O C_{O,b}.
     \end{equation}
 }
@@ -154,6 +155,7 @@ From that we can see how the diffusion is quicker the smaller $\delta$ is or the
 {
     Since electrons travels at higher speeds respect to diffusion of ions in the solution, the rate of the reaction is limited for high value of the overpotential by the maximum flux of ions possible in the electrolyte. In particular, we have seen how \eqref{eq:CurrentDiffusion} gives a way to estimate the rates inside the system for both O and R transfer, where the latter can be expressed by changing the constants and remembering how the electrode is positioned on the right and the solution on the left, so you need to invert the concentrations
     \begin{equation}
+        \label{eq:CurrentGen}
         J = nFm_R (C_{R, x=0} - C_{R,b}).
     \end{equation} 
     In both equations we can see how the maximum possible value that we can obtain is when the density of element on the surface of the electrode is zero, $C_{O, x=0} = 0$. That is the maximum flux that we can obtain, giving rise also to the maximum possible current inside the system.
@@ -161,6 +163,104 @@ From that we can see how the diffusion is quicker the smaller $\delta$ is or the
 \noindent
 This relation can also be used in order to rewrite the concentrations of the elements in the solution in a simpler way. In particular, if you use the previous relation alongside with the form of the limiting current we can obtain that
 \begin{align}
+    \label{eq:OssConcentration}
     &C_{O}(x=0) = \frac{J_L - J}{nFm_O}, &\frac{C_{O}(x=0)}{C_{O, b}} = 1 - \frac{J}{J_L},
 \end{align}
-which will be really useful in further descriptions.
+which will be really useful in further descriptions. In particular, using such relations one can see how a value for the cell potential can be found out by assuming how the initial concentration of reduced specie is zero $C_{R,b} = 0$. This assumption inserted inside \eqref{eq:CurrentGen} allows us to obtain $C_{R, x=0} = J/nFm_R$ which inserted inside Nernst equation, alongside with \eqref{eq:OssConcentration}, to obtain
+\begin{equation}
+    E = E^0 - \frac{RT}{nF}\ln\frac{m_O}{m_R} + \frac{RT}{nF}\ln\left( \frac{J_L - J}{J} \right).
+\end{equation}
+Such equation shows interesting behavior since all the quantities inside it are easy to evaluate experimentally, still only works if at the start of the reaction only one element is present in the solution. Nevertheless, we can see how at a certain value of the current $J = J_L/2$ the equation simplifies a lot, having
+\begin{equation}
+    E_{1/2} = E^0 - \frac{RT}{nF}\ln\frac{m_O}{m_R},
+\end{equation}
+which value is often taken equal to $E^0$ since $m_O/m_R \approx 1$ in most of the cases. Therefore, that value is often used in order to rewrite the total equation substituting it, giving the final general form of the equation
+\begin{equation}
+    E = E_{1/2} + \frac{RT}{nF}\ln\left( \frac{J_L - J}{J} \right).
+\end{equation}
+In reality is possible to describe a model also for the case where both reduced and oxidized species are present inside the solution at time zero. In that case is important to take into account that two different limiting currents are present inside the material, one in the cathodic and one in the anodic direction as
+\begin{align}
+    &J_{L,c} = nFm_OC_{O,b}, &J_{L,a} = -nFm_RC_{R,b}.
+\end{align}
+Which comes out from the same theory used previously to find \eqref{eq:LimitingCurrent}, meaning that the relations \eqref{eq:OssConcentration} are valid also for $C_R$. In this way we can substitute everything inside the Nernst equation to gain the final general result
+\begin{equation}
+    E = E^0 - \frac{RT}{nF}\ln\frac{m_O}{m_R} +\frac{RT}{nF}\ln\left( \frac{J_{L,c} - J}{J - J_{L,a}} \right).
+\end{equation}
+This is a more general result that can be used, which also posses a peculiar property. In fact, is possible to see by this equation how the potential at equilibrium, $J=0$, gives out exactly Nernst equation $E^0 + RT\ln(C_{O,b}/C_{R,b})/nF$.
+
+All of this theory is great but is only an approximation frozen in time to estimate the limiting current. In reality, the value of $J_L$ can change overtime due to changes in the concentration of the species inside the solution, but more importantly by the variation of the concentration gradient inside it due to diffusion processes. In particular, we can describe such a process by using the following result.
+\thm{Cottrell equation}
+{
+    If the reaction is Nernstian the limit current density decreases with time, following the equation
+    \begin{equation}
+        \label{eq:TimeDepLimitingCurrent}
+        J_L = nFC_{O,b}\sqrt{\frac{D}{\pi t}}.
+    \end{equation}
+}
+\pf{Proof}
+{
+    If the reaction is Nernstian, the concentration at the electrode surface immediately adjusts to the equilibrium value, but its gradient slowly shifts due to diffusion. The thickness of the Nernst diffusion layer is then time-dependent
+    \begin{equation}
+        \delta(t) = \sqrt{\pi Dt},
+    \end{equation}
+    which can be substituted inside \eqref{eq:CurrentDiffusion} to obtain the result. Inside it, we assume $C_{O,b}$ is constant in time since if the solution is stirred it gets homogeneous in the bulk really quickly, the problem is only the gradient at the boundary.
+}
+\nt
+{
+    As it was sad the presence of convection allows us to assume $C_{O,b}$ constant over time inside \eqref{eq:TimeDepLimitingCurrent}, but it also generates one other thing. Basically, since the bulk concentration is homogeneous, the presence of convection is also limiting the diffusion in decreasing the gradient, meaning that when it is flattened to a certain point it can go any further since it needs to change the part of solution that has constant concentration thanks to convection. For this reason, in presence of convection $J_L(t)$ will not decrease indefinitely with time, but will reach a plateu.
+}
+
+\subsection{Microscopic theories for charge transfer}
+
+So far so good, nevertheless all the theory described right now are of a phenomenological type, focussing on describing the phenomena using a series of constant that we need to compute experimentally, like $k^0$ or $\alpha$. Now we want to relax such condition creating a more fundamental model for charge transfer inside the solution that can limit the number of constant that we are using. Thus, we are going to describe a famous model called \textbf{Marcus model} which is able to find a form of the transition rate dependent only on one phenomenological constant that can be also modelled via first principles.
+
+We are interested in study the exchange of one electron from the electrode, so a metal, to the oxidation molecule inside the solution. The latter, is going to be modelled as a metallic sphere with a certain dipole and dielectric constant, which can interact with the electrode in two main ways: \textbf{outer sphare}, where the molecule is separated from the surface by a layer of solvent so that the $e^-$ needs to travel by tunneling effect, or \textbf{inner sphere}, where a strong interaction is present so that the molecule is close to the surface leading to the exchange. We are not going to pick one of the two cases, since both will be described by the model, as we will see, which simply focus on the transfer of the charge making the following four assumptions:
+\begin{itemize}[align=left, leftmargin=*]
+    \item[\textbf{Isoenergetic process.}] the electron must move from an initial state (on the electrode or in the reductant, R) to a receiving state (in species O or on the electrode) of the same energy;
+    \item[\textbf{Franck-Condon.}] Basically no change in the atomic configuration happens, meaning that the nuclei remains still since electronic processes are much faster respect to atomic ones;
+    \item[\textbf{Fixed position.}] The reactant O has fixed position with respect to the electrode;
+    \item[\textbf{Quadratic $G$.}] Standard free energies of O and R, $G_O$ and $G_R$, depend quadratically on the reaction coordinate, $q$. 
+\end{itemize}
+Keeping in mind such approximations we are able to find out a general way to write down the transition rate for the reaction in general as follows.
+\thm{Marcus result}
+{
+    Inside an electrochemical cell where the four conditions before mentioned are satisfied, the transition rate for the charge transfer process is given by
+    \begin{equation}
+        k = \kappa Z \exp\left[ -\frac{\lambda}{4RT}\left( 1 + \frac{\Delta G^0}{\lambda} \right)^2  \right],
+    \end{equation}
+    where $\kappa$ is usually taken as $1$, $Z$ is a function of an electrostatic and collisional term, and $\lambda$ is the so-called reorganization energy accounting for both inner and outer interactions.
+}
+\pf{Proof}
+{
+    the free energy is approximated to a quadratic form, therefore we can write down
+    \begin{align}
+        &G_O(q) = \frac{k}{2}(q-q_O)^2, &G_R(q) = \frac{k}{2}(q - q_R)^2 + \Delta G^0,
+    \end{align}
+    where $k$ is a proportionality constant and $\Delta G^0$ is the usual potential bias $F(E-E^0)$. Having both this values we can put them in a system and find out the point where the two curves intersect giving rise to the approximated transition state. Such a computation gives rise to the result
+    \begin{align}
+        q^\ddagger = \frac{q_R + q_O}{2} + \frac{\Delta G^0}{k(q_R - q_O)},
+    \end{align}
+    which can be used in order to evaluate the potential barrier for the oxidation process as $G_O(q^\ddagger) - G_O(q_O)$ which gives rise to
+    \begin{equation}
+        \Delta G^\ddagger = \frac{k(q_R - q_O)^2}{8}\left[ 1 + \frac{2\Delta G^0}{k(q_R - q_O)^2} \right]^2 = \frac{\lambda}{4}\left[ 1 + \frac{\Delta G^0}{\lambda} \right]^2.
+    \end{equation}
+    \begin{figure}[t]
+        \centering
+        \includegraphics[width=0.37\textwidth]{Immagini/MarcusApprox.png}
+        \includegraphics[width=0.5\textwidth]{Immagini/MarcusRes.png}
+        \caption{
+            Representation of the energy landscape of the reaction in the Marcus approximation, on the left, and the graph of the result model obtained versus the experimental result, on the right.
+        }
+    \end{figure}
+    Therefore, we have a form for the potential barrier which depends on the form of the reorganization energy. The latter can be evaluated by taking into account the inner and outer components' contribution to the reorganization of the species O and the solvent $\lambda = \lambda_i + \lambda_o$. Both of them can be modelled, the latter is given by the sum of normal vibration modes of reactants
+    \begin{equation}
+        \lambda_i = \sum_j \frac{k_j}{2}(q_{O,j} - q_{R,j})^2.
+    \end{equation}
+    The latter, instead, is computed by calculating the ion-solvent electrostatic interaction for reactant and products, assuming the solvent as a dielectric continuum and the reactant a sphere of radius $a_O$
+    \begin{equation}
+        \lambda_o = \frac{e^2}{8\pi\varepsilon_0} \left( \frac{1}{a_O} - \frac{1}{R} \right)\left( \frac{1}{\varepsilon_{op}} - \frac{1}{\varepsilon_s} \right).
+    \end{equation}
+    Where $R$ is twice the distance of molecule and surface of electrode, while the dielectric constants are the one of the molecule and of the electrode. Knowing this we can insert that value inside the known form of the transition rate in order to obtain the wanted relation.
+}
+\noindent
+This model is really great, showing how depending on the ratio $\Delta G^0/\lambda$ the reaction will actually change its velocity. In particular, we can see how for biases so that $\Delta G^0 < -\lambda$ we got $k \propto \Delta G^0$ reaching a maximum in $\Delta G^0 = -\lambda$ and then having $k \propto 1/\Delta G^0$ for higher values. This is a really strange behavior since experimentally the so-called \textbf{inverted region} is not seen, as we increase the potential the reaction speeds up and that was the reason because the model took some time to be accepted by the community. The reason why this happens are basically two: the first is that \textbf{O are not still}, basically as $E$ is increase the molecule interact more with the electrode lowering the distance $R$ and so increasing $\lambda$, and \textbf{More levels are involved}, the model we have described assumed that the electron transferred is taken from the higher level inside the electrode, the Fermi level, that is true only in practice since as we increase the potential the electrons in lower levels can be exited and transferred too. 
