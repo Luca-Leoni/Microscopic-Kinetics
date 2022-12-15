@@ -264,3 +264,36 @@ Keeping in mind such approximations we are able to find out a general way to wri
 }
 \noindent
 This model is really great, showing how depending on the ratio $\Delta G^0/\lambda$ the reaction will actually change its velocity. In particular, we can see how for biases so that $\Delta G^0 < -\lambda$ we got $k \propto \Delta G^0$ reaching a maximum in $\Delta G^0 = -\lambda$ and then having $k \propto 1/\Delta G^0$ for higher values. This is a really strange behavior since experimentally the so-called \textbf{inverted region} is not seen, as we increase the potential the reaction speeds up and that was the reason because the model took some time to be accepted by the community. The reason why this happens are basically two: the first is that \textbf{O are not still}, basically as $E$ is increase the molecule interact more with the electrode lowering the distance $R$ and so increasing $\lambda$, and \textbf{More levels are involved}, the model we have described assumed that the electron transferred is taken from the higher level inside the electrode, the Fermi level, that is true only in practice since as we increase the potential the electrons in lower levels can be exited and transferred too. 
+
+This theory can be in principle expanded in order to account better for such effect in a higher approximation by using the \textbf{Gerischer-Marcus model}. The latter uses the assumption that electrons are able to jump only from one occupied state into an unoccupied isoenergetic state, where the occupied state for a reduction is inside the metal electrode and the unoccupied is on species R in the solution, while for oxidation is the contrary. In this way the information we need in order to describe the evolution of the reaction are contained inside the DOS of the metal and of the reactant. In particular, in this case it's better to express the density of states inside the solution using a concentration of type $D_R(\lambda, E)\dd E$, giving the concentration of species R in the solution in the energy range $[E , E + \dd E]$. We expect such concentration to be somehow proportional to the surface concentration of R on the electrode, so that we will assume the possibility to rewrite it as
+\begin{align}
+    &D_R(\lambda, E) = N_A C_R(0, t) W_R(\lambda, E), & \int_\mathbb{R}W_R(\lambda, E)\dd E = 1.
+\end{align}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Immagini/GMtheory.png}
+    \caption{
+        Example graph of the density of state of a metal near the concentration of the species energies, showing how the O states are able to overlap with occupied states, meaning that the integral for $k_f$ is not zero allowing for the reaction to happen.
+    }
+    \label{fig:GMtheory}
+\end{figure}
+Where the function $W_R(\lambda, E)$ can be thought of a probability density distribution of having the specie at that specific energy under the influence of that reorganization energy. Knowing this it's possible to obtain a result to describe the transitions rates for the oxidation and reduction reaction in terms of such functions as follows.
+\thm{Transition rates}
+{
+    The transition rates inside the Gerischer-Marcus model can be computed as the following integrals
+    \begin{align}
+        &k_f = \nu\int_\mathbb{R} \varepsilon_{red}(E)W_O(\lambda, E) f(E)\rho(E)\dd E, &k_b = \nu\int_\mathbb{R} \varepsilon_{ox}(E)W_R(\lambda, E) [1-f(E)]\rho(E)\dd E.
+    \end{align}
+    Where $\varepsilon_{ox}$ and $\varepsilon_{red}$ are proportionality functions involving the tunneling probability and precursor equilibrium constants. Also, $\rho(E)$ and $f(E)$ are DOS and Fermi function of the metal.
+}
+\noindent
+Using such results we are able to evaluate the transition rate in a general way, we only need to find out a way to model the probability density $W$. Such a task can be done by using once again the Marcus theory, which allows us to obtain the following forms
+\begin{align}
+    &W_O(\lambda, E) = \frac{1}{\sqrt{4\pi\lambda k_BT}}\exp\left[ -\frac{\left( E - E^0 - \lambda \right)^2}{4\lambda k_BT} \right], \\
+    &W_R(\lambda, E) = \frac{1}{\sqrt{4\pi\lambda k_BT}}\exp\left[ -\frac{\left( E - E^0 + \lambda \right)^2}{4\lambda k_BT} \right].
+\end{align}
+Such results show also how the states of O and R species have peaks of densities specular to each others and the transition rates increase as such peaks come closer to point of high density of states inside the metal, as we can see in \figref{fig:GMtheory}. Therefore, based on the value of $\lambda$ and of the Fermi energy, $E_f$, we are able to change the overlap of the states increasing $k_f$ or $k_b$ as we want. In fact, the value of $E_f$ can be changed by an external bias, shifting it up and down the levels along with the direction of the reaction, as we have already seen previously.
+\nt
+{
+    Such a theory is particular good in order to describe the effect of using electrodes made of semiconductor, since their behavior can be easily described by the simple use of a density of state with a gap in the middle.
+}
